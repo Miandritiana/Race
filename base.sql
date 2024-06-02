@@ -26,8 +26,11 @@ create table etape(
 insert into etape (name, lkm, nbCoureur, rangEtape)
 values
     ('Etape1', 50, 2, 'rang1'),
-    ('Etape2', 100, 5, 'rang2'),
+    ('Etape2', 100, 3, 'rang2'),
     ('Etape3', 1, 1, 'rang3');
+update etape set name = 'Etape 1 de Betsizaraina' where name = 'Etape1';
+update etape set name = 'Etape 3 d’Ampasimbe' where name = 'Etape3';
+-- update etape set nbCoureur = 3 where lkm = 100;
 
 create table category(
     idCategory AS ('cat' + cast(id as varchar(10))) PERSISTED primary key,
@@ -108,6 +111,66 @@ create table etapeCoureurTemps(
     hArriver time not null,
     temps time
 );
+
+create view v_detail_result as
+SELECT 
+    subquery.*,
+    CASE 
+        WHEN point = 10 THEN '1er'
+        WHEN point = 6 THEN '2eme'
+        WHEN point = 4 THEN '3eme'
+        WHEN point = 2 THEN '4eme'
+        WHEN point = 1 THEN '5eme'
+        ELSE 'non classe'
+    END AS rang
+FROM (
+    SELECT 
+        ect.idECTemps,
+        ect.idEtapeCoureur,
+        ec.idEtape,
+        u.idUser,
+        u.name as equipe,
+        c.idCoureur,
+        c.nom as coureur,
+        c.numDossard,
+        c.genre,
+        c.dtn,
+        ect.hDepart,
+        ect.hArriver,
+        ect.temps,
+        CASE 
+            WHEN ROW_NUMBER() OVER (PARTITION BY ec.idEtape ORDER BY ect.temps) = 1 THEN 10
+            WHEN ROW_NUMBER() OVER (PARTITION BY ec.idEtape ORDER BY ect.temps) = 2 THEN 6
+            WHEN ROW_NUMBER() OVER (PARTITION BY ec.idEtape ORDER BY ect.temps) = 3 THEN 4
+            WHEN ROW_NUMBER() OVER (PARTITION BY ec.idEtape ORDER BY ect.temps) = 4 THEN 2
+            WHEN ROW_NUMBER() OVER (PARTITION BY ec.idEtape ORDER BY ect.temps) = 5 THEN 1
+            ELSE 0
+        END AS point
+    FROM 
+        etapeCoureurTemps ect
+    JOIN etapecoureur ec ON ec.idEtapeCoureur = ect.idEtapeCoureur
+	JOIN uuser u ON u.idUser = ec.idUser
+	JOIN coureur c ON c.idCoureur = ec.idCoureur
+) AS subquery;
+
+
+create view v_CG as
+SELECT 
+    CASE 
+        WHEN RANK() OVER (ORDER BY SUM(point) DESC) = 1 THEN '1er'
+        WHEN RANK() OVER (ORDER BY SUM(point) DESC) = 2 THEN '2eme'
+        WHEN RANK() OVER (ORDER BY SUM(point) DESC) = 3 THEN '3eme'
+        WHEN RANK() OVER (ORDER BY SUM(point) DESC) = 4 THEN '4eme'
+        WHEN RANK() OVER (ORDER BY SUM(point) DESC) = 5 THEN '5eme'
+        ELSE 'Non classé'
+    END AS rang,
+    equipe, 
+    SUM(point) AS point
+FROM 
+    v_detail_result 
+GROUP BY 
+    equipe;
+
 
 
 

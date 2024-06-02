@@ -37,6 +37,33 @@ public class AdminController : Controller
         }
     }
 
+    public IActionResult ResetDatabase()
+    {
+        HttpContext.Session.Remove("sessionId");
+
+        if(HttpContext.Session.GetString("adminId") != null)
+        {
+            Connexion coco = new Connexion();
+            try{
+                coco.connection.Open();
+                    Connexion.ResetDatabase(coco);
+                coco.connection.Close();
+                ViewBag.Message = "Nety tsara";
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+            }
+            coco.connection.Close();
+            return RedirectToAction("Index", "Admin", ViewBag);
+
+        }else{
+
+            return RedirectToAction("Index", "Home");
+        }
+
+    }
+
     public IActionResult createEtape()
     {
         HttpContext.Session.Remove("sessionId");
@@ -85,6 +112,10 @@ public class AdminController : Controller
             {
                 ViewBag.Error = TempData["ErrorAffecte"];
             }
+            if (TempData["ErrorInsert"] != null)
+            {
+                ViewBag.Error = TempData["ErrorInsert"];
+            }
 
             return View("AffecterTemps", data);
 
@@ -108,23 +139,31 @@ public class AdminController : Controller
 
             if (idEtapeCoureurList.Count != hDepartList.Count && hDepartList.Count != hArriverList.Count)
             {
-                TempData["ErrorAffecte"] = "Tsy mitovy ny isanl le coureur sy ny time voaray";
+                TempData["ErrorAffecte"] = "Tsy mitovy ny isan le coureur sy ny time voaray";
                 return RedirectToAction("affecterTemps", "Admin", new { idEtape = idEtape });
             }else
             {
-                Connexion coco = new Connexion();
-                coco.connection.Open();
-
-                for (int i = 0; i < idEtapeCoureurList.Count; i++)
+                try
                 {
-                    TimeSpan hDepart = TimeSpan.Parse(hDepartList[i]);
-                    TimeSpan hArriver = TimeSpan.Parse(hArriverList[i]);
-                    Console.WriteLine(hDepart);
-                    Console.WriteLine(hArriver);
-                    new CoureurTemps(idEtapeCoureurList[i], hDepart, hArriver).create(coco);
+                    Connexion coco = new Connexion();
+                    coco.connection.Open();
+
+                    for (int i = 0; i < idEtapeCoureurList.Count; i++)
+                    {
+                        TimeSpan hDepart = TimeSpan.Parse(hDepartList[i]);
+                        TimeSpan hArriver = TimeSpan.Parse(hArriverList[i]);
+                        Console.WriteLine(hDepart);
+                        Console.WriteLine(hArriver);
+                        new CoureurTemps(idEtapeCoureurList[i], hDepart, hArriver).create(coco);
+                    }
+                    
+                    coco.connection.Close();
                 }
-                
-                coco.connection.Close();
+                catch (Exception ex)
+                {
+                    TempData["ErrorInsert"] = "Tsy nety inserer";
+                    return RedirectToAction("affecterTemps", "Admin", new { idEtape = idEtape });
+                }
 
             }
             return RedirectToAction("Index", "Admin");

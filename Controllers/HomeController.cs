@@ -173,4 +173,25 @@ public class HomeController : Controller
             return RedirectToAction("Index", "Home");
         }
     }
+
+    public IActionResult classement()
+    {
+        if(HttpContext.Session.GetString("sessionId") != null || HttpContext.Session.GetString("adminId") != null)
+        {
+            Data data = new Data();
+            Connexion coco = new Connexion();
+            coco.connection.Open();
+
+            data.resultList = Result.findAll(coco);
+            data.CGPointEtape = Result.CGPointEtape(coco);
+            data.CG = Result.CG(coco);
+
+            coco.connection.Close();
+            return View("result", data);
+
+        }else{
+
+            return RedirectToAction("Index", "Home");
+        }
+    }
 }

@@ -178,7 +178,7 @@ namespace Race.Models
             List<Coureur> coureurList = new List<Coureur>();
             try
             {
-                string query = "SELECT * FROM v_infoEtapeCoureur where idEtape ='"+idEtape+"'";
+                string query = "SELECT * FROM v_infoEtapeCoureur where idEtape ='"+idEtape+"' order by equipe";
                 SqlCommand command = new SqlCommand(query, connexion.connection);
                 SqlDataReader dataReader = command.ExecuteReader();
                 // string idEtapeCoureur, string idEtape, string idUser, string equipe, string idCoureur, string nom, string numDossard, string genre, DateTime dtn

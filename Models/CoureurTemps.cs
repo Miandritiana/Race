@@ -66,21 +66,17 @@ namespace Race.Models
             try
             {
                 TimeSpan temps = this.duration(this.hDepart, this.hArriver);
-                string query = "INSERT INTO etapeCoureurTemps (idEtapeCoureur, hDepart, hArriver, temps) " +
-                                "SELECT '" + this.idEtapeCoureur + "', '" + this.hDepart + "', '" + this.hArriver + "', '" + temps + "' " +
-                                "WHERE NOT EXISTS " +
-                                "(SELECT 1 FROM etapeCoureurTemps WHERE idEtapeCoureur = '" + this.idEtapeCoureur + "')";
+                string query = "INSERT INTO etapeCoureurTemps (idEtapeCoureur, hDepart, hArriver, temps) VALUES ('"+this.idEtapeCoureur+"', '"+this.hDepart+"', '"+this.hArriver+"', '"+temps+"')";
                 Console.WriteLine(query);
                 SqlCommand command = new SqlCommand(query, connexion.connection);
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
+                throw ex;
                 Console.WriteLine($"Error: {ex}");
             }
         }
-
-            //    "'demandeDevis.timespan', " + // This assumes timespan is a TimeSpan object
 
     }
 }

@@ -1,0 +1,115 @@
+@{
+    ViewData["Title"] = "Add temps";
+}
+<style>
+    .body{
+        background-color: black;
+    }
+</style>
+<body class="body">
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Race /</span> Classement</h4>
+        <div class="row mb-5">
+            <div class="card">
+                <div class="table-responsive text-nowrap mt-2">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Temps ID</th>
+                        <th>Etape ID</th>
+                        <th>Equipe</th>
+                        <th>Numéro</th>
+                        <th>Coureur</th>
+                        <th>Genre</th>
+                        <th>Heure de Départ</th>
+                        <th>Heure d'Arrivée</th>
+                        <th>Temps</th>
+                        <th>Point</th>
+                        <th>Rang</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        @foreach(var r in Model.resultList)
+                        {
+                            <tr>
+                                <td>@r.idECTemps</td>
+                                <td>@r.idEtape</td>
+                                <td>@r.equipe</td>
+                                <td style="text-align: right;">@r.numDossard</td>
+                                <td>@r.coureur</td>
+                                <td>@r.genre</td>
+                                <td>@r.hDepart</td>
+                                <td>@r.hArriver</td>
+                                <td>@r.temps</td>
+                                <td style="text-align: right;">@r.point</td>
+                                <td>@r.rang</td>
+                            </tr>
+                        }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-6">
+                <div class="card-header"><h3>Les points pour chaque étape</h3></div>
+                <div class="card">
+                    <div class="table-responsive text-nowrap mt-2">
+                        <table class="table table-borderless">
+                            <thead>
+                            <tr>
+                                <th>Equipe</th>
+                                <th>Etape</th>
+                                <th>Point</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                                @foreach(var r in Model.CGPointEtape)
+                                {
+                                    <tr>
+                                        <td>@r.equipe</td>
+                                        <td>@r.idEtape</td>
+                                        <td style="text-align: right;">@r.point</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="card-header"><h3>Classement général  par équipe</h3></div>
+                <div class="card">
+                    <div class="table-responsive text-nowrap mt-2">
+                        <table class="table table-borderless">
+                            <thead>
+                            <tr>
+                                <th>Rang</th>
+                                <th>Equipe</th>
+                                <th>Points</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                                @foreach(var r in Model.CG)
+                                {
+                                    <tr>
+                                        <td>@r.rang</td>
+                                        <td>@r.equipe</td>
+                                        <td style="text-align: right;">@r.point</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<body>

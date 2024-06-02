@@ -34,61 +34,52 @@ namespace Race.Models
         {
             try
             {
-                // Disable all foreign key constraints
                 DisableAllForeignKeys(connexion);
 
-                // Truncate tables (except 'uuser')
                 List<string> tables = Connexion.allTables(connexion);
+
+                // Delete all data from all tables
                 foreach (var item in tables)
                 {
-                    if (item != "uuser")
-                    {
-                        // var cmd = new SqlCommand($"TRUNCATE TABLE {item}", connexion.connection);
-                        var cmd = new SqlCommand($"delete from {item}", connexion.connection);
-                        cmd.ExecuteNonQuery();
+                    Console.WriteLine(item);
+                    var deleteCmd = new SqlCommand($"DELETE FROM {item}", connexion.connection);
+                    deleteCmd.ExecuteNonQuery();
 
-                    // Reset identity column
-                        var resetCmd = new SqlCommand($"DBCC CHECKIDENT ('{item}', RESEED, 0)", connexion.connection);
-                        resetCmd.ExecuteNonQuery();
-                        EnableForeignKeyConstraintsForTable(connexion, item);
-
-                    }
+                    var resetCmd = new SqlCommand($"DBCC CHECKIDENT ('{item}', RESEED, 0)", connexion.connection);
+                    resetCmd.ExecuteNonQuery();
+                    EnableForeignKeyConstraintsForTable(connexion, item);
                 }
 
+                // Truncate all tables
                 foreach (var item in tables)
                 {
-                    if (item != "uuser")
-                    {
-                        // var cmd = new SqlCommand($"TRUNCATE TABLE {item}", connexion.connection);
-                        var cmd = new SqlCommand($"truncate table {item}", connexion.connection);
-                        cmd.ExecuteNonQuery();
+                    var truncateCmd = new SqlCommand($"TRUNCATE TABLE {item}", connexion.connection);
+                    truncateCmd.ExecuteNonQuery();
 
-                        var resetCmd = new SqlCommand($"DBCC CHECKIDENT ('{item}', RESEED, 0)", connexion.connection);
-                        resetCmd.ExecuteNonQuery();
-                        EnableForeignKeyConstraintsForTable(connexion, item);
-
-                    }
+                    var resetCmd = new SqlCommand($"DBCC CHECKIDENT ('{item}', RESEED, 0)", connexion.connection);
+                    resetCmd.ExecuteNonQuery();
+                    EnableForeignKeyConstraintsForTable(connexion, item);
                 }
 
-                // Re-enable foreign key constraints
+                // Insert the default user into the uuser table
+                var insertAdminCmd = new SqlCommand("INSERT INTO uuser (name, user, passWord, admin) VALUES ('Admin', 'admin', 'admin', 1)", connexion.connection);
+                insertAdminCmd.ExecuteNonQuery();
+
                 EnableAllForeignKeys(connexion);
             }
             catch (Exception ex)
             {
-                // Handle or log the exception as needed
-                throw ex;
                 Console.WriteLine($"Error: {ex}");
+                throw;
             }
         }
 
-        // Helper method to disable all foreign key constraints
         private static void DisableAllForeignKeys(Connexion connexion)
         {
             var disableFkCmd = new SqlCommand("EXEC sp_MSforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT ALL'", connexion.connection);
             disableFkCmd.ExecuteNonQuery();
         }
 
-        // Helper method to enable all foreign key constraints
         private static void EnableAllForeignKeys(Connexion connexion)
         {
             var enableFkCmd = new SqlCommand("EXEC sp_MSforeachtable 'ALTER TABLE ? WITH CHECK CHECK CONSTRAINT ALL'", connexion.connection);

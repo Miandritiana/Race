@@ -12,18 +12,14 @@ namespace Race.Models
         public string uuser { get; set; }
         public string passWord { get; set; }
         public int admin { get; set; }
-        public string num { get; set; }
 
         public Uuser() { }
 
-        public Uuser(string idUser, int id, string name, string passWord, int admin, string num)
+        public Uuser(string name, string uuser, string passWord)
         {
-            this.idUser = idUser;
-            this.id = id;
             this.name = name;
+            this.uuser = uuser;
             this.passWord = passWord;
-            this.admin = admin;
-            this.num = num;
         }
 
         public Uuser(string num)
@@ -84,20 +80,20 @@ namespace Race.Models
             }
         }
 
-        // public void createClient(Connexion connexion, Uuser uuser)
-        // {
-        //     try
-        //     {
-        //         string query = "INSERT INTO uuser (name, uuser, password, admin) VALUES ('RAsoa', '123', '0')";
-        //         SqlCommand command = new SqlCommand(query, connexion.connection);
-        //         command.Parameters.AddWithValue("@num", uuser.num);
-        //         command.ExecuteNonQuery();
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         Console.WriteLine($"Error: {ex}");
-        //     }
-        // }
+        public void createClient(Connexion connexion)
+        {
+            try
+            {
+                string query = "INSERT INTO uuser (name, uuser, password, admin) VALUES ('"+this.name+"', '"+this.uuser+"', '"+this.passWord+"', '0')";
+                Console.WriteLine(query);
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+            }
+        }
 
         public string lastId(Connexion connexion)
         {
