@@ -21,11 +21,6 @@ namespace Race.Models
             this.uuser = uuser;
             this.passWord = passWord;
         }
-
-        public Uuser(string num)
-        {
-            this.num = num;
-        }
         
         public string checkLogin(Connexion connexion, string username, string password)
         {
@@ -116,6 +111,56 @@ namespace Race.Models
                 Console.WriteLine($"Error: {ex}");
             }
             return idUser;
+        }
+
+        public List<Uuser> findAll(Connexion connexion)
+        {
+            List<Uuser> uuserList = new List<Uuser>();
+            try
+            {
+                string query = "SELECT * FROM uuser";
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    uuserList.Add(new Uuser(
+                        dataReader["name"].ToString(),
+                        dataReader["uuser"].ToString(),
+                        dataReader["password"].ToString()
+                    ));
+                }
+                dataReader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+            }
+            return uuserList;
+        }
+
+        public List<Uuser> allEquipes(Connexion connexion)
+        {
+            List<Uuser> uuserList = new List<Uuser>();
+            try
+            {
+                string query = "SELECT * FROM uuser WHERE admin = 0";
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    uuserList.Add(new Uuser(
+                        dataReader["name"].ToString(),
+                        dataReader["uuser"].ToString(),
+                        dataReader["password"].ToString()
+                    ));
+                }
+                dataReader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+            }
+            return uuserList;
         }
 
     }

@@ -26,6 +26,9 @@ public class AdminController : Controller
             coco.connection.Open();
 
             data.etapeList = e.findAll(coco);
+            data.userList = new Uuser().findAll(coco);
+            data.coureurList = new Coureur().findAll(coco);
+            data.equipeList = new Uuser().allEquipes(coco);
 
             coco.connection.Close();
 

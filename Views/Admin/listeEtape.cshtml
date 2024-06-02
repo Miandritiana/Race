@@ -15,7 +15,7 @@
 
         <div class="row">
             <div class="card">
-                <p class="card-header"></p>
+                <div class="card-header"><h4>Liste Etape</h4></div>
                 <div class="card-body">
                   <div class="table-responsive text-nowrap">
                     <table class="table table-bordered">
@@ -58,80 +58,284 @@
 
         <div class="row">
               <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalCenter">
-                Create
+                Create etape
               </button>
         </div>
 
+        <div class="row">
+            <div class="col-4">
+              <div class="card mt-5 mb-4">
+                  <div class="card-header"><h4>Liste Equipe</h4></div>
+                    <div class="card-body mb-4">
+                      <div class="table-responsive text-nowrap">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>Nom</th>
+                              <th>Log in</th>
+                            </tr>
+                          </thead>
+                          <tbody class="table-border-bottom-0">
+                              @foreach(var u in Model.userList)
+                              {
+                                  <tr>
+                                      <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@u.name</strong></td>
+                                      <td style="text-align: right;">@u.uuser</td>
+                                  </tr>
+                              }
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#basicModal">
+                  Create equipe
+                </button>
+              </div>
+            </div>
+
+            <div class="col-8">
+              <div class="card mt-5 mb-4">
+                  <div class="card-header"><h4>Liste Coureur</h4></div>
+                    <div class="card-body">
+                      <div class="table-responsive text-nowrap">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>Nom</th>
+                              <th>Num dossard</th>
+                              <th>Genre</th>
+                              <th>Dtn</th>
+                              <th>Equipe</th>
+                            </tr>
+                          </thead>
+                          <tbody class="table-border-bottom-0">
+                              @foreach(var c in Model.coureurList)
+                              {
+                                  <tr>
+                                      <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@c.nom</strong></td>
+                                      <td style="text-align: right;">@c.numDossard</td>
+                                      <td style="text-align: right;">@c.genre</td>
+                                      <td style="text-align: right;">@c.dtn.ToString("MMMM dd, yyyy")</td>
+                                      <td style="text-align: right;">@c.equipe</td>
+                                  </tr>
+                              }
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalCenterCoureur">
+                  Create Coureur
+                </button>
+              </div>
+            </div>
+        </div>
+      </div>
+
     </div>
 </div>
 
 
-<div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <form class="mb-3" action="@Url.Action("createEtape", "Admin")" method="POST">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalCenterTitle">Create etape</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <div class="row g-2">
-            <div class="col mb-0">
-              <label for="nameWithTitle" class="form-label">Nom</label>
-              <input
-                type="text"
-                id="nameWithTitle"
-                class="form-control"
-                name="nom"
-              />
+    <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <form class="mb-3" action="@Url.Action("createEtape", "Admin")" method="POST">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalCenterTitle">Create etape</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
-            <div class="col mb-0">
-              <label for="emailWithTitle" class="form-label">Longeur en km</label>
-              <input
-                type="number"
-                id="emailWithTitle"
-                class="form-control"
-                name="lkm"
-              />
+            <div class="modal-body">
+              <div class="row g-2">
+                <div class="col mb-0">
+                  <label for="nameWithTitle" class="form-label">Nom</label>
+                  <input
+                    type="text"
+                    id="nameWithTitle"
+                    class="form-control"
+                    name="nom"
+                  />
+                </div>
+                <div class="col mb-0">
+                  <label for="emailWithTitle" class="form-label">Longeur en km</label>
+                  <input
+                    type="number"
+                    id="emailWithTitle"
+                    class="form-control"
+                    name="lkm"
+                  />
+                </div>
+              </div>
+              <div class="row g-2">
+                <div class="col mb-0">
+                <label for="dobWithTitle" class="form-label">Nombre coureur</label>
+                <input
+                  type="number"
+                  id="dobWithTitle"
+                  class="form-control"
+                  name="nbCoureur"
+                />
+              </div>
+              <div class="col mb-0">
+                <label for="dobWithTitle" class="form-label">Rang etape</label>
+                  <select name="rangEtape"
+                    class="form-select">
+                    @for(int i = 1; i < 11; i++)
+                    {
+                      <option value="@i">Rang @i</option>
+                    }
+                  </select>
+              </div>
             </div>
           </div>
-          <div class="row g-2">
-            <div class="col mb-0">
-            <label for="dobWithTitle" class="form-label">Nombre coureur</label>
-            <input
-              type="number"
-              id="dobWithTitle"
-              class="form-control"
-              name="nbCoureur"
-            />
-          </div>
-          <div class="col mb-0">
-            <label for="dobWithTitle" class="form-label">Rang etape</label>
-              <select name="rangEtape"
-                class="form-select">
-                @for(int i = 1; i < 11; i++)
-                {
-                  <option value="@i">Rang @i</option>
-                }
-              </select>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+
       </div>
     </div>
-    </form>
 
-  </div>
-</div>
-</div>
+
+    <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <form class="mb-3" action="#" method="POST">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalCenterTitle">Create equipe</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="row g-2">
+                  <label for="nameWithTitle" class="form-label">Nom</label>
+                  <input
+                    type="text"
+                    id="nameWithTitle"
+                    class="form-control"
+                    name="nom"
+                  />
+              </div>
+              
+              <div class="row g-2">
+                <div class="col-6">
+                    <label for="emailWithTitle" class="form-label">Username</label>
+                    <input
+                      type="text"
+                      id="emailWithTitle"
+                      class="form-control"
+                      name="username"
+                    />
+                </div>
+                <div class="col-6">
+                    <label for="emailWithTitle" class="form-label">Password</label>
+                    <input
+                      type="text"
+                      id="emailWithTitle"
+                      class="form-control"
+                      name="password"
+                    />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+
+
+    <div class="modal fade" id="modalCenterCoureur" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <form class="mb-3" action="#" method="POST">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalCenterTitle">Create coureur</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="row g-2">
+                  <label for="nameWithTitle" class="form-label">Nom</label>
+                  <input
+                    type="text"
+                    id="nameWithTitle"
+                    class="form-control"
+                    name="nom"
+                  />
+              </div>
+              
+              <div class="row g-2">
+                <div class="col-6">
+                    <label for="emailWithTitle" class="form-label">Num Dossard</label>
+                    <input
+                      type="text"
+                      id="emailWithTitle"
+                      class="form-control"
+                      name="username"
+                    />
+                </div>
+                <div class="col-6">
+                    <label for="emailWithTitle" class="form-label">Genre</label>
+                      <select name="genre"
+                        class="form-select">
+                          <option value="masculin">Masculin</option>
+                          <option value="feminin">Feminin</option>
+                      </select>
+                </div>
+              </div>
+
+              <div class="row g-2">
+                <div class="col-6">
+                    <label for="emailWithTitle" class="form-label">Date de naissance</label>
+                    <input
+                      type="date"
+                      id="emailWithTitle"
+                      class="form-control"
+                      name="username"
+                    />
+                </div>
+                <div class="col-6">
+                    <label for="emailWithTitle" class="form-label">Equipe</label>
+                      <select name="genre" class="form-select">
+                        @foreach(var e in Model.equipeList)
+                        {
+                          <option value="@e.idUser">@e.name</option>
+                        }
+                      </select>
+                </div>
+              </div>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
