@@ -1,0 +1,46 @@
+@{
+    ViewData["Title"] = "Homepage";
+}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Race /</span> List etape</h4>
+        <div class="row mb-5">
+            <div class="card">
+                <p class="card-header"></p>
+                <div class="table-responsive text-nowrap">
+                  <table class="table table-striped">
+                  @* <table class="table table-bordered"> *@
+                    <thead>
+                      <tr>
+                        <th>Nom</th>
+                        <th>Longeur en km</th>
+                        <th>Nombre coureur</th>
+                        <th>Rang etape</th>
+                        <th>Add</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        @foreach(var d in Model.etapeList)
+                        {
+                            <tr>
+                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@d.name</strong></td>
+                                <td style="text-align: right;">@d.lkm km</td>
+                                <td style="text-align: right;">@d.nbCoureur</td>
+                                <td>@d.rangEtape</td>
+                                <form action="@Url.Action("affecterCoureur", "Home")" method="post">
+                                    <input type="hidden" name="idEtape" value="@d.idEtape">
+                                    <td><button type="submit" class="btn btn-dark">Coureur</button></td>
+                                </form>
+                            </tr>
+                        }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+

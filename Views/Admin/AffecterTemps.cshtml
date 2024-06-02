@@ -1,0 +1,94 @@
+@{
+    ViewData["Title"] = "Add temps";
+}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Race /</span> Affecter temps</h4>
+
+        <div class="row mb-5">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <form action="@Url.Action("Index", "Admin")" method="get">
+                    <button type="submit"  class="btn btn-dark" style="float:right;">Return to List</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="card">
+
+        <div class="row">
+            <div class="col-md-6">
+                <h2></h2>
+                @if(ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger" role="alert">@ViewBag.Error</div>
+                }
+            </div>
+        </div>
+                
+                <div class="card-body">
+                            <form action="@Url.Action("affecte", "Admin")" method="post">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="demo-inline-spacing mt-3">
+                                <div class="list-group">
+                                <a
+                                    href="javascript:void(0);"
+                                    class="list-group-item list-group-item-action flex-column align-items-start"
+                                >
+                                    <div class="d-flex justify-content-between w-100">
+                                    <h6>@Model.etape.name</h6>
+                                    <small>@Model.etape.lkm km</small>
+                                    </div>
+                                    <p class="mb-1">Nombre coureur : @Model.etape.nbCoureur
+                                    </p>
+                                    <small>Rang etape : @Model.etape.rangEtape</small>
+                                </a>
+                                </div>
+                            </div>
+                            </div>
+
+
+                                <div class="col-7 mb-4">
+
+                                    <div class="table-responsive text-nowrap">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Coureur</th>
+                                            <th>Heure depart</th>
+                                            <th>Heure d'arriver</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="table-border-bottom-0">
+                                            @foreach(var c in Model.coureurList)
+                                            {
+                                                <tr>
+                                                    <input type="hidden" name="idEtapeCoureur" value="@c.idEtapeCoureur"/>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@c.nom</strong> dans @c.equipe</td>
+                                                    <td><input type="time" class="form-control" step="1" name="hDepart" required/></td>
+                                                    <td><input type="time" class="form-control" step="1" name="hArriver" required/></td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+                                                <input type="hidden" name="idEtape" value="@Model.etape.idEtape"/>
+                                
+
+                                <button type="submit" class="btn btn-primary">
+                                    Save
+                                </button>
+
+                        </div>
+                            </form>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+

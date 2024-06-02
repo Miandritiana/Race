@@ -1,0 +1,128 @@
+@{
+    ViewData["Title"] = "Homepage";
+}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Race /</span> List etape</h4>
+        <div class="row">
+            <div class="card">
+                <p class="card-header"></p>
+                <div class="card-body">
+                  <div class="table-responsive text-nowrap">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Nom</th>
+                          <th>Longeur en km</th>
+                          <th>Nombre coureur</th>
+                          <th>Rang etape</th>
+                          <th>Add</th>
+                          @* <th>Modif</th> *@
+                        </tr>
+                      </thead>
+                      <tbody class="table-border-bottom-0">
+                          @foreach(var d in Model.etapeList)
+                          {
+                              <tr>
+                                  <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@d.name</strong></td>
+                                  <td style="text-align: right;">@d.lkm km</td>
+                                  <td style="text-align: right;">@d.nbCoureur</td>
+                                  <td>@d.rangEtape</td>
+                                  <form action="@Url.Action("affecterTemps", "Admin")" method="post">
+                                      <input type="hidden" name="idEtape" value="@d.idEtape">
+                                      <td><button type="submit" class="btn btn-dark">Temps</button></td>
+                                  </form>
+                                  @* <form action="@Url.Action("payer", "Home")" method="post"> *@
+                                      @* <input type="hidden" name="idDemande" value="@d.idEtape">
+                                      <td><button type="submit" class="btn btn-warning">Modif</button></td> *@
+                                  @* </form> *@
+                              </tr>
+                          }
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+        </div>
+
+        <div class="row">
+              <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalCenter">
+                Create
+              </button>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <form class="mb-3" action="@Url.Action("createEtape", "Admin")" method="POST">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCenterTitle">Create etape</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-2">
+            <div class="col mb-0">
+              <label for="nameWithTitle" class="form-label">Nom</label>
+              <input
+                type="text"
+                id="nameWithTitle"
+                class="form-control"
+                name="nom"
+              />
+            </div>
+            <div class="col mb-0">
+              <label for="emailWithTitle" class="form-label">Longeur en km</label>
+              <input
+                type="number"
+                id="emailWithTitle"
+                class="form-control"
+                name="lkm"
+              />
+            </div>
+          </div>
+          <div class="row g-2">
+            <div class="col mb-0">
+            <label for="dobWithTitle" class="form-label">Nombre coureur</label>
+            <input
+              type="number"
+              id="dobWithTitle"
+              class="form-control"
+              name="nbCoureur"
+            />
+          </div>
+          <div class="col mb-0">
+            <label for="dobWithTitle" class="form-label">Rang etape</label>
+              <select name="rangEtape"
+                class="form-select">
+                @for(int i = 1; i < 11; i++)
+                {
+                  <option value="@i">Rang @i</option>
+                }
+              </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+    </form>
+
+  </div>
+</div>
+</div>
+

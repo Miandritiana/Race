@@ -16,8 +16,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\L3\S6\Eval\Race
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/L3/S6/Eval/Race/Views/Admin/AffecterTemps.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWZmZWN0ZXJUZW1wcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/L3/S6/Eval/Race/Views/Admin/listeEtape.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cbGlzdGVFdGFwZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/L3/S6/Eval/Race/Views/Home/AffecterCoureur.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZmZlY3RlckNvdXJldXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/L3/S6/Eval/Race/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/L3/S6/Eval/Race/Views/Home/listeEtape.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxsaXN0ZUV0YXBlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/L3/S6/Eval/Race/Views/Home/Privacy.cshtml]
