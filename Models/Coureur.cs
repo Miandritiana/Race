@@ -394,7 +394,6 @@ namespace Race.Models
             try
             {
                 string query = "INSERT INTO categoryCoureur (idCoureur, idCategory) VALUES ('"+this.idCoureur+"', '"+this.idCategory+"')";
-                Console.WriteLine(query);
                 SqlCommand command = new SqlCommand(query, connexion.connection);
                 command.ExecuteNonQuery();
             }
@@ -426,31 +425,27 @@ namespace Race.Models
                 {
                     if (this.getAge(coureur.dtn) < 18)
                     {
-                        Console.WriteLine("true jumior");
                         category = "junior";
 
                     }else
                     {
-                        Console.WriteLine("true senior");
                         category = "senior";
                     }
 
                     if (coureur.genre == "Masculin")
                     {
-                        Console.WriteLine("true homme");
                         genre = "homme";
 
                     }else if(coureur.genre == "Feminin")
                     {
-                        Console.WriteLine("true femme");
                         genre = "femme";
                     }
 
                     Console.WriteLine(coureur.idCoureur + " , " +this.getIdCategory(coco, category));
                     Console.WriteLine(coureur.idCoureur + " , " +this.getIdCategory(coco, genre));
 
-                    new Coureur(coureur.idCoureur, this.getIdCategory(coco, category)).createCategoryCoureur(coco);
-                    new Coureur(coureur.idCoureur, this.getIdCategory(coco, genre)).createCategoryCoureur(coco);
+                    new Coureur(coureur.idCoureur, this.getIdCategory(coco, category), 1).createCategoryCoureur(coco);
+                    new Coureur(coureur.idCoureur, this.getIdCategory(coco, genre), 1).createCategoryCoureur(coco);
                 }
             }
             catch (Exception ex)
