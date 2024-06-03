@@ -41,13 +41,16 @@ namespace Race.Models
                 // Delete all data from all tables
                 foreach (var item in tables)
                 {
-                    Console.WriteLine($"Deleting data from table: {item}");
-                    var deleteCmd = new SqlCommand($"DELETE FROM {item}", connexion.connection);
-                    deleteCmd.ExecuteNonQuery();
+                    if (item != "category")
+                    {
+                        Console.WriteLine($"Deleting data from table: {item}");
+                        var deleteCmd = new SqlCommand($"DELETE FROM {item}", connexion.connection);
+                        deleteCmd.ExecuteNonQuery();
 
-                    var resetCmd = new SqlCommand($"DBCC CHECKIDENT ('{item}', RESEED, 0)", connexion.connection);
-                    resetCmd.ExecuteNonQuery();
-                    EnableForeignKeyConstraintsForTable(connexion, item);
+                        var resetCmd = new SqlCommand($"DBCC CHECKIDENT ('{item}', RESEED, 0)", connexion.connection);
+                        resetCmd.ExecuteNonQuery();
+                        EnableForeignKeyConstraintsForTable(connexion, item);
+                    }
                 }
 
                 // Insert the default user into the uuser table
@@ -58,13 +61,16 @@ namespace Race.Models
                 // Truncate all tables
                 foreach (var item in tables)
                 {
-                    Console.WriteLine($"Truncating table: {item}");
-                    var truncateCmd = new SqlCommand($"TRUNCATE TABLE {item}", connexion.connection);
-                    truncateCmd.ExecuteNonQuery();
+                    if (item != "category")
+                    {
+                        Console.WriteLine($"Truncating table: {item}");
+                        var truncateCmd = new SqlCommand($"TRUNCATE TABLE {item}", connexion.connection);
+                        truncateCmd.ExecuteNonQuery();
 
-                    var resetCmd = new SqlCommand($"DBCC CHECKIDENT ('{item}', RESEED, 0)", connexion.connection);
-                    resetCmd.ExecuteNonQuery();
-                    EnableForeignKeyConstraintsForTable(connexion, item);
+                        var resetCmd = new SqlCommand($"DBCC CHECKIDENT ('{item}', RESEED, 0)", connexion.connection);
+                        resetCmd.ExecuteNonQuery();
+                        EnableForeignKeyConstraintsForTable(connexion, item);
+                    }
                 }
                 
                 EnableAllForeignKeys(connexion);

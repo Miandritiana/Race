@@ -137,6 +137,7 @@ values
     ('4', 2),
     ('5', 1);
 
+
 create view v_detail_result as
 WITH RankedResults AS (
     SELECT 
@@ -180,6 +181,51 @@ SELECT
     END AS rang
 FROM 
     RankedWithPoints AS subquery;
+
+
+
+
+
+
+
+WITH RankedResults AS (
+    SELECT 
+        ect.idECTemps,
+        ect.idEtapeCoureur,
+        ec.idEtape,
+        u.idUser,
+        u.name as equipe,
+        c.idCoureur,
+        c.nom as coureur,
+        c.numDossard,
+        c.genre,
+        c.dtn,
+        ect.hDepart,
+        ect.hArriver,
+        ect.temps,
+        DENSE_RANK() OVER (PARTITION BY ec.idEtape ORDER BY ect.temps) AS classement
+    FROM 
+        etapeCoureurTemps ect
+    JOIN etapecoureur ec ON ec.idEtapeCoureur = ect.idEtapeCoureur
+    JOIN uuser u ON u.idUser = ec.idUser
+    JOIN coureur c ON c.idCoureur = ec.idCoureur
+),
+RankedWithPoints AS (
+    SELECT 
+        RankedResults.*,
+        ISNULL(p.points, 0) AS point
+    FROM 
+        RankedResults
+    LEFT JOIN point p ON CAST(RankedResults.classement AS VARCHAR(10)) = p.classement
+)
+SELECT 
+    subquery.*
+FROM 
+    RankedWithPoints AS subquery;
+
+
+
+
 
 
 
@@ -262,6 +308,58 @@ values
     ('3', 4),
     ('4', 2),
     ('5', 1);
+
+
+
+
+select e.idEtapeCoureur, e.idEtape, u.name, c.nom from etapecoureur e join uuser u on u.idUser = e.iduser join coureur c on c.idCoureur = e.idCoureur order by e.id
+
+
+select v.idEtapeCoureur, v.idEtape, e.name as etape, e.lkm, e.nbCoureur, e.rangEtape, e.dhDepart, v.idUser, v.equipe, v.coureur, v.numDossard, v.genre, v.dtn, v.temps, v.point, v.rang from v_detail_result v join etape e on e.idEtape = v.idEtape
+
+
+create view v_chronos as
+select v.idEtapeCoureur, v.idEtape, e.name as etape, e.lkm, e.nbCoureur, e.rangEtape, e.dhDepart, v.idUser, v.equipe, v.coureur, v.numDossard, v.genre, v.dtn, v.temps, v.point, v.rang from v_detail_result v join etape e on e.idEtape = v.idEtape
+
+
+
+
+create view v_info_coureur_category as
+select c.idUser, u.name coureur, c.idCoureur, c.nom, cc.idCategory, cate.name category, ect.temps from etapeCoureurTemps ect 
+	LEFT JOIN etapeCoureur et ON et.idEtapeCoureur = ect.idEtapeCoureur
+	LEFT JOIN categoryCoureur cc ON cc.idCoureur = et.idCoureur
+	LEFT JOIN coureur c ON c.idCoureur = cc.idCoureur
+	LEFT JOIN uuser u ON u.idUser = c.idUser
+	LEFT JOIN category cate ON cate.idCategory = cc.idCategory;
+
+
+
+create view v_detail_point_category as
+WITH valiny AS (
+	select *,
+		DENSE_RANK() OVER (PARTITION BY idCategory ORDER BY temps) AS classement
+		from v_info_coureur_category
+),
+miarakPoint AS (
+SELECT 
+        valiny.*,
+        ISNULL(p.points, 0) AS point
+        --p.points AS point
+    FROM 
+        valiny
+    LEFT JOIN point p ON CAST(valiny.classement AS VARCHAR(10)) = p.classement
+)
+SELECT 
+    tenaValiny.*
+FROM 
+    miarakPoint AS tenaValiny;
+
+
+
+
+
+select idUser, coureur, idCategory, category, sum(point) point from v_detail_point_category group by idCategory, category , idUser, coureur order by point desc
+
 
 
 

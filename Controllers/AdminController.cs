@@ -253,13 +253,13 @@ public class AdminController : Controller
         return View("importData", ViewBag);
     }
 
-    public IActionResult importPoint()
+    public IActionResult importPointView()
     {
         HttpContext.Session.Remove("sessionId");
 
         if(HttpContext.Session.GetString("adminId") != null)
         {
-            return View();
+            return View("importPointView");
 
         }else{
 
@@ -278,17 +278,17 @@ public class AdminController : Controller
                 Connexion coco = new Connexion();
                 coco.connection.Open();
                 
-                string messageEtape = impo.import(csvFile, coco);
+                string message = impo.import(csvFile, coco);
 
                 coco.connection.Close();
                 
-                if (messageEtape.Contains("Error") || messageEtape.Contains("Exception") || messageEtape.Contains("failed"))
+                if (message.Contains("Error") || message.Contains("Exception") || message.Contains("failed"))
                 {
-                    ViewBag.Error = messageEtape;
+                    ViewBag.Error = message;
                 }
                 else
                 {
-                    ViewBag.Message = messageEtape;
+                    ViewBag.Message = message;
                 }
 
             }
@@ -302,6 +302,26 @@ public class AdminController : Controller
             ViewBag.Error = "No file selected.";
         }
 
-        return View("importData", ViewBag);
+        return View("importPointView", ViewBag);
     }
+
+    public IActionResult generateCC()
+    {
+        HttpContext.Session.Remove("sessionId");
+
+        if(HttpContext.Session.GetString("adminId") != null)
+        {
+            
+            Connexion coco = new Connexion();
+            coco.connection.Open();
+                new Coureur().generateCategory(coco);
+            coco.connection.Close();
+            return RedirectToAction("Index", "Admin");
+
+        }else{
+
+            return RedirectToAction("Index", "Home");
+        }
+    }
+    
 }

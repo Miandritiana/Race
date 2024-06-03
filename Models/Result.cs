@@ -23,6 +23,11 @@ namespace Race.Models
         public int point { get; set; }
         public string rang { get; set; }
 
+        public double lkm { get; set; }
+        public int nbCoureur { get; set; }
+        public string rangEtape { get; set; }
+        public DateTime dhDepart { get; set; }
+
         public Result() { }
 
         public Result(string idECTemps, string idEtapeCoureur, string idEtape, string idUser, string equipe, string idCoureur, string coureur, string numDossard, string genre, DateTime dtn, TimeSpan hDepart, TimeSpan hArriver, TimeSpan temps, int point, string rang)
@@ -66,6 +71,26 @@ namespace Race.Models
             this.rang = rang;
             this.equipe = equipe;
             this.point = point;
+        }
+
+        public Result(string idEtapeCoureur, string idEtape, string etape, double lkm, int nbCoureur, string rangEtape, DateTime dhDepart, string idUser, string equipe, string coureur, string numDossard, string genre, DateTime dtn, TimeSpan temps, int point, string rang)
+        {
+            this.idEtapeCoureur = idEtapeCoureur;
+            this.idEtape = idEtape;
+            this.etape = etape;
+            this.lkm = lkm;
+            this.nbCoureur = nbCoureur;
+            this.rangEtape = rangEtape;
+            this.dhDepart = dhDepart;
+            this.idUser = idUser;
+            this.equipe = equipe;
+            this.coureur = coureur;
+            this.numDossard = numDossard;
+            this.genre = genre;
+            this.dtn = dtn;
+            this.temps = temps;
+            this.point = point;
+            this.rang = rang;
         }
 
         public static List<Result> findAll(Connexion connexion)
@@ -173,6 +198,44 @@ namespace Race.Models
                     }
                 }
             }
+            return results;
+        }
+
+        public static List<Result> chronos(Connexion connexion, string idUser)
+        {
+            List<Result> results = new List<Result>();
+            string query = "SELECT * FROM v_chronos where idUser ='"+idUser+"'";
+            
+            using (SqlCommand command = new SqlCommand(query, connexion.connection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // idEtapeCoureur, idEtape, etape, double lkm, int nbCoureur, rangEtape, DateTime dhDepart, idUser, equipe, coureur, numDossard, genre, DateTime dtn, TimeSpan temps, int point, rang
+                        Result result = new Result(
+                            reader["idEtapeCoureur"].ToString(),
+                            reader["idEtape"].ToString(),
+                            reader["etape"].ToString(),
+                            reader.GetDouble(reader.GetOrdinal("lkm")),
+                            reader.GetInt32(reader.GetOrdinal("nbCoureur")),
+                            reader["rangEtape"].ToString(),
+                            Convert.ToDateTime(reader["dhDepart"]),
+                            reader["idUser"].ToString(),
+                            reader["equipe"].ToString(),
+                            reader["coureur"].ToString(),
+                            reader["numDossard"].ToString(),
+                            reader["genre"].ToString(),
+                            Convert.ToDateTime(reader["dtn"]),
+                            reader.GetTimeSpan(reader.GetOrdinal("temps")),
+                            reader.GetInt32(reader.GetOrdinal("point")),
+                            reader["rang"].ToString()
+                        );
+                        results.Add(result);
+                    }
+                }
+            }
+
             return results;
         }
     }

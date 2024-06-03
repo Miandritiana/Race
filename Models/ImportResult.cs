@@ -37,7 +37,7 @@ namespace Race.Models
             {
                 Uuser u = new Uuser();
                 u.createEquipe(coco, impo.equipe);
-                string lastIdEquipe = u.lastId(coco);
+                string idEquipe = u.getIdUser(coco, impo.equipe);
 
                 Coureur c = new();
                 string genre = "";
@@ -48,13 +48,14 @@ namespace Race.Models
                 {
                     genre = "Feminin";
                 }
-                new Coureur(impo.nom, impo.numero_dossard, genre, impo.date_naissance, lastIdEquipe).create(coco);
-                string lastIdCoureur = c.lastIdCoureur(coco);
+                new Coureur(impo.nom, impo.numero_dossard, genre, impo.date_naissance, idEquipe).create(coco);
+                string idCoureur = c.getIdCoureurByNom(coco, impo.nom);
 
                 string idEtape = new Etape().getIdEtapeRg(coco, impo.etape_rang);
                 Console.WriteLine(idEtape);
 
-                new Coureur(idEtape, lastIdCoureur).createEtapeCoureur2(coco);
+                new Coureur(idEtape, idCoureur).createEtapeCoureur2(coco);
+                // new Coureur().createEtapeCoureur2(coco, idEtape, idCoureur);
 
                 string lastIdetapeCoureur = c.lastIdetapeCoureur(coco);
 

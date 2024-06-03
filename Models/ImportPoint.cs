@@ -87,9 +87,6 @@ namespace Race.Models
                         }
                     }
 
-                        // DateTime date_depart = DateTime.ParseExact(processedValues[4], "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-                        // TimeSpan heure_depart = TimeSpan.ParseExact(processedValues[5], "HH:mm:ss", CultureInfo.InvariantCulture);
-
                         ImportPoint impo = new ImportPoint(
                             processedValues[0],
                             int.Parse(processedValues[1])

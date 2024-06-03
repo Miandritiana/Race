@@ -175,5 +175,26 @@ namespace Race.Models
             return uuserList;
         }
 
+        public string getIdUser(Connexion connexion, string password)
+        {
+            string idUser = "";
+            try
+            {
+                string query = "SELECT idUser FROM uuser WHERE password = '" + password + "'";
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    idUser = dataReader.GetString(0);
+                }
+                dataReader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+            }
+            return idUser;
+        }
+
     }
 }

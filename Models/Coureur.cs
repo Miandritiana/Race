@@ -18,6 +18,9 @@ namespace Race.Models
         public string idEquipe { get; set; }
         public string idEtapeCoureur { get; set; }
 
+        public string idCategory { get; set; }
+        public string category { get; set; }
+
         public Coureur() { }
 
         public Coureur(string idCoureur, string nom, string numDossard, string genre, DateTime dtn, string equipe, string idUser)
@@ -29,6 +32,13 @@ namespace Race.Models
             this.dtn = dtn;
             this.equipe = equipe;
             this.idUser = idUser;
+        }
+
+        public Coureur (string idCoureur, string idCategory, int id)
+        {
+            this.idCoureur = idCoureur;
+            this.idCategory = idCategory;
+            this.id = id;
         }
 
         public Coureur (string idEtape, string idEquipe, string idCoureur)
@@ -85,6 +95,30 @@ namespace Race.Models
                         dataReader["name"].ToString(),
                         dataReader["idUser"] != DBNull.Value ? dataReader["idUser"].ToString() : null
                     ));
+                }
+
+                dataReader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                Console.WriteLine($"Error: {ex}");
+            }
+            return coureurList;
+        }
+
+        public string getIdCategory(Connexion connexion, string category)
+        {
+            string coureurList = "";
+            try
+            {
+                string query = "SELECT idCategory FROM category where name='"+category+"'";
+                Console.WriteLine(query);
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    coureurList = dataReader["idCategory"].ToString();
                 }
 
                 dataReader.Close();
@@ -198,6 +232,7 @@ namespace Race.Models
             try
             {
                 string query = "INSERT INTO etapecoureur (idEtape, idUser, idCoureur) VALUES ('"+this.idEtape+"', (select idUser from coureur where idCoureur='"+this.idCoureur+"'), '"+this.idCoureur+"')";
+                Console.WriteLine(query);
                 SqlCommand command = new SqlCommand(query, connexion.connection);
                 command.ExecuteNonQuery();
             }
@@ -209,12 +244,68 @@ namespace Race.Models
 
         }
 
+        // public void createEtapeCoureur2(Connexion connexion, string idEtape, string idCoureur)
+        // {
+        //     try
+        //     {
+        //         string query = "INSERT INTO etapecoureur (idEtape, idUser, idCoureur) " +
+        //                "SELECT '" + idEtape + "', (SELECT idUser FROM coureur WHERE idCoureur = '" + idCoureur + "'), '" + idCoureur + "' " +
+        //                "WHERE NOT EXISTS (SELECT 1 FROM etapecoureur WHERE idEtape = '" + idEtape + "' AND idCoureur = '" + idCoureur + "')";
+
+        //         // string query = "INSERT INTO etapecoureur (idEtape, idUser, idCoureur) VALUES ('"+idEtape+"', (select idUser from coureur where idCoureur='"+idCoureur+"'), '"+idCoureur+"')";
+        //         Console.WriteLine(query);
+        //         SqlCommand command = new SqlCommand(query, connexion.connection);
+        //         command.ExecuteNonQuery();
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         Console.WriteLine($"Error: {ex}");
+        //         throw ex;
+        //     }
+
+        // }
+
+        public void createEtapeCoureur2(Connexion connexion, string idEtape, string idCoureur)
+        {
+            try
+            {
+                // Check if the combination of idEtape and idCoureur already exists
+                string checkQuery = "SELECT COUNT(*) FROM etapecoureur WHERE idEtape = @idEtape AND idCoureur = @idCoureur";
+                SqlCommand checkCommand = new SqlCommand(checkQuery, connexion.connection);
+                checkCommand.Parameters.AddWithValue("@idEtape", idEtape);
+                checkCommand.Parameters.AddWithValue("@idCoureur", idCoureur);
+                int count = (int)checkCommand.ExecuteScalar();
+
+                // Insert only if the combination does not exist
+                if (count == 0)
+                {
+                    string insertQuery = "INSERT INTO etapecoureur (idEtape, idUser, idCoureur) " +
+                                        "SELECT @idEtape, idUser, @idCoureur FROM coureur WHERE idCoureur = @idCoureur";
+                    SqlCommand insertCommand = new SqlCommand(insertQuery, connexion.connection);
+                    insertCommand.Parameters.AddWithValue("@idEtape", idEtape);
+                    insertCommand.Parameters.AddWithValue("@idCoureur", idCoureur);
+                    insertCommand.ExecuteNonQuery();
+                    Console.WriteLine("Record inserted successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("The idCoureur already exists for the given idEtape.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+                throw;
+            }
+        }
+
+
         public string lastIdetapeCoureur(Connexion connexion)
         {
             string idEtape = "";
             try
             {
-                string query = "SELECT TOP 1 idEtapeCoureur FROM etapecoureur ORDER BY idEtapeCoureur DESC";
+                string query = "SELECT TOP 1 idEtapeCoureur FROM etapecoureur ORDER BY id DESC";
                 SqlCommand command = new SqlCommand(query, connexion.connection);
                 SqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
@@ -270,7 +361,7 @@ namespace Race.Models
         {
             try
             {
-                string query = "SELECT TOP 1 idCoureur FROM coureur ORDER BY idCoureur DESC";
+                string query = "SELECT TOP 1 idCoureur FROM coureur ORDER BY id DESC";
                 SqlCommand command = new SqlCommand(query, connexion.connection);
                 string id = command.ExecuteScalar().ToString();
                 return id;
@@ -280,6 +371,93 @@ namespace Race.Models
                 Console.WriteLine($"Error: {ex}");
                 throw ex;
             }
+        }
+
+        public string getIdCoureurByNom(Connexion connexion, string nom)
+        {
+            try
+            {
+                string query = "SELECT idCoureur FROM coureur where nom = '"+nom+"'";
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                string id = command.ExecuteScalar().ToString();
+                return id;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+                throw ex;
+            }
+        }
+
+        public void createCategoryCoureur(Connexion connexion)
+        {
+            try
+            {
+                string query = "INSERT INTO categoryCoureur (idCoureur, idCategory) VALUES ('"+this.idCoureur+"', '"+this.idCategory+"')";
+                Console.WriteLine(query);
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+                throw ex;
+            }
+
+        }
+
+        public int getAge(DateTime dtn)
+        {
+            DateTime today = DateTime.Today;
+            int age = today.Year - dtn.Year;
+            if (dtn.Date > today.AddYears(-age)) age--;
+            return age;
+        }
+
+        public void generateCategory(Connexion coco)
+        {
+            try
+            {
+                string category = "";
+                string genre = "";
+
+                List<Coureur> coureurList = this.findAll(coco);
+                foreach (var coureur in coureurList)
+                {
+                    if (this.getAge(coureur.dtn) < 18)
+                    {
+                        Console.WriteLine("true jumior");
+                        category = "junior";
+
+                    }else
+                    {
+                        Console.WriteLine("true senior");
+                        category = "senior";
+                    }
+
+                    if (coureur.genre == "Masculin")
+                    {
+                        Console.WriteLine("true homme");
+                        genre = "homme";
+
+                    }else if(coureur.genre == "Feminin")
+                    {
+                        Console.WriteLine("true femme");
+                        genre = "femme";
+                    }
+
+                    Console.WriteLine(coureur.idCoureur + " , " +this.getIdCategory(coco, category));
+                    Console.WriteLine(coureur.idCoureur + " , " +this.getIdCategory(coco, genre));
+
+                    new Coureur(coureur.idCoureur, this.getIdCategory(coco, category)).createCategoryCoureur(coco);
+                    new Coureur(coureur.idCoureur, this.getIdCategory(coco, genre)).createCategoryCoureur(coco);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
     }
 }

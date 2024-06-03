@@ -92,6 +92,7 @@ public class HomeController : Controller
             coco.connection.Open();
 
             data.etapeList = e.findAll(coco);
+            data.chronos = Result.chronos(coco, HttpContext.Session.GetString("sessionId"));
 
             coco.connection.Close();
 

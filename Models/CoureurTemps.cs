@@ -79,8 +79,25 @@ namespace Race.Models
         {
             try
             {
-                TimeSpan temps = this.duration(this.dhDepart, this.dhArriver);
-                string query = "INSERT INTO etapeCoureurTemps (idEtapeCoureur, hDepart, hArriver, temps, dhDepart, dhArriver) VALUES ('"+this.idEtapeCoureur+"', '"+this.hDepart+"', '"+this.hArriver+"', '"+temps+"', CONVERT(datetime, '"+this.dhDepart.ToString("yyyy-MM-dd hh:mm:ss")+"', 120), CONVERT(datetime, '"+this.dhArriver.ToString("yyyy-MM-dd hh:mm:ss")+"', 120))";
+                    TimeSpan temps = this.duration(this.dhDepart, this.dhArriver);
+                    // string query = "INSERT INTO etapeCoureurTemps (idEtapeCoureur, hDepart, hArriver, temps, dhDepart, dhArriver) VALUES ('"
+                    //         + this.idEtapeCoureur + "', '"
+                    //         + this.hDepart + "', '"
+                    //         + this.hArriver + "', '"
+                    //         + temps + "', CONVERT(datetime, '"
+                    //         + this.dhDepart.ToString("yyyy-MM-dd hh:mm:ss tt") + "', 120), CONVERT(datetime, '"
+                    //         + this.dhArriver.ToString("yyyy-MM-dd hh:mm:ss tt") + "', 120))";
+
+                    string query = "INSERT INTO etapeCoureurTemps (idEtapeCoureur, hDepart, hArriver, temps, dhDepart, dhArriver) VALUES ('"
+                            + this.idEtapeCoureur + "', '"
+                            + this.hDepart + "', '"
+                            + this.hArriver + "', '"
+                            + temps + "', CONVERT(datetime, '"
+                            + this.dhDepart.ToString("yyyy-MM-dd HH:mm:ss tt") + "', 121), CONVERT(datetime, '"
+                            + this.dhArriver.ToString("yyyy-MM-dd HH:mm:ss tt") + "', 121))";
+
+
+                // string query = "INSERT INTO etapeCoureurTemps (idEtapeCoureur, hDepart, hArriver, temps, dhDepart, dhArriver) VALUES ('"+this.idEtapeCoureur+"', '"+this.hDepart+"', '"+this.hArriver+"', '"+temps+"', CONVERT(datetime, '"+this.dhDepart.ToString("yyyy-MM-dd hh:mm:ss")+"', 120), CONVERT(datetime, '"+this.dhArriver.ToString("yyyy-MM-dd hh:mm:ss")+"', 120))";
                 // string query = "INSERT INTO etapeCoureurTemps (idEtapeCoureur, hDepart, hArriver, temps, dhDepart, dhArriver) VALUES ('"+this.idEtapeCoureur+"', '"+this.hDepart+"', '"+this.hArriver+"', '"+temps+"', '"+this.dhDepart+"', '"+this.dhArriver+"')";
                 Console.WriteLine(query);
                 SqlCommand command = new SqlCommand(query, connexion.connection);

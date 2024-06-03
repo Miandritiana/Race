@@ -6,9 +6,14 @@
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Race /</span> List etape</h4>
 
           <div class="row mb-4">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <form action="@Url.Action("ResetDatabase", "Admin")" method="get">
                     <button type="submit"  class="btn btn-danger">RESET DATABASE (voafafa daoholo ny entana an!)</button>
+                </form>
+            </div>
+            <div class="col-md-3">
+                <form action="@Url.Action("generateCC", "Admin")" method="get">
+                    <button type="submit"  class="btn btn-info" style="float:right;">Generate category</button>
                 </form>
             </div>
             <div class="col-md-3">
@@ -17,7 +22,7 @@
                 </form>
             </div>
             <div class="col-md-3">
-                <form action="@Url.Action("importPoint", "Admin")" method="get">
+                <form action="@Url.Action("importPointView", "Admin")" method="get">
                     <button type="submit"  class="btn btn-dark" style="float:right;">Import Point</button>
                 </form>
             </div>

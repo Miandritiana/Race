@@ -182,5 +182,28 @@ namespace Race.Models
             }
             return dhDepart;
         }
+
+        public string getIdEtape(Connexion connexion, string rangEtape)
+        {
+            
+            string idEtape = null;
+            try
+            {
+                string query = "select idEtape from etape where rangEtape like '%"+rangEtape+"%'";
+                Console.WriteLine(query);
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                if (dataReader.Read())
+                {
+                    idEtape = dataReader["idEtape"].ToString();
+                }
+                dataReader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+            }
+            return idEtape;
+        }
     }
 }

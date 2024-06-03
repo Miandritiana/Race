@@ -41,6 +41,49 @@
             
         </div>
 
+        <div class="row"> 
+                <div class="card">
+                    <div class="card-header"><h4>Chronos par coureur par etape</h4></div>
+                    <div class="card-body">
+                            @foreach(var c in Model.chronos)
+                            {
+                                <div class="row mt-5">
+                                    <div class="col-4">
+                                        <div class="demo-inline-spacing">
+                                            <div class="list-group">
+                                            <a
+                                                href="javascript:void(0);"
+                                                class="list-group-item list-group-item-action flex-column align-items-start"
+                                            >
+                                                <div class="d-flex justify-content-between w-100">
+                                                <h6>@c.etape</h6>
+                                                <small>@c.lkm km</small>
+                                                </div>
+                                                <p class="mb-1">Nombre coureur : @c.nbCoureur
+                                                </p>
+                                                <small>Rang etape : @c.rangEtape</small>
+                                                <p>Date heure depart <strong>@c.dhDepart.ToString("MMMM dd, yyyy hh:mm:ss tt")</strong></p>
+                                            </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">                                        
+                                        <div class="demo-inline-spacing">
+                                            <div class="list-group">
+                                                <label class="list-group-item">
+                                                    <p><i class="fab fa-angular fa-lg text-danger me-3"></i>@c.numDossard <strong>@c.coureur</strong> <span style="float: right;">@c.temps</span></p>
+                                                    <button class="btn btn-sm rounded-pill btn-outline-warning">Ajouter coureur</button>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                    </div>
+                </div>
+          </div>
+</div>
+
     </div>
 </div>
 
