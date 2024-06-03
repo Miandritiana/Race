@@ -134,13 +134,22 @@ public class AdminController : Controller
 
         if(HttpContext.Session.GetString("adminId") != null)
         {
+            TimeSpan hDepart = new();
+            TimeSpan hArriver = new();
+
             var idEtape = Request.Form["idEtape"].ToString();
 
-            var idEtapeCoureurList = Request.Form["idEtapeCoureur"].ToList();
-            var hDepartList = Request.Form["hDepart"].ToList();
-            var hArriverList = Request.Form["hArriver"].ToList();
+            var dhDepartString = Request.Form["dhDepart"].ToString();
+            DateTime dhDepart = DateTime.Parse(dhDepartString);
+            if (DateTime.TryParse(dhDepartString, out DateTime dateTime))
+            {
+                hDepart = dateTime.TimeOfDay;
+            }
 
-            if (idEtapeCoureurList.Count != hDepartList.Count && hDepartList.Count != hArriverList.Count)
+            var idEtapeCoureurList = Request.Form["idEtapeCoureur"].ToList();
+            var dhArriverList = Request.Form["dhArriver"].ToList();
+
+            if (idEtapeCoureurList.Count != dhArriverList.Count)
             {
                 TempData["ErrorAffecte"] = "Tsy mitovy ny isan le coureur sy ny time voaray";
                 return RedirectToAction("affecterTemps", "Admin", new { idEtape = idEtape });
@@ -153,11 +162,14 @@ public class AdminController : Controller
 
                     for (int i = 0; i < idEtapeCoureurList.Count; i++)
                     {
-                        TimeSpan hDepart = TimeSpan.Parse(hDepartList[i]);
-                        TimeSpan hArriver = TimeSpan.Parse(hArriverList[i]);
-                        Console.WriteLine(hDepart);
-                        Console.WriteLine(hArriver);
-                        new CoureurTemps(idEtapeCoureurList[i], hDepart, hArriver).create(coco);
+                        DateTime dhArriver = DateTime.Parse(dhArriverList[i]);
+                        // TimeSpan hArriver = TimeSpan.Parse(dhArriverList[i].ToString());
+
+                        if (DateTime.TryParse(dhArriverList[i], out DateTime dateTimeArriver))
+                        {
+                            hArriver = dateTimeArriver.TimeOfDay;
+                        }
+                        new CoureurTemps(idEtapeCoureurList[i], hDepart, hArriver, dhDepart, dhArriver).create(coco);
                     }
                     
                     coco.connection.Close();

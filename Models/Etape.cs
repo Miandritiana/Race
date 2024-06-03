@@ -12,10 +12,11 @@ namespace Race.Models
         public double lkm { get; set; }
         public int nbCoureur { get; set; }
         public string rangEtape { get; set; }
+        public DateTime dhDepart { get; set; }
 
         public Etape() { }
 
-        public Etape(string idEtape, int id, string name, double lkm, int nbCoureur, string rangEtape)
+        public Etape(string idEtape, int id, string name, double lkm, int nbCoureur, string rangEtape, DateTime dhDepart)
         {
             this.idEtape = idEtape;
             this.id = id;
@@ -23,6 +24,7 @@ namespace Race.Models
             this.lkm = lkm;
             this.nbCoureur = nbCoureur;
             this.rangEtape = rangEtape;
+            this.dhDepart = dhDepart;
         }
 
         public Etape(string name, double lkm, int nbCoureur, string rangEtape)
@@ -49,7 +51,8 @@ namespace Race.Models
                         dataReader["name"].ToString(),
                         dataReader.GetDouble(dataReader.GetOrdinal("lkm")),
                         (int)dataReader["nbCoureur"],
-                        dataReader["rangEtape"].ToString()
+                        dataReader["rangEtape"].ToString(),
+                        DateTime.Parse(dataReader["dhDepart"].ToString())
                     ));
                 }
 
@@ -79,7 +82,8 @@ namespace Race.Models
                         dataReader["name"].ToString(),
                         dataReader.GetDouble(dataReader.GetOrdinal("lkm")),
                         (int)dataReader["nbCoureur"],
-                        dataReader["rangEtape"].ToString()
+                        dataReader["rangEtape"].ToString(),
+                        DateTime.Parse(dataReader["dhDepart"].ToString())
                     );
                 }
 

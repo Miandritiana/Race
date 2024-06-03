@@ -12,6 +12,9 @@ namespace Race.Models
         public TimeSpan hDepart { get; set; }
         public TimeSpan hArriver { get; set; }
         public TimeSpan temps { get; set; }
+        public DateTime dhDepart { get; set; }
+        public DateTime dhArriver { get; set; }
+
 
         public CoureurTemps() { }
 
@@ -23,11 +26,13 @@ namespace Race.Models
             this.temps = temps;
         }
 
-        public CoureurTemps(string idEtapeCoureur, TimeSpan hDepart, TimeSpan hArriver)
+        public CoureurTemps(string idEtapeCoureur, TimeSpan hDepart, TimeSpan hArriver, DateTime dhDepart, DateTime dhArriver)
         {
             this.idEtapeCoureur = idEtapeCoureur;
             this.hDepart = hDepart;
             this.hArriver = hArriver;
+            this.dhDepart = dhDepart;
+            this.dhArriver = dhArriver;
         }
 
         public static List<CoureurTemps> findAll(Connexion connexion)
@@ -56,17 +61,18 @@ namespace Race.Models
             return CoureurTempsList;
         }
 
-        public TimeSpan duration(TimeSpan hDepart, TimeSpan hArriver)
+        public TimeSpan duration(DateTime dhDepart, DateTime dhArriver)
         {
-            return hArriver - hDepart;
+            return dhArriver - dhDepart;
         }
 
         public void create(Connexion connexion)
         {
             try
             {
-                TimeSpan temps = this.duration(this.hDepart, this.hArriver);
-                string query = "INSERT INTO etapeCoureurTemps (idEtapeCoureur, hDepart, hArriver, temps) VALUES ('"+this.idEtapeCoureur+"', '"+this.hDepart+"', '"+this.hArriver+"', '"+temps+"')";
+                TimeSpan temps = this.duration(this.dhDepart, this.dhArriver);
+                string query = "INSERT INTO etapeCoureurTemps (idEtapeCoureur, hDepart, hArriver, temps, dhDepart, dhArriver) VALUES ('"+this.idEtapeCoureur+"', '"+this.hDepart+"', '"+this.hArriver+"', '"+temps+"', CONVERT(datetime, '"+this.dhDepart.ToString("yyyy-MM-dd hh:mm:ss")+"', 120), CONVERT(datetime, '"+this.dhArriver.ToString("yyyy-MM-dd hh:mm:ss")+"', 120))";
+                // string query = "INSERT INTO etapeCoureurTemps (idEtapeCoureur, hDepart, hArriver, temps, dhDepart, dhArriver) VALUES ('"+this.idEtapeCoureur+"', '"+this.hDepart+"', '"+this.hArriver+"', '"+temps+"', '"+this.dhDepart+"', '"+this.dhArriver+"')";
                 Console.WriteLine(query);
                 SqlCommand command = new SqlCommand(query, connexion.connection);
                 command.ExecuteNonQuery();
@@ -77,6 +83,33 @@ namespace Race.Models
                 Console.WriteLine($"Error: {ex}");
             }
         }
+
+        // public void create(Connexion connexion)
+        // {
+        //     try
+        //     {
+        //         TimeSpan temps = this.duration(this.dhDepart, this.dhArriver);
+        //         string query = "INSERT INTO etapeCoureurTemps (idEtapeCoureur, hDepart, hArriver, temps, dhDepart, dhArriver) " +
+        //                        "VALUES (@idEtapeCoureur, @hDepart, @hArriver, @temps, @dhDepart, @dhArriver)";
+
+        //         using (SqlCommand command = new SqlCommand(query, connexion.connection))
+        //         {
+        //             command.Parameters.AddWithValue("@idEtapeCoureur", this.idEtapeCoureur);
+        //             command.Parameters.AddWithValue("@hDepart", this.hDepart);
+        //             command.Parameters.AddWithValue("@hArriver", this.hArriver);
+        //             command.Parameters.AddWithValue("@temps", temps);
+        //             command.Parameters.AddWithValue("@dhDepart", this.dhDepart);
+        //             command.Parameters.AddWithValue("@dhArriver", this.dhArriver);
+
+        //             command.ExecuteNonQuery();
+        //         }
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         Console.WriteLine($"Error: {ex}");
+        //         throw;
+        //     }
+        // }
 
     }
 }

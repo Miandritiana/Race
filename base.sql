@@ -31,6 +31,11 @@ values
 update etape set name = 'Etape 1 de Betsizaraina' where name = 'Etape1';
 update etape set name = 'Etape 3 d’Ampasimbe' where name = 'Etape3';
 -- update etape set nbCoureur = 3 where lkm = 100;
+alter table etape add dhDepart datetime;
+update etape set dhDepart = '01/06/2024 09:00:00' where idEtape = 'e1';
+update etape set dhDepart = '01/06/2024 13:15:00' where idEtape = 'e2';
+update etape set dhDepart = '02/06/2024 11:00:00' where idEtape = 'e3';
+update etape set dhDepart = '02/06/2024 12:00:00' where idEtape = 'e4';
 
 create table category(
     idCategory AS ('cat' + cast(id as varchar(10))) PERSISTED primary key,
@@ -74,20 +79,19 @@ create table categoryCoureur(
     idCoureur varchar(11) references coureur(idCoureur),
     idCategory varchar(13) references category(idCategory)
 );
--- insert into categoryCoureur (idCoureur, idCategory)
--- values
---     ('c1', 'cat1'),
---     ('c1', 'cat3'),
---     ('c2', 'cat2'),
---     ('c2', 'cat3'),
---     ('c3', 'cat1'),
---     ('c3', 'cat4'),
---     ('c4', 'cat1'),
---     ('c4', 'cat2'),
---     ('c4', 'cat3'),
---     ('c4', 'cat4'),
---     ('c5', 'cat1'),
---     ('c5', 'cat2');
+insert into categoryCoureur (idCoureur, idCategory)
+values
+    ('c1', 'cat1'),
+    ('c1', 'cat3'),
+    ('c2', 'cat2'),
+    ('c2', 'cat3'),
+    ('c3', 'cat1'),
+    ('c3', 'cat4'),
+    ('c4', 'cat1'),
+    ('c4', 'cat3'),
+    ('c4', 'cat4'),
+    ('c5', 'cat1'),
+    ('c5', 'cat3');
 
 create table etapeCoureur(
     idEtapeCoureur AS ('eC' + cast(id as varchar(10))) PERSISTED primary key,
@@ -111,19 +115,25 @@ create table etapeCoureurTemps(
     hArriver time not null,
     temps time
 );
+alter table etapeCoureurTemps add dhDepart datetime;
+alter table etapeCoureurTemps add dhArriver datetime;
+
+create table point(
+    idPoint AS ('point' + cast(id as varchar(10))) PERSISTED primary key,
+    id int identity(1, 1),
+    classement varchar(10),
+    points int
+);
+insert into point (classement, points)
+values
+    ('1', 10),
+    ('2', 6),
+    ('3', 4),
+    ('4', 2),
+    ('5', 1);
 
 create view v_detail_result as
-SELECT 
-    subquery.*,
-    CASE 
-        WHEN point = 10 THEN '1er'
-        WHEN point = 6 THEN '2eme'
-        WHEN point = 4 THEN '3eme'
-        WHEN point = 2 THEN '4eme'
-        WHEN point = 1 THEN '5eme'
-        ELSE 'non classe'
-    END AS rang
-FROM (
+WITH RankedResults AS (
     SELECT 
         ect.idECTemps,
         ect.idEtapeCoureur,
@@ -138,30 +148,44 @@ FROM (
         ect.hDepart,
         ect.hArriver,
         ect.temps,
-        CASE 
-            WHEN ROW_NUMBER() OVER (PARTITION BY ec.idEtape ORDER BY ect.temps) = 1 THEN 10
-            WHEN ROW_NUMBER() OVER (PARTITION BY ec.idEtape ORDER BY ect.temps) = 2 THEN 6
-            WHEN ROW_NUMBER() OVER (PARTITION BY ec.idEtape ORDER BY ect.temps) = 3 THEN 4
-            WHEN ROW_NUMBER() OVER (PARTITION BY ec.idEtape ORDER BY ect.temps) = 4 THEN 2
-            WHEN ROW_NUMBER() OVER (PARTITION BY ec.idEtape ORDER BY ect.temps) = 5 THEN 1
-            ELSE 0
-        END AS point
+        DENSE_RANK() OVER (PARTITION BY ec.idEtape ORDER BY ect.temps) AS classement
     FROM 
         etapeCoureurTemps ect
     JOIN etapecoureur ec ON ec.idEtapeCoureur = ect.idEtapeCoureur
-	JOIN uuser u ON u.idUser = ec.idUser
-	JOIN coureur c ON c.idCoureur = ec.idCoureur
-) AS subquery;
+    JOIN uuser u ON u.idUser = ec.idUser
+    JOIN coureur c ON c.idCoureur = ec.idCoureur
+),
+RankedWithPoints AS (
+    SELECT 
+        RankedResults.*,
+        ISNULL(p.points, 0) AS point
+    FROM 
+        RankedResults
+    LEFT JOIN point p ON CAST(RankedResults.classement AS VARCHAR(10)) = p.classement
+)
+SELECT 
+    subquery.*,
+    CASE 
+        WHEN point = 10 THEN '1er'
+        WHEN point = 6 THEN '2eme'
+        WHEN point = 4 THEN '3eme'
+        WHEN point = 2 THEN '4eme'
+        WHEN point = 1 THEN '5eme'
+        ELSE 'non classe'
+    END AS rang
+FROM 
+    RankedWithPoints AS subquery;
+
 
 
 create view v_CG as
 SELECT 
     CASE 
-        WHEN RANK() OVER (ORDER BY SUM(point) DESC) = 1 THEN '1er'
-        WHEN RANK() OVER (ORDER BY SUM(point) DESC) = 2 THEN '2eme'
-        WHEN RANK() OVER (ORDER BY SUM(point) DESC) = 3 THEN '3eme'
-        WHEN RANK() OVER (ORDER BY SUM(point) DESC) = 4 THEN '4eme'
-        WHEN RANK() OVER (ORDER BY SUM(point) DESC) = 5 THEN '5eme'
+        WHEN DENSE_RANK() OVER (ORDER BY SUM(point) DESC) = 1 THEN '1er'
+        WHEN DENSE_RANK() OVER (ORDER BY SUM(point) DESC) = 2 THEN '2eme'
+        WHEN DENSE_RANK() OVER (ORDER BY SUM(point) DESC) = 3 THEN '3eme'
+        WHEN DENSE_RANK() OVER (ORDER BY SUM(point) DESC) = 4 THEN '4eme'
+        WHEN DENSE_RANK() OVER (ORDER BY SUM(point) DESC) = 5 THEN '5eme'
         ELSE 'Non classé'
     END AS rang,
     equipe, 
@@ -170,6 +194,9 @@ FROM
     v_detail_result 
 GROUP BY 
     equipe;
+
+--classement G par category
+select * from v_detail_result v join categoryCoureur cc on cc.idCoureur = v.idCoureur
 
 
 

@@ -41,9 +41,9 @@
                                     <h6>@Model.etape.name</h6>
                                     <small>@Model.etape.lkm km</small>
                                     </div>
-                                    <p class="mb-1">Nombre coureur : @Model.etape.nbCoureur
-                                    </p>
+                                    <p class="mb-1">Nombre coureur : @Model.etape.nbCoureur </p>
                                     <small>Rang etape : @Model.etape.rangEtape</small>
+                                    <p>Date heure depart <strong>@Model.etape.dhDepart.ToString("MMMM dd, yyyy hh:mm:ss")</strong></p>
                                 </a>
                                 </div>
                             </div>
@@ -57,8 +57,7 @@
                                         <thead>
                                         <tr>
                                             <th>Coureur</th>
-                                            <th>Heure depart</th>
-                                            <th>Heure d'arriver</th>
+                                            <th>Date Heure d'arriver</th>
                                         </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
@@ -67,8 +66,7 @@
                                                 <tr>
                                                     <input type="hidden" name="idEtapeCoureur" value="@c.idEtapeCoureur"/>
                                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@c.nom</strong> dans @c.equipe</td>
-                                                    <td><input type="time" class="form-control" step="1" name="hDepart" required/></td>
-                                                    <td><input type="time" class="form-control" step="1" name="hArriver" required/></td>
+                                                    <td><input type="datetime-local" class="form-control" step="1" name="dhArriver" required/></td>
                                                 </tr>
                                             }
                                         </tbody>
@@ -76,6 +74,7 @@
                                     </div>
                                 </div>
                                                 <input type="hidden" name="idEtape" value="@Model.etape.idEtape"/>
+                                                <input type="hidden" name="dhDepart" value="@Model.etape.dhDepart"/>
                                 
 
                                 <button type="submit" class="btn btn-primary">

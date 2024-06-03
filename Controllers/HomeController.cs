@@ -148,9 +148,8 @@ public class HomeController : Controller
 
             var limit = int.Parse(Request.Form["limit"].ToString());
 
-            if (coureurs.Length != limit)
+            if (coureurs.Length > limit)
             {
-                Console.WriteLine("tsy mety limit nb coureur");
                 TempData["ErrorAffecte"] = "Tsy azo atao mihotra na tsy ampy amn nombre coureur";
                 return RedirectToAction("affecterCoureur", "Home", new { idEtape = idEtape });
 
@@ -185,6 +184,7 @@ public class HomeController : Controller
             data.resultList = Result.findAll(coco);
             data.CGPointEtape = Result.CGPointEtape(coco);
             data.CG = Result.CG(coco);
+            data.CGCoureur = Result.CGCoureur(coco);
 
             coco.connection.Close();
             return View("result", data);

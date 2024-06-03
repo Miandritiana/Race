@@ -9,6 +9,7 @@ namespace Race.Models
         public string idECTemps { get; set; }
         public string idEtapeCoureur { get; set; }
         public string idEtape { get; set; }
+        public string etape { get; set; }
         public string idUser { get; set; }
         public string equipe { get; set; }
         public string idCoureur { get; set; }
@@ -43,11 +44,18 @@ namespace Race.Models
             this.rang = rang;
         }
 
-        public Result(string idUser, string equipe, string idEtape, int point)
+        public Result(string numDossard, string coureur, int point)
         {
-            this.idUser = idUser;
-            this.equipe = equipe;
+            this.numDossard = numDossard;
+            this.coureur = coureur;
+            this.point = point;
+        }
+
+        public Result(string idEtape, string etape, string coureur, int point)
+        {
             this.idEtape = idEtape;
+            this.etape = etape;
+            this.coureur = coureur;
             this.point = point;
         }
 
@@ -94,10 +102,10 @@ namespace Race.Models
             return results;
         }
 
-        public static List<Result> CGPointEtape(Connexion connexion)
+        public static List<Result> CGCoureur(Connexion connexion)
         {
             List<Result> results = new List<Result>();
-            string query = "select idUser, equipe, v.idEtape, e.name, sum(point) point from v_detail_result v join etape e on v.idEtape = e.idEtape group by idUser, equipe, v.idEtape, e.name";
+            string query = "select c.numDossard, c.nom, sum(point) point from v_detail_result v join etape e on v.idEtape = e.idEtape join coureur c on c.idCoureur = v.idCoureur group by c.numDossard, c.nom order by point desc";
             
             using (SqlCommand command = new SqlCommand(query, connexion.connection))
             {
@@ -106,9 +114,32 @@ namespace Race.Models
                     while (reader.Read())
                     {
                         Result result = new Result(
-                            reader["idUser"].ToString(),
-                            reader["equipe"].ToString(),
+                            reader["numDossard"].ToString(),
+                            reader["nom"].ToString(),
+                            Convert.ToInt32(reader["point"])
+                        );
+                        results.Add(result);
+                    }
+                }
+            }
+            return results;
+        }
+
+        public static List<Result> CGPointEtape(Connexion connexion)
+        {
+            List<Result> results = new List<Result>();
+            string query = "select v.idEtape, e.name, c.idCoureur, c.nom, sum(point) point from v_detail_result v join etape e on v.idEtape = e.idEtape join coureur c on c.idCoureur = v.idCoureur group by v.idEtape, e.name, c.idCoureur, c.nom order by point desc";
+            
+            using (SqlCommand command = new SqlCommand(query, connexion.connection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Result result = new Result(
+                            reader["idEtape"].ToString(),
                             reader["name"].ToString(),
+                            reader["nom"].ToString(),
                             Convert.ToInt32(reader["point"])
                         );
                         results.Add(result);
