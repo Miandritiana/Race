@@ -79,8 +79,8 @@ namespace Race.Models
             }
             catch (Exception ex)
             {
-                throw ex;
                 Console.WriteLine($"Error: {ex}");
+                throw ex;
             }
         }
 

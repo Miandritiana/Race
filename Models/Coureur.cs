@@ -51,6 +51,21 @@ namespace Race.Models
             this.dtn = dtn;
         }
 
+        public Coureur(string nom, string numDossard, string genre, DateTime dtn, string idUser)
+        {
+            this.nom = nom;
+            this.numDossard = numDossard;
+            this.genre = genre;
+            this.dtn = dtn;
+            this.idUser = idUser;
+        }
+
+        public Coureur (string idEtape, string idCoureur)
+        {
+            this.idEtape = idEtape;
+            this.idCoureur = idCoureur;
+        }
+
         public List<Coureur> findAll(Connexion connexion)
         {
             List<Coureur> coureurList = new List<Coureur>();
@@ -117,7 +132,12 @@ namespace Race.Models
         {
             try
             {
-                string query = "INSERT INTO coureur (nom, numDossard, genre, dtn, idUser) VALUES (@nom, @numDossard, @genre, @dtn, @idUser)";
+                string query = @"
+                    IF NOT EXISTS (SELECT 1 FROM coureur WHERE nom = @nom AND numDossard = @numDossard)
+                    BEGIN
+                        INSERT INTO coureur (nom, numDossard, genre, dtn, idUser) 
+                        VALUES (@nom, @numDossard, @genre, @dtn, @idUser)
+                    END";
                 SqlCommand command = new SqlCommand(query, connexion.connection);
                 command.Parameters.AddWithValue("@nom", this.nom);
                 command.Parameters.AddWithValue("@numDossard", this.numDossard);
@@ -167,10 +187,49 @@ namespace Race.Models
             }
             catch (Exception ex)
             {
-                throw ex;
                 Console.WriteLine($"Error: {ex}");
+                throw ex;
             }
 
+        }
+
+        public void createEtapeCoureur2(Connexion connexion)
+        {
+            try
+            {
+                string query = "INSERT INTO etapecoureur (idEtape, idUser, idCoureur) VALUES ('"+this.idEtape+"', (select idUser from coureur where idCoureur='"+this.idCoureur+"'), '"+this.idCoureur+"')";
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+                throw ex;
+            }
+
+        }
+
+        public string lastIdetapeCoureur(Connexion connexion)
+        {
+            string idEtape = "";
+            try
+            {
+                string query = "SELECT TOP 1 idEtapeCoureur FROM etapecoureur ORDER BY idEtapeCoureur DESC";
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    idEtape = dataReader.GetString(0);
+                }
+                    dataReader.Close();
+                    return idEtape;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+                throw ex;
+            }
+            return idEtape;
         }
 
         public List<Coureur> etapeCoureur(Connexion connexion, string idEtape)
@@ -205,6 +264,22 @@ namespace Race.Models
                 Console.WriteLine($"Error: {ex}");
             }
             return coureurList;
+        }
+
+        public string lastIdCoureur(Connexion connexion)
+        {
+            try
+            {
+                string query = "SELECT TOP 1 idCoureur FROM coureur ORDER BY idCoureur DESC";
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                string id = command.ExecuteScalar().ToString();
+                return id;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+                throw ex;
+            }
         }
     }
 }

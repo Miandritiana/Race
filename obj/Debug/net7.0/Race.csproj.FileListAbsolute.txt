@@ -1,8 +1,0 @@
-D:\L3\S6\Eval\Race\obj\Debug\net7.0\Race.csproj.AssemblyReference.cache
-D:\L3\S6\Eval\Race\obj\Debug\net7.0\Race.GeneratedMSBuildEditorConfig.editorconfig
-D:\L3\S6\Eval\Race\obj\Debug\net7.0\Race.AssemblyInfoInputs.cache
-D:\L3\S6\Eval\Race\obj\Debug\net7.0\Race.AssemblyInfo.cs
-D:\L3\S6\Eval\Race\obj\Debug\net7.0\Race.csproj.CoreCompileInputs.cache
-D:\L3\S6\Eval\Race\obj\Debug\net7.0\Race.MvcApplicationPartsAssemblyInfo.cache
-D:\L3\S6\Eval\Race\obj\Debug\net7.0\Race.RazorAssemblyInfo.cache
-D:\L3\S6\Eval\Race\obj\Debug\net7.0\Race.RazorAssemblyInfo.cs

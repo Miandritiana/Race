@@ -75,17 +75,29 @@ namespace Race.Models
             }
         }
 
-        public void createClient(Connexion connexion)
+        public void createEquipe(Connexion connexion, string key)
         {
             try
             {
-                string query = "INSERT INTO uuser (name, uuser, password, admin) VALUES ('"+this.name+"', '"+this.uuser+"', '"+this.passWord+"', '0')";
-                Console.WriteLine(query);
-                SqlCommand command = new SqlCommand(query, connexion.connection);
+                // string query = "INSERT INTO uuser (name, uuser, password, admin) VALUES (Equipe'"+key+"', equipe'"+key+"', '"+key+"', '0')";
+                // Console.WriteLine(query);
+                // SqlCommand command = new SqlCommand(query, connexion.connection);
+                // command.ExecuteNonQuery();
+                
+                string queryCheckExistence = $"IF NOT EXISTS (SELECT 1 FROM uuser WHERE name = 'Equipe{key}' AND uuser = 'equipe{key}') ";
+                string queryInsert = $"INSERT INTO uuser (name, uuser, password, admin) VALUES ('Equipe{key}', 'equipe{key}', '{key}', '0')";
+
+                string finalQuery = queryCheckExistence + queryInsert;
+
+                SqlCommand command = new SqlCommand(finalQuery, connexion.connection);
+                Console.WriteLine(finalQuery);
+
                 command.ExecuteNonQuery();
+
             }
             catch (Exception ex)
             {
+                throw ex;
                 Console.WriteLine($"Error: {ex}");
             }
         }

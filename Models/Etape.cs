@@ -27,6 +27,15 @@ namespace Race.Models
             this.dhDepart = dhDepart;
         }
 
+        public Etape(string name, double lkm, int nbCoureur, string rangEtape, DateTime dhDepart)
+        {
+            this.name = name;
+            this.lkm = lkm;
+            this.nbCoureur = nbCoureur;
+            this.rangEtape = rangEtape;
+            this.dhDepart = dhDepart;
+        }
+
         public Etape(string name, double lkm, int nbCoureur, string rangEtape)
         {
             this.name = name;
@@ -100,14 +109,9 @@ namespace Race.Models
         {
             try
             {
-                // string query = "INSERT INTO etape (name, lkm, nbCoureur, rangEtape) VALUES (@name, @lkm, @nbCoureur, @rangEtape)";
-                string query = "INSERT INTO etape (name, lkm, nbCoureur, rangEtape) VALUES ('"+this.name+"', "+this.lkm+", "+this.nbCoureur+", 'rang"+this.rangEtape+"')";
+                string query = "INSERT INTO etape (name, lkm, nbCoureur, rangEtape, dhDepart) VALUES ('"+this.name+"', "+this.lkm+", "+this.nbCoureur+", 'rang"+this.rangEtape+"', CONVERT(datetime, '"+this.dhDepart.ToString("yyyy-MM-dd hh:mm:ss")+"', 120))";
                 Console.WriteLine(query);
                 SqlCommand command = new SqlCommand(query, connexion.connection);
-                // command.Parameters.AddWithValue("@name", this.name);
-                // command.Parameters.AddWithValue("@lkm", this.lkm);
-                // command.Parameters.AddWithValue("@nbCoureur", this.nbCoureur);
-                // command.Parameters.AddWithValue("@rangEtape", this.rangEtape);
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -133,6 +137,50 @@ namespace Race.Models
             {
                 Console.WriteLine($"Error: {ex}");
             }
+        }
+
+        public string getIdEtapeRg(Connexion connexion, string rangEtape)
+        {
+            string idEtape = null;
+            try
+            {
+                string query = "SELECT idEtape FROM etape WHERE rangEtape = @rangEtape";
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                command.Parameters.AddWithValue("@rangEtape", rangEtape);
+                SqlDataReader dataReader = command.ExecuteReader();
+                if (dataReader.Read())
+                {
+                    idEtape = dataReader["idEtape"].ToString();
+                }
+                dataReader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+            }
+            return idEtape;
+        }
+
+        public DateTime getDateparIdEtape(Connexion connexion, string idEtape)
+        {
+            DateTime dhDepart = new DateTime();
+            try
+            {
+                string query = "SELECT dhDepart FROM etape WHERE idEtape = @idEtape";
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                command.Parameters.AddWithValue("@idEtape", idEtape);
+                SqlDataReader dataReader = command.ExecuteReader();
+                if (dataReader.Read())
+                {
+                    dhDepart = DateTime.Parse(dataReader["dhDepart"].ToString());
+                }
+                dataReader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+            }
+            return dhDepart;
         }
     }
 }

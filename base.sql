@@ -8,7 +8,7 @@ create table uuser(
     passWord varchar(150),
     admin int --0:no, 1:yes
 );
-insert into uuser(name, user, passWord, admin) 
+insert into uuser(name, uuser, passWord, admin) 
 values
     ('Admin', 'admin', 'admin', 1),
     ('EquipeA', 'equipeA', '123', 0),
@@ -26,7 +26,7 @@ create table etape(
 insert into etape (name, lkm, nbCoureur, rangEtape)
 values
     ('Etape1', 50, 2, 'rang1'),
-    ('Etape2', 100, 3, 'rang2'),
+    ('Etape2', 10, 3, 'rang2'),
     ('Etape3', 1, 1, 'rang3');
 update etape set name = 'Etape 1 de Betsizaraina' where name = 'Etape1';
 update etape set name = 'Etape 3 d’Ampasimbe' where name = 'Etape3';
@@ -36,6 +36,8 @@ update etape set dhDepart = '01/06/2024 09:00:00' where idEtape = 'e1';
 update etape set dhDepart = '01/06/2024 13:15:00' where idEtape = 'e2';
 update etape set dhDepart = '02/06/2024 11:00:00' where idEtape = 'e3';
 update etape set dhDepart = '02/06/2024 12:00:00' where idEtape = 'e4';
+ALTER TABLE etape
+ADD CONSTRAINT UC_rangEtape UNIQUE (rangEtape);
 
 create table category(
     idCategory AS ('cat' + cast(id as varchar(10))) PERSISTED primary key,
@@ -58,6 +60,9 @@ create table coureur(
     dtn date not null,
     idUser varchar(11) references uuser(idUser) default null
 );
+ALTER TABLE coureur
+ADD CONSTRAINT UC_numDossard UNIQUE (numDossard);
+
 insert coureur (nom, numDossard, genre, dtn, idUser)
 values
     ('Lova', '1', 'masculin', '2000-01-01', 'u2'),
@@ -204,11 +209,59 @@ select * from v_detail_result v join categoryCoureur cc on cc.idCoureur = v.idCo
 
 
 
+SET LANGUAGE French;
 
 
 
 
 
+insert into uuser(name, uuser, passWord, admin) 
+values
+    ('Admin', 'admin', 'admin', 1),
+    ('EquipeA', 'equipeA', '123', 0),
+    ('EquipeB', 'equipeB', '123', 0),
+    ('EquipeC', 'equipeC', '123', 0);
+
+insert into category (name)
+values
+    ('homme'),
+    ('femme'),
+    ('junior'),
+    ('senior');
+
+insert coureur (nom, numDossard, genre, dtn, idUser)
+values
+    ('Lova', '1', 'masculin', '2000-01-01', 'u2'),
+    ('Sabrina', '5', 'feminin', '2001-01-01', 'u2'),
+    ('Victor', '11', 'masculin', '1999-01-01', 'u2'),
+    --
+    ('Justin', '2', 'masculin', '2000-01-01', 'u3'),
+    ('Vero', '6', 'feminin', '2001-01-01', 'u3'),
+    --
+    ('John', '3', 'masculin', '2000-01-01', 'u4'),
+    ('Jill', '7', 'feminin', '2001-01-01', 'u4');
+
+insert into categoryCoureur (idCoureur, idCategory)
+values
+    ('c1', 'cat1'),
+    ('c1', 'cat3'),
+    ('c2', 'cat2'),
+    ('c2', 'cat3'),
+    ('c3', 'cat1'),
+    ('c3', 'cat4'),
+    ('c4', 'cat1'),
+    ('c4', 'cat3'),
+    ('c4', 'cat4'),
+    ('c5', 'cat1'),
+    ('c5', 'cat3');
+
+insert into point (classement, points)
+values
+    ('1', 10),
+    ('2', 6),
+    ('3', 4),
+    ('4', 2),
+    ('5', 1);
 
 
 

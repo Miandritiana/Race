@@ -44,8 +44,10 @@ namespace Race.Models
             this.rang = rang;
         }
 
-        public Result(string numDossard, string coureur, int point)
+        public Result(string equipe, string idCoureur, string numDossard, string coureur, int point)
         {
+            this.equipe = equipe;
+            this.idCoureur = idCoureur;
             this.numDossard = numDossard;
             this.coureur = coureur;
             this.point = point;
@@ -105,7 +107,7 @@ namespace Race.Models
         public static List<Result> CGCoureur(Connexion connexion)
         {
             List<Result> results = new List<Result>();
-            string query = "select c.numDossard, c.nom, sum(point) point from v_detail_result v join etape e on v.idEtape = e.idEtape join coureur c on c.idCoureur = v.idCoureur group by c.numDossard, c.nom order by point desc";
+            string query = "select v.equipe, c.idCoureur, c.numDossard, c.nom, sum(point) point from v_detail_result v join etape e on v.idEtape = e.idEtape join coureur c on c.idCoureur = v.idCoureur group by c.numDossard, c.nom, v.equipe, c.idCoureur order by point desc";
             
             using (SqlCommand command = new SqlCommand(query, connexion.connection))
             {
@@ -114,6 +116,8 @@ namespace Race.Models
                     while (reader.Read())
                     {
                         Result result = new Result(
+                            reader["equipe"].ToString(),
+                            reader["idCoureur"].ToString(),
                             reader["numDossard"].ToString(),
                             reader["nom"].ToString(),
                             Convert.ToInt32(reader["point"])

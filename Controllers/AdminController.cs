@@ -188,4 +188,69 @@ public class AdminController : Controller
             return RedirectToAction("Index", "Home");
         }
     }
+
+    public IActionResult import()
+    {
+        HttpContext.Session.Remove("sessionId");
+
+        if(HttpContext.Session.GetString("adminId") != null)
+        {
+            return View("importData");
+
+        }else{
+
+            return RedirectToAction("Index", "Home");
+        }
+    }
+
+    public IActionResult ImportEtapeResult(IFormFile csvFileEtape, IFormFile csvFileResult)
+    {
+        if (csvFileEtape != null && csvFileEtape.Length > 0 && csvFileResult != null && csvFileResult.Length > 0)
+        {
+            try
+            {
+                ImportEtape impoEtape = new ImportEtape();
+                ImportResult impoResu = new ImportResult();
+
+                Connexion coco = new Connexion();
+                coco.connection.Open();
+                
+                // string messageEtape = impoEtape.import(csvFileEtape, coco);
+                string messageResult = impoResu.import(csvFileResult, coco);
+
+                coco.connection.Close();
+                
+                // if (messageEtape.Contains("Error") || messageEtape.Contains("Exception") || messageEtape.Contains("failed"))
+                // {
+                //     ViewBag.Error = messageEtape;
+                // }
+                // else
+                // {
+                //     ViewBag.MessageEtape = messageEtape;
+                // }
+
+
+                if (messageResult.Contains("Error") || messageResult.Contains("Exception") || messageResult.Contains("failed"))
+                {
+                    ViewBag.Error = messageResult;
+                }
+                else
+                {
+                    ViewBag.messageResult = messageResult;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Error processing CSV file: " + ex.Message;
+            }
+        }
+        else
+        {
+            ViewBag.Error = "No file selected.";
+        }
+
+        return View("importData", ViewBag);
+
+    }
 }

@@ -1,5 +1,6 @@
 @{
     ViewData["Title"] = "Add temps";
+    var frenchCulture = new System.Globalization.CultureInfo("fr-FR");
 }
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -43,7 +44,7 @@
                                     </div>
                                     <p class="mb-1">Nombre coureur : @Model.etape.nbCoureur </p>
                                     <small>Rang etape : @Model.etape.rangEtape</small>
-                                    <p>Date heure depart <strong>@Model.etape.dhDepart.ToString("MMMM dd, yyyy hh:mm:ss")</strong></p>
+                                    <p>Date heure depart <strong>@Model.etape.dhDepart.ToString("MMMM dd, yyyy hh:mm:ss tt", frenchCulture)</strong></p>
                                 </a>
                                 </div>
                             </div>
