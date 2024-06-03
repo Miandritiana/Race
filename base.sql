@@ -336,7 +336,7 @@ select c.idUser, u.name coureur, c.idCoureur, c.nom, cc.idCategory, cate.name ca
 
 create view v_detail_point_category as
 WITH valiny AS (
-	select *,
+	select idUser, coureur, idCategory, category, temps, 
 		DENSE_RANK() OVER (PARTITION BY idCategory ORDER BY temps) AS classement
 		from v_info_coureur_category
 ),
@@ -359,6 +359,31 @@ FROM
 
 
 select idUser, coureur, idCategory, category, sum(point) point from v_detail_point_category group by idCategory, category , idUser, coureur order by point desc
+
+
+select idUser, coureur, idCategory, category, sum(point) point from v_detail_point_category group by idCategory, category,  idUser, coureur
+
+select * from v_info_coureur_category
+WITH valiny AS (
+	select idUser, coureur, idCategory, category, temps, 
+		DENSE_RANK() OVER (PARTITION BY idCategory ORDER BY temps) AS classement
+		from v_info_coureur_category
+		group by idCategory, category
+),
+miarakPoint AS (
+SELECT 
+        valiny.*,
+        ISNULL(p.points, 0) AS point
+        --p.points AS point
+    FROM 
+        valiny
+    LEFT JOIN point p ON CAST(valiny.classement AS VARCHAR(10)) = p.classement
+)
+SELECT 
+    tenaValiny.*
+FROM 
+    miarakPoint AS tenaValiny;
+
 
 
 
