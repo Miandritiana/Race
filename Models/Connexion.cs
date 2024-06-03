@@ -41,7 +41,7 @@ namespace Race.Models
                 // Delete all data from all tables
                 foreach (var item in tables)
                 {
-                    Console.WriteLine(item);
+                    Console.WriteLine($"Deleting data from table: {item}");
                     var deleteCmd = new SqlCommand($"DELETE FROM {item}", connexion.connection);
                     deleteCmd.ExecuteNonQuery();
 
@@ -50,9 +50,15 @@ namespace Race.Models
                     EnableForeignKeyConstraintsForTable(connexion, item);
                 }
 
+                // Insert the default user into the uuser table
+                Console.WriteLine("Inserting default admin user into uuser table");
+                var insertAdminCmd = new SqlCommand("INSERT INTO uuser (name, uuser, passWord, admin) VALUES ('Admin', 'admin', 'admin', 1)", connexion.connection);
+                insertAdminCmd.ExecuteNonQuery();
+
                 // Truncate all tables
                 foreach (var item in tables)
                 {
+                    Console.WriteLine($"Truncating table: {item}");
                     var truncateCmd = new SqlCommand($"TRUNCATE TABLE {item}", connexion.connection);
                     truncateCmd.ExecuteNonQuery();
 
@@ -60,19 +66,17 @@ namespace Race.Models
                     resetCmd.ExecuteNonQuery();
                     EnableForeignKeyConstraintsForTable(connexion, item);
                 }
-
-                // Insert the default user into the uuser table
-                var insertAdminCmd = new SqlCommand("INSERT INTO uuser (name, user, passWord, admin) VALUES ('Admin', 'admin', 'admin', 1)", connexion.connection);
-                insertAdminCmd.ExecuteNonQuery();
-
+                
                 EnableAllForeignKeys(connexion);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex}");
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine($"StackTrace: {ex.StackTrace}");
                 throw;
             }
         }
+
 
         private static void DisableAllForeignKeys(Connexion connexion)
         {

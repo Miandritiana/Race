@@ -9,40 +9,23 @@ using System.Globalization;
 
 namespace Race.Models
 {
-    public class ImportEtape
+    public class ImportPoint
     {
-        public string etape { get; set; }
-        public double longueur { get; set; }
-        public int nb_coureur { get; set; }
-        public string rang { get; set; }
-        public DateTime date_depart { get; set; }
-        public TimeSpan heure_depart { get; set; }
+        public string classement { get; set; }
+        public int points { get; set; }
+        public ImportPoint (){}
 
-        public ImportEtape (){}
-
-        public ImportEtape (string etape, double longueur, int nb_coureur, string rang, DateTime date_depart, TimeSpan heure_depart)
+        public ImportPoint (string classement, int points)
         {
-            this.etape = etape;
-            this.longueur = longueur;
-            this.nb_coureur = nb_coureur;
-            this.rang = rang;
-            this.date_depart = date_depart;
-            this.heure_depart = heure_depart;
+            this.classement = classement;
+            this.points = points;
         }
 
-        public DateTime combineDateTimeAndTimeSpan(string dateString, string timeString)
-        {
-            DateTime date = DateTime.ParseExact(dateString, "dd/MM/yyyy hh:mm:ss", null);
-            TimeSpan time = TimeSpan.Parse(timeString);
-            return date.Add(time);
-        }
-
-        public void insert (Connexion coco, ImportEtape impo)
+        public void insert (Connexion coco, ImportPoint impo)
         {
             try
             {
-                Console.WriteLine(this.combineDateTimeAndTimeSpan(impo.date_depart.ToString(), impo.heure_depart.ToString()));
-                new Etape(impo.etape, impo.longueur, impo.nb_coureur, impo.rang, this.combineDateTimeAndTimeSpan(impo.date_depart.ToString(), impo.heure_depart.ToString())).create(coco);
+                new CoureurTemps(impo.classement, impo.points).createPoint(coco);
             }
             catch (Exception ex)
             {
@@ -107,21 +90,13 @@ namespace Race.Models
                         // DateTime date_depart = DateTime.ParseExact(processedValues[4], "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
                         // TimeSpan heure_depart = TimeSpan.ParseExact(processedValues[5], "HH:mm:ss", CultureInfo.InvariantCulture);
 
-                        ImportEtape impo = new ImportEtape(
+                        ImportPoint impo = new ImportPoint(
                             processedValues[0],
-                            double.Parse(processedValues[1]),
-                            int.Parse(processedValues[2]),
-                            processedValues[3],
-                            DateTime.Parse(processedValues[4]),
-                            TimeSpan.Parse(processedValues[5])
+                            int.Parse(processedValues[1])
                         );
                         
-                        Console.WriteLine(impo.etape);
-                        Console.WriteLine(impo.longueur);
-                        Console.WriteLine(impo.nb_coureur);
-                        Console.WriteLine(impo.rang);
-                        Console.WriteLine(impo.date_depart);
-                        Console.WriteLine(impo.heure_depart);
+                        Console.WriteLine(impo.classement);
+                        Console.WriteLine(impo.points);
                     
                     impo.insert(coco, impo);
 
@@ -129,12 +104,12 @@ namespace Race.Models
 
                 }
 
-                return "CSV file uploaded and data imported into the database. ho any etape";
+                return "CSV file uploaded and data imported into the database. ho any point";
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex}");
-                return "Error importing CSV file any etape: " + ex.Message;
+                return "Error importing CSV file any point: " + ex.Message;
             }
         }
     }

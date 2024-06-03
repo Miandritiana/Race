@@ -1,0 +1,46 @@
+@{
+    ViewData["Title"] = "Import csv";
+}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Race/</span> Import csv point</h4>
+                <div class="row mb-5">
+            <div class="col-md-6"> </div>
+            <div class="col-md-6">
+                <form action="@Url.Action("Index", "Admin")" method="get">
+                    <button type="submit"  class="btn btn-dark" style="float:right;">Return to List</button>
+                </form>
+            </div>
+        </div>
+
+        <form method="post" enctype="multipart/form-data" action="@Url.Action("ImportPoint", "Admin")">
+            <div class="row mb-5">
+                <div class="col-md-4">
+                    <label>Point</label>
+                    <input type="file" name="csvFile" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary mt-4">
+                        Importer
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row mb-5">
+            <div class="col-md-4">
+                
+                <h2></h2>
+                @if(ViewBag.Message != null)
+                {
+                    <div class="alert alert-success" role="alert">@ViewBag.Message</div>
+                }
+                @if(ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger" role="alert">@ViewBag.Error</div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

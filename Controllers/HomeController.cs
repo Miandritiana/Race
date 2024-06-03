@@ -64,7 +64,7 @@ public class HomeController : Controller
         }else{
             TempData["error"] = "Misy diso ny user na mdp";
             coco.connection.Close();
-            return RedirectToAction("Log", "Admin", new { error = true });
+            return RedirectToAction("Index", "Home", new { error = true });
         }
 
         coco.connection.Close();

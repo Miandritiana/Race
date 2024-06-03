@@ -15,6 +15,9 @@ namespace Race.Models
         public DateTime dhDepart { get; set; }
         public DateTime dhArriver { get; set; }
 
+        public string classement { get; set; }
+        public int points { get; set; }
+
 
         public CoureurTemps() { }
 
@@ -33,6 +36,12 @@ namespace Race.Models
             this.hArriver = hArriver;
             this.dhDepart = dhDepart;
             this.dhArriver = dhArriver;
+        }
+
+        public CoureurTemps(string classement, int points)
+        {
+            this.classement = classement;
+            this.points = points;
         }
 
         public static List<CoureurTemps> findAll(Connexion connexion)
@@ -111,5 +120,21 @@ namespace Race.Models
         //     }
         // }
 
+        public void createPoint(Connexion connexion)
+        {
+            try
+            {
+                string query = "INSERT INTO point (classement, points) VALUES ('"+this.classement+"', '"+this.points+"')";
+                Console.WriteLine(query);
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+                throw ex;
+            }
+
+        }
     }
 }

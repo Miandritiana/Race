@@ -215,28 +215,28 @@ public class AdminController : Controller
                 Connexion coco = new Connexion();
                 coco.connection.Open();
                 
-                // string messageEtape = impoEtape.import(csvFileEtape, coco);
+                string messageEtape = impoEtape.import(csvFileEtape, coco);
                 string messageResult = impoResu.import(csvFileResult, coco);
 
                 coco.connection.Close();
                 
-                // if (messageEtape.Contains("Error") || messageEtape.Contains("Exception") || messageEtape.Contains("failed"))
-                // {
-                //     ViewBag.Error = messageEtape;
-                // }
-                // else
-                // {
-                //     ViewBag.MessageEtape = messageEtape;
-                // }
+                if (messageEtape.Contains("Error") || messageEtape.Contains("Exception") || messageEtape.Contains("failed"))
+                {
+                    ViewBag.ErrorEtape = messageEtape;
+                }
+                else
+                {
+                    ViewBag.MessageEtape = messageEtape;
+                }
 
 
                 if (messageResult.Contains("Error") || messageResult.Contains("Exception") || messageResult.Contains("failed"))
                 {
-                    ViewBag.Error = messageResult;
+                    ViewBag.ErrorResult = messageResult;
                 }
                 else
                 {
-                    ViewBag.messageResult = messageResult;
+                    ViewBag.MessageResult = messageResult;
                 }
 
             }
@@ -251,6 +251,57 @@ public class AdminController : Controller
         }
 
         return View("importData", ViewBag);
+    }
 
+    public IActionResult importPoint()
+    {
+        HttpContext.Session.Remove("sessionId");
+
+        if(HttpContext.Session.GetString("adminId") != null)
+        {
+            return View();
+
+        }else{
+
+            return RedirectToAction("Index", "Home");
+        }
+    }
+
+    public IActionResult ImportPoint(IFormFile csvFile)
+    {
+        if (csvFile != null && csvFile.Length > 0)
+        {
+            try
+            {
+                ImportPoint impo = new ImportPoint();
+
+                Connexion coco = new Connexion();
+                coco.connection.Open();
+                
+                string messageEtape = impo.import(csvFile, coco);
+
+                coco.connection.Close();
+                
+                if (messageEtape.Contains("Error") || messageEtape.Contains("Exception") || messageEtape.Contains("failed"))
+                {
+                    ViewBag.Error = messageEtape;
+                }
+                else
+                {
+                    ViewBag.Message = messageEtape;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Error processing CSV file: " + ex.Message;
+            }
+        }
+        else
+        {
+            ViewBag.Error = "No file selected.";
+        }
+
+        return View("importData", ViewBag);
     }
 }

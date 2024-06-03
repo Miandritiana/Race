@@ -144,9 +144,9 @@ namespace Race.Models
             string idEtape = null;
             try
             {
-                string query = "SELECT idEtape FROM etape WHERE rangEtape = @rangEtape";
+                string query = "SELECT idEtape FROM etape WHERE rangEtape = 'rang"+rangEtape+"'";
+                Console.WriteLine(query);
                 SqlCommand command = new SqlCommand(query, connexion.connection);
-                command.Parameters.AddWithValue("@rangEtape", rangEtape);
                 SqlDataReader dataReader = command.ExecuteReader();
                 if (dataReader.Read())
                 {

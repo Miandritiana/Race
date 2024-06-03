@@ -52,6 +52,7 @@ namespace Race.Models
                 string lastIdCoureur = c.lastIdCoureur(coco);
 
                 string idEtape = new Etape().getIdEtapeRg(coco, impo.etape_rang);
+                Console.WriteLine(idEtape);
 
                 new Coureur(idEtape, lastIdCoureur).createEtapeCoureur2(coco);
 
@@ -139,8 +140,8 @@ namespace Race.Models
                             processedValues[2],
                             processedValues[3],
                             DateTime.Parse(processedValues[4]),
-                            processedValues[6],
-                            DateTime.Parse(processedValues[7])
+                            processedValues[5],
+                            DateTime.Parse(processedValues[6])
                         );
                         
                         Console.WriteLine(impo.etape_rang);
@@ -151,18 +152,18 @@ namespace Race.Models
                         Console.WriteLine(impo.equipe);
                         Console.WriteLine(impo.arrivee);
                     
-                    // impo.insert(coco, impo);
+                    impo.insert(coco, impo);
 
                 Console.WriteLine("\n");
 
                 }
 
-                return "CSV file uploaded and data imported into the database.";
+                return "CSV file uploaded and data imported into the database. ho any result";
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex}");
-                return "Error importing CSV file: " + ex.Message;
+                return "Error importing CSV file: result le resaks" + ex.Message;
             }
         }
     }

@@ -32,8 +32,8 @@
         </form>
 
         <div class="row mb-5">
-            
-            <div class="col-md-6">
+            <div class="col-md-4">
+                
                 <h2></h2>
                 @if(ViewBag.Message != null)
                 {
@@ -44,7 +44,29 @@
                     <div class="alert alert-danger" role="alert">@ViewBag.Error</div>
                 }
             </div>
-            <div class="col-md-6">
+            
+            <div class="col-md-4">
+                <h2></h2>
+                @if(ViewBag.MessageEtape != null)
+                {
+                    <div class="alert alert-success" role="alert">@ViewBag.MessageEtape</div>
+                }
+                @if(ViewBag.ErrorEtape != null)
+                {
+                    <div class="alert alert-danger" role="alert">@ViewBag.ErrorEtape</div>
+                }
+            </div>
+            <div class="col-md-4">
+                
+                <h2></h2>
+                @if(ViewBag.MessageResult != null)
+                {
+                    <div class="alert alert-success" role="alert">@ViewBag.MessageResult</div>
+                }
+                @if(ViewBag.ErrorResult != null)
+                {
+                    <div class="alert alert-danger" role="alert">@ViewBag.ErrorResult</div>
+                }
             </div>
         </div>
 
