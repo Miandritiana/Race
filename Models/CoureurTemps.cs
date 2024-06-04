@@ -153,5 +153,29 @@ namespace Race.Models
             }
 
         }
+
+        public string getIdECByetapecoureur(Connexion connexion, string idEtape, string idCoureur)
+        {
+            string val = "";
+            try
+            {
+                string query = "select idEtapeCoureur from etapeCoureur where idCoureur = '"+idCoureur+"' and idEtape= '"+idEtape+"' and idEtapeCoureur in (select idEtapeCoureur from etapeCoureurTemps)";
+                Console.WriteLine(query);
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    val = dataReader["idEtapeCoureur"].ToString();
+                }
+
+                dataReader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                Console.WriteLine($"Error: {ex}");
+            }
+            return val;
+        }
     }
 }

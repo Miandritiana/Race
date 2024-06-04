@@ -15,6 +15,9 @@ namespace Race.Models
         public List<Uuser> userList = new List<Uuser>();
         public List<Uuser> equipeList = new List<Uuser>();
         public List<Result> chronos = new List<Result>();
+        public List<Result> v_result_category = new List<Result>();
+        public List<Coureur> categoryList = new List<Coureur>();
+        public List<Penalite> penaliteList = new List<Penalite>();
 
         public Data()
         {
@@ -28,6 +31,9 @@ namespace Race.Models
             this.userList = new List<Uuser>();
             this.equipeList = new List<Uuser>();
             this.chronos = new List<Result>();
+            this.v_result_category = new List<Result>();
+            this.categoryList = new List<Coureur>();
+            this.penaliteList = new List<Penalite>();
         }
     }
 }

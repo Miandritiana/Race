@@ -87,7 +87,7 @@ namespace Race.Models
                 while (dataReader.Read())
                 {
                     coureurList.Add(new Coureur(
-                        dataReader["idCoureur"].ToString(),
+                        dataReader["idCoureur"].ToString(), 
                         dataReader["nom"].ToString(),
                         dataReader["numDossard"].ToString(),
                         dataReader["genre"].ToString(),

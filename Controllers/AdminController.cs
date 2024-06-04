@@ -323,5 +323,54 @@ public class AdminController : Controller
             return RedirectToAction("Index", "Home");
         }
     }
+
+
+    public IActionResult addPenalite()
+    {
+        HttpContext.Session.Remove("sessionId");
+
+        if(HttpContext.Session.GetString("adminId") != null)
+        {
+            var etape = Request.Form["etape"].ToString();
+            var equipe = Request.Form["equipe"].ToString();
+            var timeString = Request.Form["time"].ToString();
+            TimeSpan time = TimeSpan.Parse(timeString);
+
+            Connexion coco = new Connexion();
+            coco.connection.Open();
+
+            new Penalite().penalise(coco, etape, equipe, time);
+
+            coco.connection.Close();
+
+            return RedirectToAction("ListePenalite", "Admin");
+
+        }else{
+
+            return RedirectToAction("Index", "Home");
+        }
+    }
+
+    public IActionResult ListePenalite()
+    {
+        HttpContext.Session.Remove("sessionId");
+
+        if(HttpContext.Session.GetString("adminId") != null)
+        {
+            Data data = new Data();
+            Connexion coco = new Connexion();
+            coco.connection.Open();
+
+            data.penaliteList = Penalite.findAll(coco);
+
+            coco.connection.Close();
+
+            return View("Penalite");
+
+        }else{
+
+            return RedirectToAction("Index", "Home");
+        }
+    }
     
 }

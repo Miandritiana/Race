@@ -174,7 +174,7 @@ public class HomeController : Controller
         }
     }
 
-    public IActionResult classement()
+    public IActionResult classement(string category)
     {
         if(HttpContext.Session.GetString("sessionId") != null || HttpContext.Session.GetString("adminId") != null)
         {
@@ -182,10 +182,18 @@ public class HomeController : Controller
             Connexion coco = new Connexion();
             coco.connection.Open();
 
+            if (category != null)
+            {
+                data.v_result_category = new Result().v_result_category(coco, category);
+            }else
+            {
+                data.v_result_category = new Result().v_result_category(coco, "cat1");
+            }
             data.resultList = Result.findAll(coco);
             data.CGPointEtape = Result.CGPointEtape(coco);
             data.CG = Result.CG(coco);
             data.CGCoureur = Result.CGCoureur(coco);
+            data.categoryList = new Coureur().listCAtegory(coco);
 
             coco.connection.Close();
             return View("result", data);

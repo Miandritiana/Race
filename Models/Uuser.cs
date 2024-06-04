@@ -21,6 +21,15 @@ namespace Race.Models
             this.uuser = uuser;
             this.passWord = passWord;
         }
+
+        
+        public Uuser(string idUser, string name, string uuser, string passWord)
+        {
+            this.idUser = idUser;
+            this.name = name;
+            this.uuser = uuser;
+            this.passWord = passWord;
+        }
         
         public string checkLogin(Connexion connexion, string username, string password)
         {
@@ -136,6 +145,7 @@ namespace Race.Models
                 while (dataReader.Read())
                 {
                     uuserList.Add(new Uuser(
+                        dataReader["idUser"].ToString(),
                         dataReader["name"].ToString(),
                         dataReader["uuser"].ToString(),
                         dataReader["password"].ToString()
@@ -194,6 +204,29 @@ namespace Race.Models
                 Console.WriteLine($"Error: {ex}");
             }
             return idUser;
+        }
+
+        public List<string> listIdCoureur(Connexion connexion, string idUser)
+        {
+            List<string> valList = new List<string>();
+            try
+            {
+                string query = "select idCoureur from coureur where idUser = '"+idUser+"'";
+                Console.WriteLine(query);
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    valList.Add(dataReader["idCoureur"].ToString());
+                }
+                dataReader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+            }
+            return valList;
+
         }
 
     }

@@ -30,8 +30,6 @@ namespace Race.Models
 
         public string idCategory { get; set; }
         public string category { get; set; }
-        public string rang { get; set; }
-        public string equipe { get; set; }
         public int totalPoint { get; set; }
 
 
@@ -255,9 +253,31 @@ namespace Race.Models
             return results;
         }
 
-        // public List<Result> v_CG_category_notSure(Connexion connexion)
-        // {
+        public List<Result> v_result_category(Connexion connexion, string idCategory)
+        {
+            List<Result> results = new List<Result>();
+            string query = "select * from v_result_category where idCategory = '"+idCategory+"' ORDER BY category, pointtotal DESC";
+            
+            using (SqlCommand command = new SqlCommand(query, connexion.connection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Result result = new Result(
+                            reader["idCategory"].ToString(),
+                            reader["category"].ToString(),
+                            reader["classement"].ToString(),
+                            reader["equipe"].ToString(),
+                            reader.GetInt32(reader.GetOrdinal("pointtotal"))
+                        );
+                        results.Add(result);
+                    }
+                }
+            }
 
-        // }
+            return results;
+
+        }
     }
 }

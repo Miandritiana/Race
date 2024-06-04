@@ -11,22 +11,90 @@
                     <button type="submit"  class="btn btn-danger">RESET DATABASE (voafafa daoholo ny entana an!)</button>
                 </form>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <form action="@Url.Action("generateCC", "Admin")" method="get">
                     <button type="submit"  class="btn btn-info" style="float:right;">Generate category</button>
                 </form>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
+                <form action="@Url.Action("penalite", "Admin")" method="get">
+                    <button style="float: right;"
+                          type="button"
+                          class="btn btn-warning"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalCenter">Pénalité</button>
+                </form>
+            </div>
+            <div class="col-md-2">
                 <form action="@Url.Action("import", "Admin")" method="get">
                     <button type="submit"  class="btn btn-dark" style="float:right;">Import Donnee</button>
                 </form>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <form action="@Url.Action("importPointView", "Admin")" method="get">
                     <button type="submit"  class="btn btn-dark" style="float:right;">Import Point</button>
                 </form>
             </div>
           </div>
+
+          <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <form action="@Url.Action("addPenalite", "Admin")" method="POST">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="modalCenterTitle">Ajouter pénalité</h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col mb-3">
+                          <label class="form-label">Choix etape</label>
+                          <select class="form-control" name="etape" required>
+                            @foreach(var d in Model.etapeList)
+                            {
+                              <option value="@d.idEtape">@d.name</option>
+                            }
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row g-2">
+                        <div class="col mb-0">
+                          <label class="form-label">Choix equipe</label>
+                          <select class="form-control" name="equipe" required>
+                            @foreach(var u in Model.userList)
+                            {
+                              <option value="@u.idUser">@u.name</option>
+                            }
+                          </select>
+                        </div>
+                        <div class="col mb-0">
+                          <label class="form-label">Time</label>
+                          <input
+                            type="time"
+                            id="dobWithTitle"
+                            class="form-control"
+                            step="1"
+                            name="time"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Close
+                      </button>
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
 
         <div class="row">
             <div class="card">

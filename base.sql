@@ -137,6 +137,17 @@ values
     ('4', 2),
     ('5', 1);
 
+create table penalite(
+    idPenalite AS ('pena' + cast(id as varchar(10))) PERSISTED primary key,
+    id int identity(1, 1),
+    idEtape varchar(11) references etape(idEtape),
+    etape varchar(50),
+    idUser varchar(11) references uuser(idUser),
+    equipe varchar(50),
+    tempsPlenalite time
+);
+alter table penalite add idEtapeCoureur varchar(12) references etapeCoureur(idEtapeCoureur);
+
 
 create view v_detail_result as
 WITH RankedResults AS (
@@ -324,13 +335,14 @@ select v.idEtapeCoureur, v.idEtape, e.name as etape, e.lkm, e.nbCoureur, e.rangE
 
 
 
--- create view v_info_coureur_category as
--- select c.idUser, u.name equipe, c.idCoureur, c.nom, cc.idCategory, cate.name category, ect.temps from etapeCoureurTemps ect 
--- 	JOIN etapeCoureur et ON et.idEtapeCoureur = ect.idEtapeCoureur
--- 	JOIN categoryCoureur cc ON cc.idCoureur = et.idCoureur
--- 	JOIN coureur c ON c.idCoureur = cc.idCoureur
--- 	JOIN uuser u ON u.idUser = c.idUser
--- 	JOIN category cate ON cate.idCategory = cc.idCategory;
+create view v_info_coureur_category as
+select c.idUser, u.name equipe, c.idCoureur, c.nom, cc.idCategory, cate.name category, ect.temps from etapeCoureurTemps ect 
+	JOIN etapeCoureur et ON et.idEtapeCoureur = ect.idEtapeCoureur
+	JOIN categoryCoureur cc ON cc.idCoureur = et.idCoureur
+	JOIN coureur c ON c.idCoureur = cc.idCoureur
+	JOIN uuser u ON u.idUser = c.idUser
+	JOIN category cate ON cate.idCategory = cc.idCategory;
+
 create view v_info_coureur_category as
 select u.idUser, u.name equipe, c.idCoureur, c.nom coureur, cc.idCategory, cat.name category from coureur c 
     join categoryCoureur cc on cc.idCoureur = c.idCoureur
@@ -341,27 +353,6 @@ create view v_info_coureur_category_temps as
 select v.idUser, v.equipe, v.idCoureur, v.coureur, v.idCategory, v.category, ect.temps from v_info_coureur_category v 
 	join etapeCoureur ec on ec.idCoureur = v.idCoureur
 	join etapeCoureurTemps ect on ect.idEtapeCoureur = ec.idEtapeCoureur
-
-
-create view v_detail_point_category as
-WITH valiny AS (
-	select idUser, equipe, idCoureur, coureur, idCategory, category, temps, 
-		DENSE_RANK() OVER (PARTITION BY idCategory ORDER BY temps) AS classement
-		from v_info_coureur_category_temps
-),
-miarakPoint AS (
-SELECT 
-        valiny.*,
-        ISNULL(p.points, 0) AS point
-        --p.points AS point
-    FROM 
-        valiny
-    LEFT JOIN point p ON CAST(valiny.classement AS VARCHAR(10)) = p.classement
-)
-SELECT 
-    tenaValiny.*
-FROM 
-    miarakPoint AS tenaValiny;
 
 
 
@@ -460,6 +451,113 @@ ORDER BY
 
 
 
+WITH RankedResults AS (
+    SELECT 
+        ec.idEtape,
+        u.idUser,
+        u.name as equipe,
+        c.idCoureur,
+        c.nom as coureur,
+		cc.idCategory,
+		cate.name category,
+        ect.temps,
+        DENSE_RANK() OVER (PARTITION BY ec.idEtape, cc.idCategory ORDER BY ect.temps) AS classement
+    FROM 
+        etapeCoureurTemps ect
+    JOIN etapecoureur ec ON ec.idEtapeCoureur = ect.idEtapeCoureur
+    JOIN uuser u ON u.idUser = ec.idUser
+    JOIN coureur c ON c.idCoureur = ec.idCoureur
+	JOIN categoryCoureur cc ON cc.idCoureur = c.idCoureur
+	JOIN category cate ON cate.idCategory = cc.idCategory
+	group by 
+		ec.idEtape,
+        u.idUser,
+        u.name,
+        c.idCoureur,
+        c.nom,
+		cc.idCategory,
+		cate.name,
+        ect.temps
+)
+SELECT 
+    subquery.*
+FROM 
+    RankedResults AS subquery
+	order by idCategory;
+
+
+
+
+create view v_detail_point_category as
+WITH RankedResults AS (
+    SELECT 
+        ec.idEtape,
+        u.idUser,
+        u.name as equipe,
+        c.idCoureur,
+        c.nom as coureur,
+		cc.idCategory,
+		cate.name category,
+        ect.temps,
+        DENSE_RANK() OVER (PARTITION BY ec.idEtape, cc.idCategory ORDER BY ect.temps) AS classement
+    FROM 
+        etapeCoureurTemps ect
+    JOIN etapecoureur ec ON ec.idEtapeCoureur = ect.idEtapeCoureur
+    JOIN uuser u ON u.idUser = ec.idUser
+    JOIN coureur c ON c.idCoureur = ec.idCoureur
+	JOIN categoryCoureur cc ON cc.idCoureur = c.idCoureur
+	JOIN category cate ON cate.idCategory = cc.idCategory
+	group by 
+		ec.idEtape,
+        u.idUser,
+        u.name,
+        c.idCoureur,
+        c.nom,
+		cc.idCategory,
+		cate.name,
+        ect.temps
+)
+SELECT 
+    subquery.*
+FROM 
+    RankedResults AS subquery;
+
+
+
+
+
+
+
+
+
+
+
+
+
+create view v_CG_category_sure as
+with result as (
+    SELECT 
+        v.*,
+        ISNULL(p.points, 0) AS point
+    FROM 
+        v_detail_point_category v
+    LEFT JOIN point p ON CAST(v.classement AS VARCHAR(10)) = p.classement
+)
+select idUser, equipe, idCategory, category, sum(point) pointtotal from result group by idUser, equipe, idCategory, category
+
+order by category, pointtotal desc
+
+
+
+create view v_result_category as
+SELECT 
+    *,
+    DENSE_RANK() OVER (PARTITION BY category ORDER BY pointtotal DESC) AS classement
+FROM 
+    v_CG_category_sure 
+
+
+ORDER BY category, pointtotal DESC;
 
 
 

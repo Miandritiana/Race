@@ -32,28 +32,30 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row mb-5">
-            <div class="card">                
-                <div class="card-body">
-                        <form action="@Url.Action("affecte", "Admin")" method="post">
+            <div class="col-6">      
+                <div class="card-header"><h3>Classement général par category</h3></div>
+                <div class="card">
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-5">
-                                <label for="emailWithTitle" class="form-label">Categorie</label>
-                                <select name="genre" class="form-select">
-                                    @foreach(var e in Model.equipeList)
-                                    {
-                                    <option value="@e.idUser">@e.name</option>
-                                    }
-                                </select>
+                                <form action="@Url.Action("classement", "Home")" method="post">
+                                    <label for="emailWithTitle" class="form-label">Categorie</label>
+                                    <select name="category" class="form-select">
+                                        @foreach(var e in Model.categoryList)
+                                        {
+                                            <option value="@e.idCoureur">@e.idCategory</option>
+                                        }
+                                    </select>
+                                    <button type="submit" class="btn btn-primary mt-3">
+                                        Search
+                                    </button>
+                                </form>
                             </div>
-                            </div>
 
-
-                                <div class="col-7 mb-4">
-
-                                    <div class="table-responsive text-nowrap">
+                            <div class="col-7 mb-4">
+                                <div class="table-responsive text-nowrap">
+                                    <label>@Model.v_result_category[0].idCoureur</label>
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
@@ -63,28 +65,22 @@
                                         </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
-                                            @foreach(var c in Model.coureurList)
+                                            @foreach(var c in Model.v_result_category)
                                             {
                                                 <tr>
-                                                    <input type="hidden" name="idEtapeCoureur" value="@c.idEtapeCoureur"/>
-                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@c.nom</strong> dans @c.equipe</td>
-                                                    <td><input type="datetime-local" class="form-control" step="1" name="dhArriver" required/></td>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@c.numDossard</strong></td>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@c.coureur</strong></td>
+                                                    <td>@c.point</td>
                                                 </tr>
                                             }
                                         </tbody>
                                     </table>
-                                    </div>
-                                </div>                               
-
-                                <button type="submit" class="btn btn-primary">
-                                    Save
-                                </button>
-
+                                </div>
+                            </div>
                         </div>
-                        </form>
+                    </div>
                 </div>
             </div>
-            
         </div>
         
 
