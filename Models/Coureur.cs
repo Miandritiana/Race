@@ -113,7 +113,6 @@ namespace Race.Models
             try
             {
                 string query = "SELECT idCategory FROM category where name='"+category+"'";
-                Console.WriteLine(query);
                 SqlCommand command = new SqlCommand(query, connexion.connection);
                 SqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())

@@ -324,21 +324,30 @@ select v.idEtapeCoureur, v.idEtape, e.name as etape, e.lkm, e.nbCoureur, e.rangE
 
 
 
+-- create view v_info_coureur_category as
+-- select c.idUser, u.name equipe, c.idCoureur, c.nom, cc.idCategory, cate.name category, ect.temps from etapeCoureurTemps ect 
+-- 	JOIN etapeCoureur et ON et.idEtapeCoureur = ect.idEtapeCoureur
+-- 	JOIN categoryCoureur cc ON cc.idCoureur = et.idCoureur
+-- 	JOIN coureur c ON c.idCoureur = cc.idCoureur
+-- 	JOIN uuser u ON u.idUser = c.idUser
+-- 	JOIN category cate ON cate.idCategory = cc.idCategory;
 create view v_info_coureur_category as
-select c.idUser, u.name coureur, c.idCoureur, c.nom, cc.idCategory, cate.name category, ect.temps from etapeCoureurTemps ect 
-	LEFT JOIN etapeCoureur et ON et.idEtapeCoureur = ect.idEtapeCoureur
-	LEFT JOIN categoryCoureur cc ON cc.idCoureur = et.idCoureur
-	LEFT JOIN coureur c ON c.idCoureur = cc.idCoureur
-	LEFT JOIN uuser u ON u.idUser = c.idUser
-	LEFT JOIN category cate ON cate.idCategory = cc.idCategory;
+select u.idUser, u.name equipe, c.idCoureur, c.nom coureur, cc.idCategory, cat.name category from coureur c 
+    join categoryCoureur cc on cc.idCoureur = c.idCoureur
+    join category cat on cat.idCategory = cc.idCategory
+    join uuser u on u.idUser = c.idUser
 
+create view v_info_coureur_category_temps as
+select v.idUser, v.equipe, v.idCoureur, v.coureur, v.idCategory, v.category, ect.temps from v_info_coureur_category v 
+	join etapeCoureur ec on ec.idCoureur = v.idCoureur
+	join etapeCoureurTemps ect on ect.idEtapeCoureur = ec.idEtapeCoureur
 
 
 create view v_detail_point_category as
 WITH valiny AS (
-	select idUser, coureur, idCategory, category, temps, 
+	select idUser, equipe, idCoureur, coureur, idCategory, category, temps, 
 		DENSE_RANK() OVER (PARTITION BY idCategory ORDER BY temps) AS classement
-		from v_info_coureur_category
+		from v_info_coureur_category_temps
 ),
 miarakPoint AS (
 SELECT 
@@ -358,31 +367,40 @@ FROM
 
 
 
-select idUser, coureur, idCategory, category, sum(point) point from v_detail_point_category group by idCategory, category , idUser, coureur order by point desc
+select idUser, equipe, idCategory, category, sum(point) point from v_detail_point_category where category = 'homme' group by idUser, equipe, idCategory, category order by point desc 
 
 
-select idUser, coureur, idCategory, category, sum(point) point from v_detail_point_category group by idCategory, category,  idUser, coureur
 
-select * from v_info_coureur_category
-WITH valiny AS (
-	select idUser, coureur, idCategory, category, temps, 
-		DENSE_RANK() OVER (PARTITION BY idCategory ORDER BY temps) AS classement
-		from v_info_coureur_category
-		group by idCategory, category
-),
-miarakPoint AS (
-SELECT 
-        valiny.*,
-        ISNULL(p.points, 0) AS point
-        --p.points AS point
+WITH CategoryTotals AS (
+    SELECT 
+        category,
+        equipe,
+        SUM(point) AS PointTotal,
+        ROW_NUMBER() OVER(PARTITION BY category ORDER BY SUM(point) DESC) AS Rang
     FROM 
-        valiny
-    LEFT JOIN point p ON CAST(valiny.classement AS VARCHAR(10)) = p.classement
+        v_detail_point_category
+    GROUP BY 
+        category, equipe
+),
+RankedCategoryTotals AS (
+    SELECT 
+        category,
+        equipe,
+        PointTotal,
+        Rang,
+        ROW_NUMBER() OVER(PARTITION BY category ORDER BY Rang) AS RangOrder
+    FROM 
+        CategoryTotals
 )
 SELECT 
-    tenaValiny.*
+    category AS Category,
+    Rang AS Rang,
+    equipe AS Equipe,
+    PointTotal AS PointTotal
 FROM 
-    miarakPoint AS tenaValiny;
+    RankedCategoryTotals
+ORDER BY 
+    category, RangOrder;
 
 
 
