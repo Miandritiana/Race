@@ -453,5 +453,33 @@ namespace Race.Models
             }
             
         }
+
+        public List<Coureur> listCAtegory(Connexion connexion)
+        {
+            List<Coureur> coureurList = new List<Coureur>();
+            try
+            {
+                string query = "SELECT * FROM category";
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    coureurList.Add(new Coureur(
+                        dataReader["idCategory"].ToString(),
+                        dataReader["name"].ToString(),
+                        (int)dataReader["id"]
+                    ));
+                }
+
+                dataReader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                Console.WriteLine($"Error: {ex}");
+            }
+            return coureurList;
+        }
+
     }
 }

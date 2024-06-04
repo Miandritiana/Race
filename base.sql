@@ -405,6 +405,61 @@ ORDER BY
 
 
 
+create view v_CG_category_notSure as
+WITH valiny AS (
+    SELECT 
+        idUser, 
+        equipe, 
+        idCoureur, 
+        coureur, 
+        idCategory, 
+        category, 
+        temps, 
+        DENSE_RANK() OVER (PARTITION BY idCategory ORDER BY temps) AS classement
+    FROM 
+        v_info_coureur_category_temps
+),
+miarakPoint AS (
+    SELECT 
+        valiny.*,
+        ISNULL(p.points, 0) AS point
+    FROM 
+        valiny
+    LEFT JOIN point p ON CAST(valiny.classement AS VARCHAR(10)) = p.classement
+)
+SELECT 
+    idCategory,
+    CASE category 
+        WHEN 'homme' THEN 'Homme'
+        WHEN 'junior' THEN 'Junior'
+        WHEN 'femme' THEN 'Femme'
+        WHEN 'senior' THEN 'Senior'
+        ELSE category 
+    END AS Category,
+    DENSE_RANK() OVER (PARTITION BY category ORDER BY SUM(point) DESC) AS Rang,
+    equipe AS Equipe,
+    SUM(point) AS PointTotal
+FROM 
+    miarakPoint
+GROUP BY 
+    category, equipe, idCategory
+
+
+ORDER BY 
+    category, PointTotal DESC;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

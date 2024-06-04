@@ -28,6 +28,13 @@ namespace Race.Models
         public string rangEtape { get; set; }
         public DateTime dhDepart { get; set; }
 
+        public string idCategory { get; set; }
+        public string category { get; set; }
+        public string rang { get; set; }
+        public string equipe { get; set; }
+        public int totalPoint { get; set; }
+
+
         public Result() { }
 
         public Result(string idECTemps, string idEtapeCoureur, string idEtape, string idUser, string equipe, string idCoureur, string coureur, string numDossard, string genre, DateTime dtn, TimeSpan hDepart, TimeSpan hArriver, TimeSpan temps, int point, string rang)
@@ -48,6 +55,15 @@ namespace Race.Models
             this.point = point;
             this.rang = rang;
         }
+
+        // public Result(string idCategory, string category, string rang, string equipe, int totalPoint)
+        // {
+        //     this.idCategory = idCategory;
+        //     this.category = category;
+        //     this.rang = rang;
+        //     this.equipe = equipe;
+        //     this.totalPoint = totalPoint;
+        // }
 
         public Result(string equipe, string idCoureur, string numDossard, string coureur, int point)
         {
@@ -238,5 +254,10 @@ namespace Race.Models
 
             return results;
         }
+
+        // public List<Result> v_CG_category_notSure(Connexion connexion)
+        // {
+
+        // }
     }
 }

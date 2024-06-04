@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "Add temps";
+    ViewData["Title"] = "Classement";
 }
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -32,6 +32,59 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="card">                
+                <div class="card-body">
+                        <form action="@Url.Action("affecte", "Admin")" method="post">
+                        <div class="row">
+                            <div class="col-5">
+                                <label for="emailWithTitle" class="form-label">Categorie</label>
+                                <select name="genre" class="form-select">
+                                    @foreach(var e in Model.equipeList)
+                                    {
+                                    <option value="@e.idUser">@e.name</option>
+                                    }
+                                </select>
+                            </div>
+                            </div>
+
+
+                                <div class="col-7 mb-4">
+
+                                    <div class="table-responsive text-nowrap">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Rang</th>
+                                            <th>Equipe</th>
+                                            <th>Point</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="table-border-bottom-0">
+                                            @foreach(var c in Model.coureurList)
+                                            {
+                                                <tr>
+                                                    <input type="hidden" name="idEtapeCoureur" value="@c.idEtapeCoureur"/>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@c.nom</strong> dans @c.equipe</td>
+                                                    <td><input type="datetime-local" class="form-control" step="1" name="dhArriver" required/></td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>                               
+
+                                <button type="submit" class="btn btn-primary">
+                                    Save
+                                </button>
+
+                        </div>
+                        </form>
+                </div>
+            </div>
+            
         </div>
         
 
