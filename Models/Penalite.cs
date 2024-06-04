@@ -119,12 +119,7 @@ namespace Race.Models
         {
             try
             {
-                List<string> listIdEc = new();
-                List<string> listIdCoureur = new Uuser().listIdCoureur(connexion, idEquipe);
-                foreach (var id in listIdCoureur)
-                {
-                    listIdEc.Add(new CoureurTemps().getIdECByetapecoureur(connexion, idEtape, id));
-                }
+                List<string> listIdEc = new CoureurTemps().getIdECByetapecoureur(connexion, idEtape, idEquipe);
 
                 new Penalite(idEtape, idEquipe, temps).create(connexion);
 

@@ -435,13 +435,33 @@ public class AdminController : Controller
 
             coco.connection.Close();
 
-            // return RedirectToAction("ListePenalite", "Admin");
             return Json(new { redirectUrl = Url.Action("ListePenalite", "Admin") });
 
         }else{
 
             return Json(new { redirectUrl = Url.Action("Index", "Home") });
-            // return RedirectToAction("Index", "Home");
+        }
+    }
+
+    public IActionResult pdfPage()
+    {
+        HttpContext.Session.Remove("sessionId");
+
+        if(HttpContext.Session.GetString("adminId") != null)
+        {
+            Data data = new Data();
+            Connexion coco = new Connexion();
+            coco.connection.Open();
+
+            data.penaliteList = Penalite.findAll(coco);
+
+            coco.connection.Close();
+
+            return View("pdfPage", data);
+
+        }else{
+
+            return RedirectToAction("Index", "Home");
         }
     }
     

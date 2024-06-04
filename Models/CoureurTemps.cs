@@ -154,17 +154,18 @@ namespace Race.Models
 
         }
 
-        public string getIdECByetapecoureur(Connexion connexion, string idEtape, string idCoureur)
+        public List<string> getIdECByetapecoureur(Connexion connexion, string idEtape, string idCoureur)
         {
-            string val = "";
+            List<string> val = new List<string>();
             try
             {
-                string query = "select idEtapeCoureur from etapeCoureur where idCoureur = '"+idCoureur+"' and idEtape= '"+idEtape+"' and idEtapeCoureur in (select idEtapeCoureur from etapeCoureurTemps)";
+                string query = "select idEtapeCoureur from etapeCoureur where idUser = '"+idCoureur+"' and idEtape= '"+idEtape+"' and idEtapeCoureur in (select idEtapeCoureur from etapeCoureurTemps)";
+                Console.WriteLine(query);
                 SqlCommand command = new SqlCommand(query, connexion.connection);
                 SqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    val = dataReader["idEtapeCoureur"].ToString();
+                    val.Add(dataReader["idEtapeCoureur"].ToString());
                 }
 
                 dataReader.Close();
@@ -181,10 +182,14 @@ namespace Race.Models
         {
             try
             {
-                string query = "delete from etapeCoureurTemps where idEtape = '"+idEtape+"' and idUser = '"+idUser+"' and dhArriver IS NULL";
-                Console.WriteLine(query);
-                SqlCommand command = new SqlCommand(query, connexion.connection);
-                command.ExecuteNonQuery();
+                List<string> collection = this.getIdECByetapecoureur(connexion, idEtape, idUser);
+                foreach (var item in collection)
+                {
+                    string query = "delete from etapeCoureurTemps where idEtapeCoureur = '"+item+"' and dhArriver IS NULL";
+                    Console.WriteLine(query);
+                    SqlCommand command = new SqlCommand(query, connexion.connection);
+                    command.ExecuteNonQuery();
+                }
             }
             catch (Exception ex)
             {
