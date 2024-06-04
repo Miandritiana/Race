@@ -160,7 +160,6 @@ namespace Race.Models
             try
             {
                 string query = "select idEtapeCoureur from etapeCoureur where idCoureur = '"+idCoureur+"' and idEtape= '"+idEtape+"' and idEtapeCoureur in (select idEtapeCoureur from etapeCoureurTemps)";
-                Console.WriteLine(query);
                 SqlCommand command = new SqlCommand(query, connexion.connection);
                 SqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
@@ -176,6 +175,23 @@ namespace Race.Models
                 Console.WriteLine($"Error: {ex}");
             }
             return val;
+        }
+
+        public void delete(Connexion connexion, string idEtapeCoureur)
+        {
+            try
+            {
+                string query = "delete from etapeCoureurTemps where idEtapeCoureur = '"+idEtapeCoureur+"' and dhArriver IS NULL";
+                Console.WriteLine(query);
+                SqlCommand command = new SqlCommand(query, connexion.connection);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+                throw ex;
+            }
+
         }
     }
 }

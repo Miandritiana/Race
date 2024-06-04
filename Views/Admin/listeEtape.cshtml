@@ -1,5 +1,7 @@
+@using System.Text.Json;
 @{
     ViewData["Title"] = "Homepage";
+    var jsonData = ViewData["JsonData"] as string;
 }
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -17,12 +19,9 @@
                 </form>
             </div>
             <div class="col-md-2">
-                <form action="@Url.Action("penalite", "Admin")" method="get">
+                <form action="@Url.Action("ListePenalite", "Admin")" method="get">
                     <button style="float: right;"
-                          type="button"
-                          class="btn btn-warning"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modalCenter">Pénalité</button>
+                          type="submit" class="btn btn-primary">Pénalité</button>
                 </form>
             </div>
             <div class="col-md-2">
@@ -36,65 +35,6 @@
                 </form>
             </div>
           </div>
-
-          <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <form action="@Url.Action("addPenalite", "Admin")" method="POST">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="modalCenterTitle">Ajouter pénalité</h5>
-                      <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      ></button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="row">
-                        <div class="col mb-3">
-                          <label class="form-label">Choix etape</label>
-                          <select class="form-control" name="etape" required>
-                            @foreach(var d in Model.etapeList)
-                            {
-                              <option value="@d.idEtape">@d.name</option>
-                            }
-                          </select>
-                        </div>
-                      </div>
-                      <div class="row g-2">
-                        <div class="col mb-0">
-                          <label class="form-label">Choix equipe</label>
-                          <select class="form-control" name="equipe" required>
-                            @foreach(var u in Model.userList)
-                            {
-                              <option value="@u.idUser">@u.name</option>
-                            }
-                          </select>
-                        </div>
-                        <div class="col mb-0">
-                          <label class="form-label">Time</label>
-                          <input
-                            type="time"
-                            id="dobWithTitle"
-                            class="form-control"
-                            step="1"
-                            name="time"
-                            required
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        Close
-                      </button>
-                      <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
 
         <div class="row">
             <div class="card">
@@ -143,6 +83,61 @@
               <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalCenter">
                 Create etape
               </button>
+        </div>
+
+        <div class="row mb-4 mt-5">
+            <div class="col-12 mb-4">
+                <div class="card">
+                    <div class="row row-bordered g-0">
+                      <div class="col-8">
+                        <h5 class="card-header m-0 me-2 pb-3">Classement générale</h5>
+                        <canvas class="huhu" width="400" height="400"></canvas>
+                      </div>
+                      <div class="col-4">
+                        <div class="card-body">
+                          <div class="text-center">
+                            <div class="dropdown">
+                              <button
+                                class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                type="button"
+                                id="growthReportId"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                Category
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
+                                  @foreach(var e in Model.categoryList)
+                                  {
+                                      <a class="dropdown-item" href="@Url.Action("chart", "Admin", new { idCategory = e.idCoureur })" id="selectedYear">@e.idCoureur</a>
+                                  }
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        @* <div id="growthChart"></div> *@
+                        <div class="text-center fw-semibold pt-3 mb-2"></div>
+
+                        <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
+                            @* @foreach(var c in Model.demandeList)
+                            { *@
+                            <div class="d-flex">
+                                <div class="me-2">
+                                <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
+                                </div>
+                                <div class="d-flex flex-column">
+                                <small></small>
+                                <h6 class="mb-0"></h6>
+                                </div>
+                            </div>
+                            @* } *@
+                        </div>
+
+                      </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="row">
@@ -421,4 +416,37 @@
         </form>
       </div>
     </div>
+
+    <script>
+    
+            var jsonDataFromServer = @Html.Raw(Json.Serialize(jsonData));
+            console.log(jsonDataFromServer);
+      
+      var labelsData = classementGenerale.map(function(item) {
+        return item.nomequipe;
+      });
+      var seriesData = classementGenerale.map(function(item) {
+        return parseInt(item.totalpoints);
+      });
+      console.log(labelsData);
+      console.log(seriesData);
+      // Configuration options for the pie chart
+      var options = {
+        series: seriesData,
+        chart: {
+          type: 'pie',
+        },
+        labels: labelsData,
+      };
+      
+      
+      // Initialize the pie chart
+      var chart = new ApexCharts(document.querySelector("#huhu"), options);
+      chart.render();
+    </script>
+
+
+
+
+
 

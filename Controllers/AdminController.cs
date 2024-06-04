@@ -21,6 +21,12 @@ public class AdminController : Controller
         {
             Etape e = new Etape();
             Data data = new Data();
+
+            int year = DateTime.Now.Year;
+            if (TempData["year"] != null)
+            {
+                year = int.Parse(TempData["year"].ToString());
+            }
             
             Connexion coco = new Connexion();
             coco.connection.Open();
@@ -29,8 +35,21 @@ public class AdminController : Controller
             data.userList = new Uuser().findAll(coco);
             data.coureurList = new Coureur().findAll(coco);
             data.equipeList = new Uuser().allEquipes(coco);
+            data.categoryList = new Coureur().listCAtegory(coco);            
+            data.CG = Result.CG(coco);
 
             coco.connection.Close();
+
+            var jsonData = System.Text.Json.JsonSerializer.Serialize(data.CG);
+            if (jsonData != null)
+            {
+                ViewData["JsonData"] = jsonData;
+            }
+            else
+            {
+                // Handle the case where jsonData is null
+                Console.WriteLine("jsonData is null");
+            }
 
             return View("listeEtape", data);
 
@@ -336,12 +355,23 @@ public class AdminController : Controller
             var timeString = Request.Form["time"].ToString();
             TimeSpan time = TimeSpan.Parse(timeString);
 
-            Connexion coco = new Connexion();
-            coco.connection.Open();
+            try
+            {
+                Penalite pen = new Penalite();
+                Connexion coco = new Connexion();
+                coco.connection.Open();
 
-            new Penalite().penalise(coco, etape, equipe, time);
+                pen.penalise(coco, etape, equipe, time);
 
-            coco.connection.Close();
+                coco.connection.Close();
+                ViewBag.message = "Oui nety";
+
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex;
+                throw;
+            }
 
             return RedirectToAction("ListePenalite", "Admin");
 
@@ -357,19 +387,47 @@ public class AdminController : Controller
 
         if(HttpContext.Session.GetString("adminId") != null)
         {
+            Etape e = new Etape();
+
             Data data = new Data();
             Connexion coco = new Connexion();
             coco.connection.Open();
 
             data.penaliteList = Penalite.findAll(coco);
+            data.etapeList = e.findAll(coco);
+            data.userList = new Uuser().findAll(coco);
 
             coco.connection.Close();
 
-            return View("Penalite");
+            return View("Penalite", data);
 
         }else{
 
             return RedirectToAction("Index", "Home");
+        }
+    }
+
+    public IActionResult deletePenalite(string idpenalite, string idEtape, string idUser, string idEtapeCoureur)
+    {
+        HttpContext.Session.Remove("sessionId");
+
+        if(HttpContext.Session.GetString("adminId") != null)
+        {
+            Connexion coco = new Connexion();
+            coco.connection.Open();
+
+            new Penalite().delete(coco, idpenalite, idUser, idEtape);
+            new CoureurTemps().delete(coco, idEtapeCoureur);
+
+            coco.connection.Close();
+
+            // return RedirectToAction("ListePenalite", "Admin");
+            return Json(new { redirectUrl = Url.Action("ListePenalite", "Admin") });
+
+        }else{
+
+            return Json(new { redirectUrl = Url.Action("Index", "Home") });
+            // return RedirectToAction("Index", "Home");
         }
     }
     

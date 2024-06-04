@@ -4,53 +4,181 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Race/</span> Penalite</h4>
-                <div class="row mb-5">
-            <div class="col-md-6"> </div>
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <form action="@Url.Action("penalite", "Admin")" method="get">
+                    <button style="float: right;"
+                          type="button"
+                          class="btn btn-warning"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalCenter">Add pénalité</button>
+                </form>
+            </div>
             <div class="col-md-6">
                 <form action="@Url.Action("Index", "Admin")" method="get">
                     <button type="submit"  class="btn btn-dark" style="float:right;">Return to List</button>
                 </form>
             </div>
         </div>
-
-        <form method="post" action="@Url.Action("ImportEtapeResult", "Admin")">
-            <div class="row mb-5">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header"><h4>Liste Etape</h4></div>
-                            <div class="card-body">
-                                <div class="table-responsive text-nowrap">
-                                    <table class="table table-bordered">
-                                        <thead>
+        <div class="row mb-5">
+            <div class="col-md-4">
+                
+                <h2></h2>
+                @if(ViewBag.Message != null)
+                {
+                    <div class="alert alert-success" role="alert">@ViewBag.Message</div>
+                }
+                @if(ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger" role="alert">@ViewBag.Error</div>
+                }
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header"><h4>Liste Etape</h4></div>
+                        <div class="card-body">
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                        <th>Etape</th>
+                                        <th>Equipe</th>
+                                        <th>Temps pénalité</th>
+                                        <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0">
+                                        @foreach(var d in Model.penaliteList)
+                                        {
                                             <tr>
-                                            <th>Etape</th>
-                                            <th>Equipe</th>
-                                            <th>Temps pénalité</th>
-                                            <th>Delete</th>
+                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@d.etape</strong></td>
+                                                <td>@d.equipe</td>
+                                                <td>@d.tempsplenalite</td>
+                                                <td><button type="button" class="btn btn-danger" 
+                                                    data-idPenalite="@d.idpenalite" 
+                                                    data-idEtape="@d.idEtape" 
+                                                    data-idUser="@d.iduser" 
+                                                    data-idEtapeCoureur="@d.idEtapeCoureur" onclick="confirmDelete(this)">delete</button>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody class="table-border-bottom-0">
-                                            @foreach(var d in Model.penaliteList)
-                                            {
-                                                <tr>
-                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@d.etape</strong></td>
-                                                    <td>@d.equipe</td>
-                                                    <td>@d.tempsplenalite</td>
-                                                    @* <form action="@Url.Action("deletePenaltie", "Admin")" method="post"> *@
-                                                        <input type="hidden" name="idEtape" value="@d.idEtape">
-                                                        <td><button type="submit" class="btn btn-danger">Temps</button></td>
-                                                    @* </form> *@
-                                                </tr>
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
+
+        <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <form action="@Url.Action("addPenalite", "Admin")" method="POST">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCenterTitle">Ajouter pénalité</h5>
+                    <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                    <div class="col mb-3">
+                        <label class="form-label">Choix etape</label>
+                        <select class="form-control" name="etape" required>
+                        @foreach(var d in Model.etapeList)
+                        {
+                            <option value="@d.idEtape">@d.name</option>
+                        }
+                        </select>
+                    </div>
+                    </div>
+                    <div class="row g-2">
+                    <div class="col mb-0">
+                        <label class="form-label">Choix equipe</label>
+                        <select class="form-control" name="equipe" required>
+                        @foreach(var u in Model.userList)
+                        {
+                            <option value="@u.idUser">@u.name</option>
+                        }
+                        </select>
+                    </div>
+                    <div class="col mb-0">
+                        <label class="form-label">Time</label>
+                        <input
+                        type="time"
+                        id="dobWithTitle"
+                        class="form-control"
+                        step="1"
+                        name="time"
+                        required
+                        />
+                    </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </form>
+            </div>
+        </div>
 
     </div>
 </div>
+
+
+
+
+<script>
+    function confirmDelete(button) {
+        const idPenalite = button.getAttribute("data-idPenalite");
+        const idEtape = button.getAttribute("data-idEtape");
+        const idUser = button.getAttribute("data-idUser");
+        const idEtapeCoureur = button.getAttribute("data-idEtapeCoureur");
+
+        const confirmation = confirm("Are you sure you want to remove this item?");
+
+        if (confirmation) {
+            // User confirmed, proceed with deletion
+            executeDelete(idPenalite, idEtape, idUser, idEtapeCoureur);
+        } else {
+            confirm("Tena tsy fafana ve ...")
+        }
+    }
+
+    function executeDelete(idPenalite, idEtape, idUser, idEtapeCoureur) {
+        console.log(idPenalite);
+        console.log(idEtape);
+        console.log(idUser);
+        console.log(idEtapeCoureur);
+        // Make an AJAX request to your controller action
+        // Example using jQuery:
+        $.ajax({
+            url: "/Admin/deletePenalite",
+            method: "POST",
+            data: {
+                idpenalite: idPenalite,
+                idEtape: idEtape,
+                idUser: idUser,
+                idEtapeCoureur: idEtapeCoureur
+            },
+            success: function (response) {
+                // Handle success (e.g., redirect to another page)
+                window.location.href = response.redirectUrl;
+            },
+            error: function (error) {
+                // Handle error (e.g., display an error message)
+                console.error("Error deleting item:", error);
+            }
+        });
+    }
+</script>
