@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Homepage";
     var jsonData = ViewData["JsonData"] as string;
+    var jsonData2 = ViewData["JsonData2"] as string;
 }
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -13,15 +14,16 @@
                     <button type="submit"  class="btn btn-danger">RESET DATABASE (voafafa daoholo ny entana an!)</button>
                 </form>
             </div>
-            <div class="col-md-2">
-                <form action="@Url.Action("generateCC", "Admin")" method="get">
-                    <button type="submit"  class="btn btn-info" style="float:right;">Generate category</button>
-                </form>
-            </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <form action="@Url.Action("ListePenalite", "Admin")" method="get">
                     <button style="float: right;"
                           type="submit" class="btn btn-primary">Pénalité</button>
+                </form>
+            </div>
+            <div class="col-md-2">
+                <form action="@Url.Action("pdfPage", "Admin")" method="get">
+                    <button style="float: right;"
+                          type="submit" class="btn btn-primary">Link PDF</button>
                 </form>
             </div>
             <div class="col-md-2">
@@ -32,6 +34,14 @@
             <div class="col-md-2">
                 <form action="@Url.Action("importPointView", "Admin")" method="get">
                     <button type="submit"  class="btn btn-dark" style="float:right;">Import Point</button>
+                </form>
+            </div>            
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-md-3">
+                <form action="@Url.Action("generateCC", "Admin")" method="get">
+                    <button type="submit"  class="btn btn-warning">Generate category</button>
                 </form>
             </div>
           </div>
@@ -89,11 +99,11 @@
             <div class="col-12 mb-4">
                 <div class="card">
                     <div class="row row-bordered g-0">
-                      <div class="col-8">
+                      <div class="col-7">
                         <h5 class="card-header m-0 me-2 pb-3">Classement générale</h5>
-                        <canvas class="huhu" width="400" height="400"></canvas>
+                        <div class="huhu" width="100" height="100"></div>
                       </div>
-                      <div class="col-4">
+                      <div class="col-5">
                         <div class="card-body">
                           <div class="text-center">
                             <div class="dropdown">
@@ -110,13 +120,14 @@
                               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
                                   @foreach(var e in Model.categoryList)
                                   {
-                                      <a class="dropdown-item" href="@Url.Action("chart", "Admin", new { idCategory = e.idCoureur })" id="selectedYear">@e.idCoureur</a>
+                                      <a class="dropdown-item" href="@Url.Action("Index", "Admin", new { idCategory = e.idCoureur })" id="selectedYear"><small>@e.idCoureur</small> @e.idCategory</a>
                                   }
                               </div>
                             </div>
+                                  <label>@Model.v_result_category[0].idCoureur</label>
+                            <div class="hihi" width="100" height="100"></div>
                           </div>
                         </div>
-                        @* <div id="growthChart"></div> *@
                         <div class="text-center fw-semibold pt-3 mb-2"></div>
 
                         <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
@@ -124,7 +135,7 @@
                             { *@
                             <div class="d-flex">
                                 <div class="me-2">
-                                <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
+                                <span class="badge bg-label-primary p-2"></span>
                                 </div>
                                 <div class="d-flex flex-column">
                                 <small></small>
@@ -417,33 +428,70 @@
       </div>
     </div>
 
-    <script>
-    
-            var jsonDataFromServer = @Html.Raw(Json.Serialize(jsonData));
-            console.log(jsonDataFromServer);
-      
-      var labelsData = classementGenerale.map(function(item) {
-        return item.nomequipe;
-      });
-      var seriesData = classementGenerale.map(function(item) {
-        return parseInt(item.totalpoints);
-      });
-      console.log(labelsData);
-      console.log(seriesData);
-      // Configuration options for the pie chart
-      var options = {
-        series: seriesData,
-        chart: {
-          type: 'pie',
-        },
-        labels: labelsData,
-      };
-      
-      
-      // Initialize the pie chart
-      var chart = new ApexCharts(document.querySelector("#huhu"), options);
-      chart.render();
-    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function createChart() {
+            // Parse the JSON data for the first chart
+            var parsedData = JSON.parse('@Html.Raw(jsonData)');
+            console.log(parsedData);
+
+            // Create arrays for labels (equipe) and series (point)
+            var labelsData = parsedData.map(function (item) {
+                return item.equipe;
+            });
+            var seriesData = parsedData.map(function (item) {
+                return parseInt(item.point);
+            });
+
+            // Configuration options for the first pie chart
+            var options = {
+                series: seriesData,
+                chart: {
+                    type: 'pie',
+                    height: '500',
+                    width: '500',
+                },
+                labels: labelsData,
+            };
+
+            // Initialize the first pie chart
+            var chart = new ApexCharts(document.querySelector(".huhu"), options);
+            chart.render();
+        }
+
+        function createChart2() {
+            // Parse the JSON data for the second chart
+            var parsedData2 = JSON.parse('@Html.Raw(jsonData2)');
+            console.log(parsedData2);
+
+            // Create arrays for labels (equipe) and series (point)
+            var labelsData2 = parsedData2.map(function (item) {
+                return item.equipe;
+            });
+            var seriesData2 = parsedData2.map(function (item) {
+                return parseInt(item.point);
+            });
+
+            // Configuration options for the second pie chart
+            var options2 = {
+                series: seriesData2,
+                chart: {
+                    type: 'pie',
+                    height: '500',
+                    width: '500',
+                },
+                labels: labelsData2,
+            };
+
+            // Initialize the second pie chart
+            var chart2 = new ApexCharts(document.querySelector(".hihi"), options2);
+            chart2.render();
+        }
+
+        createChart();
+        createChart2();
+    });
+</script>
 
 
 

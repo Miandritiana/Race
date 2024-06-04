@@ -177,11 +177,11 @@ namespace Race.Models
             return val;
         }
 
-        public void delete(Connexion connexion, string idEtapeCoureur)
+        public void delete(Connexion connexion, string idEtape, string idUser)
         {
             try
             {
-                string query = "delete from etapeCoureurTemps where idEtapeCoureur = '"+idEtapeCoureur+"' and dhArriver IS NULL";
+                string query = "delete from etapeCoureurTemps where idEtape = '"+idEtape+"' and idUser = '"+idUser+"' and dhArriver IS NULL";
                 Console.WriteLine(query);
                 SqlCommand command = new SqlCommand(query, connexion.connection);
                 command.ExecuteNonQuery();

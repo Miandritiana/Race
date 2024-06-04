@@ -171,7 +171,8 @@ namespace Race.Models
         public static List<Result> CGPointEtape(Connexion connexion)
         {
             List<Result> results = new List<Result>();
-            string query = "select v.idEtape, e.name, c.idCoureur, c.nom, sum(point) point from v_detail_result v join etape e on v.idEtape = e.idEtape join coureur c on c.idCoureur = v.idCoureur group by v.idEtape, e.name, c.idCoureur, c.nom order by point desc";
+            string query = "select v.idEtape, e.name, v.idUser, v.equipe, sum(point) point from v_detail_result v join etape e on v.idEtape = e.idEtape join coureur c on c.idCoureur = v.idCoureur group by v.idEtape, e.name, v.idUser, v.equipe order by idEtape desc, point desc";
+            // string query = "select v.idEtape, e.name, c.idCoureur, c.nom, sum(point) point from v_detail_result v join etape e on v.idEtape = e.idEtape join coureur c on c.idCoureur = v.idCoureur group by v.idEtape, e.name, c.idCoureur, c.nom order by point desc";
             
             using (SqlCommand command = new SqlCommand(query, connexion.connection))
             {
@@ -182,7 +183,7 @@ namespace Race.Models
                         Result result = new Result(
                             reader["idEtape"].ToString(),
                             reader["name"].ToString(),
-                            reader["nom"].ToString(),
+                            reader["equipe"].ToString(),
                             Convert.ToInt32(reader["point"])
                         );
                         results.Add(result);
@@ -264,12 +265,13 @@ namespace Race.Models
                 {
                     while (reader.Read())
                     {
+                        // (string equipe, string idCoureur, string numDossard, string coureur, int point)
                         Result result = new Result(
-                            reader["idCategory"].ToString(),
-                            reader["category"].ToString(),
-                            reader["classement"].ToString(),
-                            reader["equipe"].ToString(),
-                            reader.GetInt32(reader.GetOrdinal("pointtotal"))
+                            reader["idCategory"] != DBNull.Value ? reader["idCategory"].ToString() : "",
+                            reader["category"] != DBNull.Value ? reader["category"].ToString() : "",
+                            reader["classement"] != DBNull.Value ? reader["classement"].ToString() : "",
+                            reader["equipe"] != DBNull.Value ? reader["equipe"].ToString() : "",
+                            !reader.IsDBNull(reader.GetOrdinal("pointtotal")) ? reader.GetInt32(reader.GetOrdinal("pointtotal")) : 0
                         );
                         results.Add(result);
                     }

@@ -59,8 +59,7 @@
                                                 <td><button type="button" class="btn btn-danger" 
                                                     data-idPenalite="@d.idpenalite" 
                                                     data-idEtape="@d.idEtape" 
-                                                    data-idUser="@d.iduser" 
-                                                    data-idEtapeCoureur="@d.idEtapeCoureur" onclick="confirmDelete(this)">delete</button>
+                                                    data-idUser="@d.iduser" onclick="confirmDelete(this)">delete</button>
                                                 </td>
                                             </tr>
                                         }
@@ -143,23 +142,21 @@
         const idPenalite = button.getAttribute("data-idPenalite");
         const idEtape = button.getAttribute("data-idEtape");
         const idUser = button.getAttribute("data-idUser");
-        const idEtapeCoureur = button.getAttribute("data-idEtapeCoureur");
 
         const confirmation = confirm("Are you sure you want to remove this item?");
 
         if (confirmation) {
             // User confirmed, proceed with deletion
-            executeDelete(idPenalite, idEtape, idUser, idEtapeCoureur);
+            executeDelete(idPenalite, idEtape, idUser);
         } else {
             confirm("Tena tsy fafana ve ...")
         }
     }
 
-    function executeDelete(idPenalite, idEtape, idUser, idEtapeCoureur) {
+    function executeDelete(idPenalite, idEtape, idUser,) {
         console.log(idPenalite);
         console.log(idEtape);
         console.log(idUser);
-        console.log(idEtapeCoureur);
         // Make an AJAX request to your controller action
         // Example using jQuery:
         $.ajax({
@@ -169,7 +166,6 @@
                 idpenalite: idPenalite,
                 idEtape: idEtape,
                 idUser: idUser,
-                idEtapeCoureur: idEtapeCoureur
             },
             success: function (response) {
                 // Handle success (e.g., redirect to another page)

@@ -13,11 +13,11 @@ namespace Race.Models
         public string iduser { get; set; }
         public string equipe { get; set; }
         public TimeSpan tempsplenalite { get; set; }    
-        public string idEtapeCoureur { get; set; }
+        // public string idEtapeCoureur { get; set; }
 
         public Penalite(){}
 
-        public Penalite(string idpenalite, int id, string idEtape, string etape, string iduser, string equipe, TimeSpan tempsplenalite, string idEtapeCoureur)
+        public Penalite(string idpenalite, int id, string idEtape, string etape, string iduser, string equipe, TimeSpan tempsplenalite)
         {
             this.idpenalite = idpenalite;
             this.id = id;
@@ -26,15 +26,15 @@ namespace Race.Models
             this.iduser = iduser;
             this.equipe = equipe;
             this.tempsplenalite = tempsplenalite;
-            this.idEtapeCoureur = idEtapeCoureur;
+            // this.idEtapeCoureur = idEtapeCoureur;
         }
 
-        public Penalite(string idEtape, string iduser, TimeSpan tempsplenalite, string idEtapeCoureur)
+        public Penalite(string idEtape, string iduser, TimeSpan tempsplenalite)
         {
             this.idEtape = idEtape;
             this.iduser = iduser;
             this.tempsplenalite = tempsplenalite;
-            this.idEtapeCoureur = idEtapeCoureur;
+            // this.idEtapeCoureur = idEtapeCoureur;
         }
 
 
@@ -58,8 +58,8 @@ namespace Race.Models
                         etape = reader["etape"].ToString(),
                         iduser = reader["iduser"].ToString(),
                         equipe = reader["equipe"].ToString(),
-                        tempsplenalite = (TimeSpan)reader["tempsplenalite"],
-                        idEtapeCoureur = reader["idEtapeCoureur"].ToString()
+                        tempsplenalite = (TimeSpan)reader["tempsplenalite"]
+                        // idEtapeCoureur = reader["idEtapeCoureur"].ToString()
                     };
 
                     penalites.Add(penalite);
@@ -80,7 +80,7 @@ namespace Race.Models
         {
             try
             {
-                string query = "insert into penalite (idEtape, etape, idUser, equipe, tempsPlenalite, idEtapeCoureur) values ('"+this.idEtape+"', (select name from etape where idEtape = '"+this.idEtape+"'), '"+this.iduser+"', (select name from uuser where idUser = '"+this.iduser+"'), '"+this.tempsplenalite+"', '"+this.idEtapeCoureur+"')";
+                string query = "insert into penalite (idEtape, etape, idUser, equipe, tempsPlenalite) values ('"+this.idEtape+"', (select name from etape where idEtape = '"+this.idEtape+"'), '"+this.iduser+"', (select name from uuser where idUser = '"+this.iduser+"'), '"+this.tempsplenalite+"')";
 
                 Console.WriteLine(query);
                 SqlCommand command = new SqlCommand(query, connexion.connection);
@@ -126,14 +126,13 @@ namespace Race.Models
                     listIdEc.Add(new CoureurTemps().getIdECByetapecoureur(connexion, idEtape, id));
                 }
 
-                    Console.WriteLine(listIdEc.Count);
-                    Console.WriteLine(listIdCoureur.Count);
+                new Penalite(idEtape, idEquipe, temps).create(connexion);
+
                 foreach (var insert in listIdEc)
                 {
                     if (insert != "")
                     {
                         Console.WriteLine(insert);
-                        new Penalite(idEtape, idEquipe, temps, insert).create(connexion);
                         this.createPenalite(connexion, insert, temps);
                     }
                 }

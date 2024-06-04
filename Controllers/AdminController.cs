@@ -13,7 +13,7 @@ public class AdminController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+    public IActionResult Index(string idCategory)
     {
         HttpContext.Session.Remove("sessionId");
 
@@ -21,12 +21,6 @@ public class AdminController : Controller
         {
             Etape e = new Etape();
             Data data = new Data();
-
-            int year = DateTime.Now.Year;
-            if (TempData["year"] != null)
-            {
-                year = int.Parse(TempData["year"].ToString());
-            }
             
             Connexion coco = new Connexion();
             coco.connection.Open();
@@ -38,18 +32,38 @@ public class AdminController : Controller
             data.categoryList = new Coureur().listCAtegory(coco);            
             data.CG = Result.CG(coco);
 
-            coco.connection.Close();
+            var jsonData = System.Text.Json.JsonSerializer.Serialize(data.CG.Select(item => new { equipe = item.equipe, point = item.point }));
+            Console.WriteLine(jsonData);
 
-            var jsonData = System.Text.Json.JsonSerializer.Serialize(data.CG);
+            // classeemnt genrral
             if (jsonData != null)
             {
                 ViewData["JsonData"] = jsonData;
             }
             else
             {
-                // Handle the case where jsonData is null
                 Console.WriteLine("jsonData is null");
             }
+
+            //chart category
+            if (idCategory != null)
+            {
+                data.v_result_category = new Result().v_result_category(coco, idCategory);
+            }else
+            {
+                data.v_result_category = new Result().v_result_category(coco, "cat1");
+            }
+            var jsonData2 = System.Text.Json.JsonSerializer.Serialize(data.v_result_category.Select(item => new { equipe = item.coureur, point = item.point }));
+            if (jsonData2 != null)
+            {
+                ViewData["JsonData2"] = jsonData2;
+            }
+            else
+            {
+                Console.WriteLine("jsonData2 is null");
+            }
+
+            coco.connection.Close();
 
             return View("listeEtape", data);
 
@@ -407,7 +421,7 @@ public class AdminController : Controller
         }
     }
 
-    public IActionResult deletePenalite(string idpenalite, string idEtape, string idUser, string idEtapeCoureur)
+    public IActionResult deletePenalite(string idpenalite, string idEtape, string idUser)
     {
         HttpContext.Session.Remove("sessionId");
 
@@ -417,7 +431,7 @@ public class AdminController : Controller
             coco.connection.Open();
 
             new Penalite().delete(coco, idpenalite, idUser, idEtape);
-            new CoureurTemps().delete(coco, idEtapeCoureur);
+            new CoureurTemps().delete(coco, idEtape, idUser);
 
             coco.connection.Close();
 

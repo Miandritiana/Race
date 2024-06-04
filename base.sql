@@ -147,6 +147,8 @@ create table penalite(
     tempsPlenalite time
 );
 alter table penalite add idEtapeCoureur varchar(12) references etapeCoureur(idEtapeCoureur);
+ALTER TABLE penalite DROP CONSTRAINT FK__penalite__idEtap__2180FB33;
+ALTER TABLE penalite DROP COLUMN idEtapeCoureur;
 
 
 create view v_detail_result as
@@ -563,3 +565,24 @@ ORDER BY category, pointtotal DESC;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select * from uuser 
+
+select * from etapeCoureurTemps e join etapeCoureur ec on ec.idEtapeCoureur = e.idEtapeCoureur join coureur c on c.idCoureur = ec.idCoureur where c.idUser='u3' and ec.idEtape = 'e2'
+
+select * from coureur where idUser = 'u3'

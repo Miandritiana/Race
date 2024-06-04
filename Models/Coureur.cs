@@ -464,6 +464,7 @@ namespace Race.Models
                 SqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
+                    // (string idCoureur, string idCategory, int id)
                     coureurList.Add(new Coureur(
                         dataReader["idCategory"].ToString(),
                         dataReader["name"].ToString(),
