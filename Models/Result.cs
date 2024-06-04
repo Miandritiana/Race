@@ -281,5 +281,34 @@ namespace Race.Models
             return results;
 
         }
+
+        public Result certificate(Connexion connexion, string rang)
+        {
+            Result result = new Result();
+            try
+            {
+                string query = "select * from v_CG where rang like  '%"+rang+"%'";
+                
+                using (SqlCommand command = new SqlCommand(query, connexion.connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            result = new Result(
+                                reader["rang"].ToString(),
+                                reader["equipe"].ToString(),
+                                Convert.ToInt32(reader["point"])
+                            );
+                        }
+                    }
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

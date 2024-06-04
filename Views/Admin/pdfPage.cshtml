@@ -5,7 +5,11 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Race /</span> in pdf..</h4>
         <div class="row mb-5">
-            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-info" style="float:left;" 
+                data-bs-toggle="modal"
+                data-bs-target="#smallModal">Print PDF</button>
+            </div>
             <div class="col-md-6">
                 <form action="@Url.Action("Index", "Admin")" method="get">
                     <button type="submit"  class="btn btn-dark" style="float:right;">Return to List</button>
@@ -13,9 +17,64 @@
             </div>
         </div>
 
-        <div class="row mb-5">
-            
+        <div class="row" style="align-items: center; text-align: center;" id="htmlContent">
+            <img class="rounded img-responsive" src="../assets/img/certificat.png" id="print" alt="@Model.certificate.equipe"/>
+            @* <div class="carousel-caption mt-6" style="justify-self: center; margin-bottom: -65px;">
+                <h1 style="font-size: 40pt; font-family: Comic Sans MS, cursive, sans-serif;">@Model.certificate.equipe</h1>
+                <h5>with @Model.certificate.point points</h5>
+            </div> *@
+            <div class="carousel-caption" style="justify-self: center; margin-bottom: 259px;">
+                <h1 style="font-size: 40pt; font-family: Comic Sans MS, cursive, sans-serif;">@Model.certificate.equipe</h1>
+                <h5>with @Model.certificate.point points</h5>
+            </div>
+        </div>
+
+        <div class="modal fade" id="smallModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel2">Are you sure to print pdf?</h5>
+                    <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    No, I'm not
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="confirmGeneratePDF">I'm sure</button>
+                </div>
+                </div>
+            </div>
         </div>
 
     </div>
 </div>
+
+<script>
+    function generatePDF() {
+        console.log("clicked");
+
+        const htmlContent = document.getElementById('htmlContent');
+
+        html2pdf()
+            .set({
+                margin: 0,
+                filename: 'CertificateUTR.pdf',
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+            })
+            .from(htmlContent)
+            .save() // Trigger download instead of opening in new tab
+            .catch(error => {
+                console.error('Failed to generate PDF:', error);
+            });
+    }
+
+    document.getElementById('confirmGeneratePDF').addEventListener('click', function() {
+        $('#smallModal').modal('hide'); // Hide the modal
+        generatePDF(); // Call the function to generate and save the PDF
+    });
+</script>

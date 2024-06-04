@@ -453,7 +453,7 @@ public class AdminController : Controller
             Connexion coco = new Connexion();
             coco.connection.Open();
 
-            data.penaliteList = Penalite.findAll(coco);
+            data.certificate = new Result().certificate(coco, "1");
 
             coco.connection.Close();
 

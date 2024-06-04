@@ -18,6 +18,7 @@ namespace Race.Models
         public List<Result> v_result_category = new List<Result>();
         public List<Coureur> categoryList = new List<Coureur>();
         public List<Penalite> penaliteList = new List<Penalite>();
+        public Result certificate = new Result();
 
         public Data()
         {
@@ -34,6 +35,7 @@ namespace Race.Models
             this.v_result_category = new List<Result>();
             this.categoryList = new List<Coureur>();
             this.penaliteList = new List<Penalite>();
+            this.certificate = new Result();
         }
     }
 }

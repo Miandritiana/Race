@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OkyYN5CCo+7wACovz9V5cPaFrqdnT6N6Qjsov5SHLHU=",
+  "Hash": "0Y4e0fRI7lVwaq3D1vIJ8Agr5/opPGggAkmbutmyYVg=",
   "Source": "Race",
   "BasePath": "_content/Race",
   "Mode": "Default",
@@ -151,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\backgrounds\\18.jpg"
+    },
+    {
+      "Identity": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\certificat.png",
+      "SourceId": "Race",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\",
+      "BasePath": "_content/Race",
+      "RelativePath": "assets/img/certificat.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\certificat.png"
     },
     {
       "Identity": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\elements\\1.jpg",
