@@ -327,7 +327,8 @@ namespace Race.Models
             List<Coureur> coureurList = new List<Coureur>();
             try
             {
-                string query = "SELECT * FROM v_infoEtapeCoureur where idEtape ='"+idEtape+"' order by equipe";
+                // string query = "SELECT * FROM v_infoEtapeCoureur where idEtape ='"+idEtape+"' order by equipe";
+                string query = "SELECT * FROM v_infoEtapeCoureur where idEtape ='"+idEtape+"' and idCoureur not in (select c.idCoureur from etapeCoureurTemps e join etapeCoureur ec on e.idEtapeCoureur = e.idEtapeCoureur join coureur c on c.idCoureur = ec.idCoureur) order by equipe";
                 SqlCommand command = new SqlCommand(query, connexion.connection);
                 SqlDataReader dataReader = command.ExecuteReader();
                 // string idEtapeCoureur, string idEtape, string idUser, string equipe, string idCoureur, string nom, string numDossard, string genre, DateTime dtn

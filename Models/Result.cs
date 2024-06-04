@@ -171,7 +171,7 @@ namespace Race.Models
         public static List<Result> CGPointEtape(Connexion connexion)
         {
             List<Result> results = new List<Result>();
-            string query = "select v.idEtape, e.name, v.idUser, v.equipe, sum(point) point from v_detail_result v join etape e on v.idEtape = e.idEtape join coureur c on c.idCoureur = v.idCoureur group by v.idEtape, e.name, v.idUser, v.equipe order by idEtape desc, point desc";
+            string query = "select v.idEtape, e.name, v.idUser, v.equipe, sum(point) point from v_detail_result v join etape e on v.idEtape = e.idEtape join coureur c on c.idCoureur = v.idCoureur group by v.idEtape, e.name, v.idUser, v.equipe order by idEtape asc, point desc";
             // string query = "select v.idEtape, e.name, c.idCoureur, c.nom, sum(point) point from v_detail_result v join etape e on v.idEtape = e.idEtape join coureur c on c.idCoureur = v.idCoureur group by v.idEtape, e.name, c.idCoureur, c.nom order by point desc";
             
             using (SqlCommand command = new SqlCommand(query, connexion.connection))
