@@ -59,6 +59,7 @@
                           <th>Nombre coureur</th>
                           <th>Rang etape</th>
                           <th>Add</th>
+                          <th>Resultat</th>
                           @* <th>Modif</th> *@
                         </tr>
                       </thead>
@@ -74,10 +75,10 @@
                                       <input type="hidden" name="idEtape" value="@d.idEtape">
                                       <td><button type="submit" class="btn btn-dark">Temps</button></td>
                                   </form>
-                                  @* <form action="@Url.Action("payer", "Home")" method="post"> *@
-                                      @* <input type="hidden" name="idDemande" value="@d.idEtape">
-                                      <td><button type="submit" class="btn btn-warning">Modif</button></td> *@
-                                  @* </form> *@
+                                  <form action="@Url.Action("result", "Admin")" method="post">
+                                      <input type="hidden" name="idEtape" value="@d.idEtape">
+                                      <td><button type="submit" class="btn btn-warning">View</button></td>
+                                  </form>
                               </tr>
                           }
                       </tbody>
@@ -124,7 +125,7 @@
                                   }
                               </div>
                             </div>
-                                  <label>@Model.v_result_category[0].idCoureur</label>
+                                  <label>@Model.v_result_category[0].category</label>
                             <div class="hihi" width="100" height="100"></div>
                           </div>
                         </div>

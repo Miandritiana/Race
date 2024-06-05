@@ -1,0 +1,51 @@
+@{
+    ViewData["Title"] = "Classement";
+}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Race /</span> Resultat par etape</h4>
+
+                <div class="row mb-5">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <form action="@Url.Action("Index", "Admin")" method="get">
+                    <button type="submit"  class="btn btn-dark" style="float:right;">Return to List</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="card-header"><h3>Classement général par etape</h3></div>
+                <div class="card">
+                    <div class="table-responsive text-nowrap mt-2">
+                        <table class="table table-borderless">
+                            <thead>
+                            <tr>
+                                <th>Nom Coureur</th>
+                                <th>Genre</th>
+                                <th>Chronos</th>
+                                <th>Pénalité</th>
+                                <th>Temps final</th>
+                                <th>Rang</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                                @foreach(var r in Model.resultList)
+                                {
+                                    <tr>
+                                        <td>@r.coureur</td>
+                                        <td>@r.genre</td>
+                                        <td>@r.chronoss</td>
+                                        <td>@r.penalite</td>
+                                        <td>@r.tempsFinal</td>
+                                        <td>@r.rang</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

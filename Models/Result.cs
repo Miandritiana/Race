@@ -21,7 +21,6 @@ namespace Race.Models
         public TimeSpan hArriver { get; set; }
         public TimeSpan temps { get; set; }
         public int point { get; set; }
-        public string rang { get; set; }
 
         public double lkm { get; set; }
         public int nbCoureur { get; set; }
@@ -32,53 +31,61 @@ namespace Race.Models
         public string category { get; set; }
         public int totalPoint { get; set; }
 
+        public string classement { get; set; }
+
+        public TimeSpan chronoss { get; set; }
+        public TimeSpan penalite { get; set; }
+        public TimeSpan tempsFinal { get; set; }
+        public string rang { get; set; }
+
 
         public Result() { }
 
-        public Result(string idECTemps, string idEtapeCoureur, string idEtape, string idUser, string equipe, string idCoureur, string coureur, string numDossard, string genre, DateTime dtn, TimeSpan hDepart, TimeSpan hArriver, TimeSpan temps, int point, string rang)
+        public Result (string coureur, string genre, TimeSpan chronoss, TimeSpan penalite, TimeSpan tempsFinal, string rang)
         {
-            this.idECTemps = idECTemps;
-            this.idEtapeCoureur = idEtapeCoureur;
+            this.coureur = coureur;
+            this.genre = genre;
+            this.chronoss = chronoss;
+            this.penalite = penalite;
+            this.tempsFinal = tempsFinal;
+            this.rang = rang;
+        }
+
+        public Result(string idEtape, string idCoureur, string coureur, TimeSpan temps, string classement, int point, string rang)
+        {
             this.idEtape = idEtape;
-            this.idUser = idUser;
-            this.equipe = equipe;
             this.idCoureur = idCoureur;
             this.coureur = coureur;
-            this.numDossard = numDossard;
-            this.genre = genre;
-            this.dtn = dtn;
-            this.hDepart = hDepart;
-            this.hArriver = hArriver;
             this.temps = temps;
+            this.classement = classement;
             this.point = point;
             this.rang = rang;
         }
 
-        // public Result(string idCategory, string category, string rang, string equipe, int totalPoint)
-        // {
-        //     this.idCategory = idCategory;
-        //     this.category = category;
-        //     this.rang = rang;
-        //     this.equipe = equipe;
-        //     this.totalPoint = totalPoint;
-        // }
-
-        public Result(string equipe, string idCoureur, string numDossard, string coureur, int point)
+        public Result(string idCategory, string category, string rang, string equipe, int totalPoint)
         {
+            this.idCategory = idCategory;
+            this.category = category;
+            this.rang = rang;
             this.equipe = equipe;
+            this.totalPoint = totalPoint;
+        }
+
+        public Result(string idCoureur, string numDossard, string coureur, int point)
+        {
             this.idCoureur = idCoureur;
             this.numDossard = numDossard;
             this.coureur = coureur;
             this.point = point;
         }
 
-        public Result(string idEtape, string etape, string coureur, int point)
-        {
-            this.idEtape = idEtape;
-            this.etape = etape;
-            this.coureur = coureur;
-            this.point = point;
-        }
+        // public Result(string idEtape, string etape, string coureur, int point)
+        // {
+        //     this.idEtape = idEtape;
+        //     this.etape = etape;
+        //     this.coureur = coureur;
+        //     this.point = point;
+        // }
 
         public Result(string rang, string equipe, int point)
         {
@@ -107,6 +114,7 @@ namespace Race.Models
             this.rang = rang;
         }
 
+
         public static List<Result> findAll(Connexion connexion)
         {
             List<Result> results = new List<Result>();
@@ -119,19 +127,15 @@ namespace Race.Models
                     while (reader.Read())
                     {
                         Result result = new Result(
-                            reader["idECTemps"].ToString(),
-                            reader["idEtapeCoureur"].ToString(),
+                            // reader["idECTemps"].ToString(),
+                            // reader["idEtapeCoureur"].ToString(),
                             reader["idEtape"].ToString(),
-                            reader["idUser"].ToString(),
-                            reader["equipe"].ToString(),
+                            // reader["idUser"].ToString(),
+                            // reader["equipe"].ToString(),
                             reader["idCoureur"].ToString(),
                             reader["coureur"].ToString(),
-                            reader["numDossard"].ToString(),
-                            reader["genre"].ToString(),
-                            Convert.ToDateTime(reader["dtn"]),
-                            TimeSpan.Parse(reader["hDepart"].ToString()),
-                            TimeSpan.Parse(reader["hArriver"].ToString()),
-                            TimeSpan.Parse(reader["temps"].ToString()),
+                            reader.GetTimeSpan(reader.GetOrdinal("temps")),
+                            reader["classement"].ToString(),
                             Convert.ToInt32(reader["point"]),
                             reader["rang"].ToString()
                         );
@@ -146,8 +150,8 @@ namespace Race.Models
         public static List<Result> CGCoureur(Connexion connexion)
         {
             List<Result> results = new List<Result>();
-            string query = "select v.equipe, c.idCoureur, c.numDossard, c.nom, sum(point) point from v_detail_result v join etape e on v.idEtape = e.idEtape join coureur c on c.idCoureur = v.idCoureur group by c.numDossard, c.nom, v.equipe, c.idCoureur order by point desc";
-            
+            // string query = "select v.equipe, c.idCoureur, c.numDossard, c.nom, sum(point) point from v_detail_result v join etape e on v.idEtape = e.idEtape join coureur c on c.idCoureur = v.idCoureur group by c.numDossard, c.nom, v.equipe, c.idCoureur order by point desc";
+            string query = "select c.idCoureur, c.numDossard, c.nom, sum(point) point from v_detail_result v join etape e on v.idEtape = e.idEtape join coureur c on c.idCoureur = v.idCoureur group by c.numDossard, c.nom, c.idCoureur order by point desc";
             using (SqlCommand command = new SqlCommand(query, connexion.connection))
             {
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -155,7 +159,6 @@ namespace Race.Models
                     while (reader.Read())
                     {
                         Result result = new Result(
-                            reader["equipe"].ToString(),
                             reader["idCoureur"].ToString(),
                             reader["numDossard"].ToString(),
                             reader["nom"].ToString(),
@@ -171,8 +174,7 @@ namespace Race.Models
         public static List<Result> CGPointEtape(Connexion connexion)
         {
             List<Result> results = new List<Result>();
-            string query = "select v.idEtape, e.name, v.idUser, v.equipe, sum(point) point from v_detail_result v join etape e on v.idEtape = e.idEtape join coureur c on c.idCoureur = v.idCoureur group by v.idEtape, e.name, v.idUser, v.equipe order by idEtape asc, point desc";
-            // string query = "select v.idEtape, e.name, c.idCoureur, c.nom, sum(point) point from v_detail_result v join etape e on v.idEtape = e.idEtape join coureur c on c.idCoureur = v.idCoureur group by v.idEtape, e.name, c.idCoureur, c.nom order by point desc";
+            string query = "select * from v_CGPointEtape ORDER BY idEtape ASC, point DESC";
             
             using (SqlCommand command = new SqlCommand(query, connexion.connection))
             {
@@ -180,10 +182,12 @@ namespace Race.Models
                 {
                     while (reader.Read())
                     {
+                        // string idCategory, string category, string rang, string equipe, int totalPoint
                         Result result = new Result(
                             reader["idEtape"].ToString(),
                             reader["name"].ToString(),
-                            reader["equipe"].ToString(),
+                            reader["idCoureur"].ToString(),
+                            reader["nom"].ToString(),
                             Convert.ToInt32(reader["point"])
                         );
                         results.Add(result);
@@ -229,7 +233,7 @@ namespace Race.Models
                     {
                         // idEtapeCoureur, idEtape, etape, double lkm, int nbCoureur, rangEtape, DateTime dhDepart, idUser, equipe, coureur, numDossard, genre, DateTime dtn, TimeSpan temps, int point, rang
                         Result result = new Result(
-                            reader["idEtapeCoureur"].ToString(),
+                            reader["etapeID"].ToString(),
                             reader["idEtape"].ToString(),
                             reader["etape"].ToString(),
                             reader.GetDouble(reader.GetOrdinal("lkm")),
@@ -265,7 +269,7 @@ namespace Race.Models
                 {
                     while (reader.Read())
                     {
-                        // (string equipe, string idCoureur, string numDossard, string coureur, int point)
+                        // (string idCategory, string category, string rang, string equipe, int totalPoint)
                         Result result = new Result(
                             reader["idCategory"] != DBNull.Value ? reader["idCategory"].ToString() : "",
                             reader["category"] != DBNull.Value ? reader["category"].ToString() : "",
@@ -304,6 +308,53 @@ namespace Race.Models
                     }
                 }
                 return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<Result> aleasJ4(Connexion connexion, string idEtape)
+        {
+            List<Result> results = new List<Result>();
+            try
+            {
+                string query = "select * from v_aleasJ4 where idEtape = '"+idEtape+"' order by rang";
+                Console.WriteLine(query);
+                
+                using (SqlCommand command = new SqlCommand(query, connexion.connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // string chronos = reader.IsDBNull(reader.GetOrdinal("chronos")) ? "00:00:00" : reader.GetValue(reader.GetOrdinal("chronos")).ToString();
+                            // string penalite = reader.IsDBNull(reader.GetOrdinal("penalite")) ? "00:00:00" : reader.GetValue(reader.GetOrdinal("penalite")).ToString();
+                            // string tempsFinal = reader.IsDBNull(reader.GetOrdinal("temps_final")) ? "00:00:00" : reader.GetValue(reader.GetOrdinal("temps_final")).ToString();
+                            // Result result = new Result(
+                            //     reader["coureur"].ToString(),
+                            //     reader["genre"].ToString(),
+                            //     TimeSpan.Parse(chronos),
+                            //     TimeSpan.Parse(penalite),
+                            //     TimeSpan.Parse(tempsFinal),
+                            //     reader["rang"].ToString()
+                            // );
+
+                            Result result = new Result(
+                                reader["coureur"].ToString(),
+                                reader["genre"].ToString(),
+                                reader.GetTimeSpan(reader.GetOrdinal("chronos")),
+                                reader.GetTimeSpan(reader.GetOrdinal("penalite")),
+                                reader.GetTimeSpan(reader.GetOrdinal("temps_final")),
+                                reader["rang"].ToString()
+                            );
+
+                            results.Add(result);
+                        }
+                    }
+                }
+                return results;
             }
             catch (Exception ex)
             {

@@ -53,7 +53,7 @@ public class AdminController : Controller
             {
                 data.v_result_category = new Result().v_result_category(coco, "cat1");
             }
-            var jsonData2 = System.Text.Json.JsonSerializer.Serialize(data.v_result_category.Select(item => new { equipe = item.coureur, point = item.point }));
+            var jsonData2 = System.Text.Json.JsonSerializer.Serialize(data.v_result_category.Select(item => new { equipe = item.equipe, point = item.totalPoint }));
             if (jsonData2 != null)
             {
                 ViewData["JsonData2"] = jsonData2;
@@ -465,4 +465,26 @@ public class AdminController : Controller
         }
     }
     
+    public IActionResult result(string idEtape)
+    {
+        HttpContext.Session.Remove("sessionId");
+
+        if(HttpContext.Session.GetString("adminId") != null)
+        {
+            Data data = new Data();
+            
+            Connexion coco = new Connexion();
+            coco.connection.Open();
+
+            data.resultList = new Result().aleasJ4(coco, idEtape);
+
+            coco.connection.Close();
+
+            return View("resultatparetape", data);
+
+        }else{
+
+            return RedirectToAction("Index", "Home");
+        }
+    }
 }

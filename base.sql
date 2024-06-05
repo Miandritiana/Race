@@ -490,6 +490,9 @@ FROM
 
 
 
+
+
+----------------resultat part category
 create view v_detail_point_category as
 WITH RankedResults AS (
     SELECT 
@@ -502,6 +505,285 @@ WITH RankedResults AS (
 		cate.name category,
         ect.temps,
         DENSE_RANK() OVER (PARTITION BY ec.idEtape, cc.idCategory ORDER BY ect.temps) AS classement
+    FROM 
+        etapeCoureurTemps ect
+    JOIN etapecoureur ec ON ec.idEtapeCoureur = ect.idEtapeCoureur
+    JOIN uuser u ON u.idUser = ec.idUser
+    JOIN coureur c ON c.idCoureur = ec.idCoureur
+	JOIN categoryCoureur cc ON cc.idCoureur = c.idCoureur
+	JOIN category cate ON cate.idCategory = cc.idCategory
+	group by 
+		ec.idEtape,
+        u.idUser,
+        u.name,
+        c.idCoureur,
+        c.nom,
+		cc.idCategory,
+		cate.name,
+        ect.temps
+)
+SELECT 
+    subquery.*
+FROM 
+    RankedResults AS subquery;
+
+
+
+
+
+
+
+create view v_CG_category_sure as
+with result as (
+    SELECT 
+        v.*,
+        ISNULL(p.points, 0) AS point
+    FROM 
+        v_detail_point_category v
+    LEFT JOIN point p ON CAST(v.classement AS VARCHAR(10)) = p.classement
+)
+select idUser, equipe, idCategory, category, sum(point) pointtotal from result group by idUser, equipe, idCategory, category
+
+order by category, pointtotal desc
+
+
+
+create view v_result_category as
+SELECT 
+    *,
+    DENSE_RANK() OVER (PARTITION BY category ORDER BY pointtotal DESC) AS classement
+FROM 
+    v_CG_category_sure 
+
+
+ORDER BY category, pointtotal DESC;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select * from uuser 
+
+select * from etapeCoureurTemps e join etapeCoureur ec on ec.idEtapeCoureur = e.idEtapeCoureur join coureur c on c.idCoureur = ec.idCoureur where c.idUser='u3' and ec.idEtape = 'e2'
+
+select * from coureur where idUser = 'u3'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+WITH RankedResults AS (
+    SELECT 
+        ect.idEtapeCoureur,
+        ec.idEtape,
+        u.idUser,
+        u.name AS equipe,
+        c.idCoureur,
+        c.nom AS coureur,
+        c.numDossard,
+        c.genre,
+        c.dtn,
+        ect.hDepart,
+        ect.hArriver,
+        ect.temps,
+        SUM(DATEDIFF(SECOND, '00:00:00', ect.temps)) OVER (PARTITION BY ec.idEtape, u.idUser, u.name, c.idCoureur, c.nom, c.numDossard, c.genre, c.dtn) AS sum_seconds -- Convert time to seconds and then sum
+        --DENSE_RANK() OVER (PARTITION BY ec.idEtape ORDER BY SUM(DATEDIFF(SECOND, '00:00:00', ect.temps))) AS classement -- New classement based on sum of temps
+    FROM 
+        etapeCoureurTemps ect
+    JOIN etapecoureur ec ON ec.idEtapeCoureur = ect.idEtapeCoureur
+    JOIN uuser u ON u.idUser = ec.idUser
+    JOIN coureur c ON c.idCoureur = ec.idCoureur
+),
+RankedWithSum AS (
+    SELECT 
+        idEtape,
+        idUser,
+        equipe,
+        idCoureur,
+        coureur,
+        numDossard,
+        genre,
+        dtn,
+        --SUM(temps) AS total_time_seconds, -- Sum of temps per idEtape
+        DENSE_RANK() OVER (PARTITION BY idEtape, idUser, equipe, idCoureur, coureur, numDossard, genre, dtn ORDER BY SUM(temps)) AS classement -- Ranking based on sum of temps
+    FROM 
+        RankedResults
+    -- GROUP BY 
+    --     idEtape,
+    --     idUser,
+    --     name,
+    --     idCoureur,
+    --     nom,
+    --     numDossard,
+    --     genre,
+    --     dtn
+)
+SELECT 
+    ec.idEtape,
+    RankedResults.idEtapeCoureur,
+    u.idUser,
+    u.name AS equipe,
+    c.idCoureur,
+    c.nom AS coureur,
+    c.numDossard,
+    c.genre,
+    c.dtn,
+    ect.hDepart,
+    ect.hArriver,
+    ect.temps,
+    sum_seconds,
+    classement,
+    --RankedWithSum.total_time_seconds,
+    CASE 
+        WHEN RankedWithSum.classement = 1 THEN 10
+        WHEN RankedWithSum.classement = 2 THEN 6
+        WHEN RankedWithSum.classement = 3 THEN 4
+        WHEN RankedWithSum.classement = 4 THEN 2
+        WHEN RankedWithSum.classement = 5 THEN 1
+        ELSE 0
+    END AS point
+FROM 
+    RankedResults;
+
+
+
+
+
+
+
+
+
+create view v_detail_result as
+WITH RankedResults AS (
+    SELECT 
+        ec.idEtape,
+        c.idCoureur,
+        c.nom AS coureur,
+		CONVERT(TIME, DATEADD(SECOND, SUM(DATEDIFF(SECOND, '00:00:00', ect.temps)), '00:00:00')) AS temps,
+        DENSE_RANK() OVER (PARTITION BY ec.idEtape ORDER BY SUM(DATEDIFF(SECOND, '00:00:00', ect.temps))) AS classement
+    FROM 
+        etapeCoureurTemps ect
+    JOIN etapecoureur ec ON ec.idEtapeCoureur = ect.idEtapeCoureur
+    JOIN uuser u ON u.idUser = ec.idUser
+    JOIN coureur c ON c.idCoureur = ec.idCoureur
+    GROUP BY ec.idEtape, c.idCoureur, c.nom
+),
+RankedWithPoints AS (
+    SELECT 
+        RankedResults.*,
+        ISNULL(p.points, 0) AS point
+    FROM 
+        RankedResults
+    LEFT JOIN point p ON CAST(RankedResults.classement AS VARCHAR(10)) = p.classement
+)
+SELECT 
+    subquery.*,
+    CASE 
+        WHEN point = 10 THEN '1er'
+        WHEN point = 6 THEN '2eme'
+        WHEN point = 4 THEN '3eme'
+        WHEN point = 2 THEN '4eme'
+        WHEN point = 1 THEN '5eme'
+        ELSE 'non classe'
+    END AS rang
+FROM 
+    RankedWithPoints AS subquery;
+
+
+
+create view v_CG as
+SELECT 
+    CASE 
+        WHEN DENSE_RANK() OVER (ORDER BY SUM(v.point) DESC) = 1 THEN '1er'
+        WHEN DENSE_RANK() OVER (ORDER BY SUM(v.point) DESC) = 2 THEN '2eme'
+        WHEN DENSE_RANK() OVER (ORDER BY SUM(v.point) DESC) = 3 THEN '3eme'
+        WHEN DENSE_RANK() OVER (ORDER BY SUM(v.point) DESC) = 4 THEN '4eme'
+        WHEN DENSE_RANK() OVER (ORDER BY SUM(v.point) DESC) = 5 THEN '5eme'
+        ELSE 'Non classé'
+    END AS rang,
+    c.idUser,
+    u.name,
+    SUM(v.point) AS point
+FROM 
+    v_detail_result v
+	join coureur c on c.idCoureur = v.idCoureur
+    join uuser u on c.idUser = c.idUser
+GROUP BY 
+    c.idUser, u.name;
+
+
+
+
+
+create view v_CGPointEtape as
+select v.idEtape, e.name, c.idCoureur, c.nom, sum(v.point) point 
+	from v_detail_result v 
+	join etape e on v.idEtape = e.idEtape 
+	join coureur c on c.idCoureur = v.idCoureur 
+	group by v.idEtape, e.name, c.idCoureur, c.nom 
+	order by v.idEtape asc, sum(v.point) desc;
+
+
+
+create view v_chronos as
+select v.idEtape etapeID, v.idEtape, e.name as etape, e.lkm, e.nbCoureur, e.rangEtape, e.dhDepart, c.idUser, u.name equipe,  v.coureur, c.numDossard, c.genre, c.dtn, v.temps, v.point, v.rang 
+	from v_detail_result v 
+	join etape e on e.idEtape = v.idEtape
+	join coureur c on c.idCoureur = v.idCoureur
+	join uuser u on u.idUser = c.idUser
+
+
+
+
+
+
+
+
+
+
+
+---------------------category fa sum temps
+
+create view v_detail_point_category as
+WITH RankedResults AS (
+    SELECT 
+        ec.idEtape,
+        u.idUser,
+        u.name as equipe,
+        c.idCoureur,
+        c.nom as coureur,
+		cc.idCategory,
+		cate.name category,
+        -- ect.temps,
+        -- DENSE_RANK() OVER (PARTITION BY ec.idEtape, cc.idCategory ORDER BY ect.temps) AS classement
+		CONVERT(TIME, DATEADD(SECOND, SUM(DATEDIFF(SECOND, '00:00:00', ect.temps)), '00:00:00')) AS temps,
+        DENSE_RANK() OVER (PARTITION BY ec.idEtape, cc.idCategory ORDER BY SUM(DATEDIFF(SECOND, '00:00:00', ect.temps))) AS classement
     FROM 
         etapeCoureurTemps ect
     JOIN etapecoureur ec ON ec.idEtapeCoureur = ect.idEtapeCoureur
@@ -575,14 +857,67 @@ ORDER BY category, pointtotal DESC;
 
 
 
+create view v_aleasJ4 as
+WITH RankedResults AS (
+    SELECT 
+        ec.idEtape,
+        c.idCoureur,
+        c.nom AS coureur,
+        c.genre,
+        CONVERT(TIME, DATEADD(SECOND, SUM(DATEDIFF(SECOND, '00:00:00', ect.temps)), '00:00:00')) AS chronos,
+        pen.somTempsPen AS penalite,
+        DENSE_RANK() OVER (PARTITION BY ec.idEtape ORDER BY SUM(DATEDIFF(SECOND, '00:00:00', ect.temps))) AS classement
+    FROM 
+        etapeCoureurTemps ect
+    JOIN etapecoureur ec ON ec.idEtapeCoureur = ect.idEtapeCoureur
+    JOIN uuser u ON u.idUser = ec.idUser
+    JOIN coureur c ON c.idCoureur = ec.idCoureur
+    LEFT JOIN (
+        SELECT idUser, idEtape, SUM(DATEDIFF(SECOND, '00:00:00', tempsPlenalite)) AS somTempsPen
+        FROM penalite
+        GROUP BY idUser, idEtape
+    ) pen ON pen.idUser = ec.idUser AND ec.idEtape = pen.idEtape
+    where ect.dhArriver is not null and ect.dhDepart is not null
+    GROUP BY ec.idEtape, c.idCoureur, c.nom, c.genre, pen.somTempsPen
+),
+RankedWithPoints AS (
+    SELECT 
+        RankedResults.*,
+        ISNULL(p.points, 0) AS point
+    FROM 
+        RankedResults
+    LEFT JOIN point p ON CAST(RankedResults.classement AS VARCHAR(10)) = p.classement
+)
+SELECT 
+    subquery.*,
+    CASE 
+        WHEN point = 10 THEN '1er'
+        WHEN point = 6 THEN '2eme'
+        WHEN point = 4 THEN '3eme'
+        WHEN point = 2 THEN '4eme'
+        WHEN point = 1 THEN '5eme'
+        ELSE 'non classe'
+    END AS rang,
+    CONVERT(TIME, DATEADD(SECOND, DATEDIFF(SECOND, '00:00:00', chronos) - penalite, '00:00:00')) AS temps_apres_penalite,
+    CONVERT(TIME, DATEADD(SECOND, DATEDIFF(SECOND, '00:00:00', penalite) + DATEDIFF(SECOND, '00:00:00', chronos), '00:00:00')) AS temps_final
+FROM 
+    RankedWithPoints AS subquery;
 
 
 
 
 
 
-select * from uuser 
 
-select * from etapeCoureurTemps e join etapeCoureur ec on ec.idEtapeCoureur = e.idEtapeCoureur join coureur c on c.idCoureur = ec.idCoureur where c.idUser='u3' and ec.idEtape = 'e2'
 
-select * from coureur where idUser = 'u3'
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------
+select * from etapeCoureurTemps e join etapeCoureur ec on ec.idEtapeCoureur = e.idEtapeCoureur join coureur c on c.idCoureur = ec.idCoureur
