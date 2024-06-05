@@ -37,7 +37,11 @@
                                         <td>@r.coureur</td>
                                         <td>@r.genre</td>
                                         <td>@r.chronoss</td>
+                                        @* @if(TimeSpan.Parse(r.penalite) == TimeSpan.Zero){
+                                        <td style="color: red;">@r.penalite</td>
+                                        }else{ *@
                                         <td>@r.penalite</td>
+                                        @* } *@
                                         <td>@r.tempsFinal</td>
                                         <td>@r.rang</td>
                                     </tr>

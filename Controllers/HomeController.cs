@@ -203,4 +203,23 @@ public class HomeController : Controller
             return RedirectToAction("Index", "Home");
         }
     }
+
+    public IActionResult aleas5(string equipe)
+    {
+        if(HttpContext.Session.GetString("sessionId") != null || HttpContext.Session.GetString("adminId") != null)
+        {
+            Data data = new Data();
+            Connexion coco = new Connexion();
+
+            coco.connection.Open();
+            data.resultList = Result.aleas5(coco, equipe);
+
+            coco.connection.Close();
+            return View("aleas5", data);
+
+        }else{
+
+            return RedirectToAction("Index", "Home");
+        }
+    }
 }

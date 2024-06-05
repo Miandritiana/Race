@@ -23,7 +23,7 @@
                                 {
                                     <tr>
                                         <td>@r.rang</td>
-                                        <td>@r.equipe</td>
+                                        <td><a href="@Url.Action("aleas5", "Home", new { equipe = r.equipe })">@r.equipe</a></td>
                                         <td style="text-align: right;">@r.point</td>
                                     </tr>
                                 }
@@ -44,7 +44,7 @@
                                     <select name="category" class="form-select">
                                         @foreach(var e in Model.categoryList)
                                         {
-                                            <option value="@e.idCoureur">@e.category</option>
+                                            <option value="@e.idCoureur">@e.idCategory</option>
                                         }
                                     </select>
                                     <button type="submit" class="btn btn-primary mt-3">
@@ -55,7 +55,7 @@
 
                             <div class="col-7 mb-4">
                                 <div class="table-responsive text-nowrap">
-                                    <label>@Model.v_result_category[0].equipe</label>
+                                    <label>@Model.v_result_category[0].idCoureur</label>
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
@@ -65,14 +65,101 @@
                                         </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
+                                        @foreach(var c in Model.v_result_category)
+                                        {
+                                                <tr>
+                                            
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@c.rang</strong></td>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                                        <strong>@c.equipe</strong>
+                                                    </td>
+                                                    @if (c.rang == ViewBag.lefarany)
+                                                    {
+                                                        <td style="color: red;">@c.totalPoint</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@c.totalPoint</td>
+                                                    }
+                                           
+                                                </tr>
+                                            {
+                                                ViewBag.lefarany = c.rang;
+                                            }
+                                        }
+
+                                            @* @for(int i = 0; i<Model.v_result_category.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@Model.v_result_category[i].rang</strong></td>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@Model.v_result_category[i].equipe</strong></td>
+                                                    @for(int j = 0; j<Model.v_result_category.Count-1; j++)
+                                                    {
+                                                        @if (Model.v_result_category[i].rang == Model.v_result_category[j].rang)
+                                                        {
+                                                            <td style="color: green;">@Model.v_result_category[i].totalPoint</td>
+                                                            break;
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>@Model.v_result_category[i].totalPoint</td>
+                                                        }
+                                                    }
+                                                </tr>
+                                            } *@
+                                            
+                                            @* @foreach(var c in Model.v_result_category)
+                                            {
+                                                var rang = c.rang;
+                                                <tr>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@c.rang</strong></td>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@c.equipe</strong></td>
+                                                    @if (c.rang == c.rang)
+                                                    {
+                                                        <td style="color: green;">@c.totalPoint</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@c.totalPoint</td>
+                                                    }
+                                                </tr>
+                                            } *@
+
+                                            
+                                            @* @for(int i = 0; i<Model.v_result_category.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@Model.v_result_category[i].rang</strong></td>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@Model.v_result_category[i].equipe</strong></td>
+                                                        @if (Model.v_result_category[i].rang == Model.v_result_category[i+1].rang)
+                                                        {
+                                                            <td style="color: green;">@Model.v_result_category[i].totalPoint</td>
+                                                            break;
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>@Model.v_result_category[i].totalPoint</td>
+                                                        }
+                                                </tr>
+                                            } *@
+
+
+
+                                            @* @{
+                                                var list = Model.v_result_category.Select(c => c.rang).Distinct().ToList();
+                                            }
+
                                             @foreach(var c in Model.v_result_category)
                                             {
                                                 <tr>
                                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@c.rang</strong></td>
                                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>@c.equipe</strong></td>
-                                                    <td>@c.totalPoint</td>
+                                                    <td style="@(list.Count(cc => cc == c.rang) > 1 ? "color: green;" : "")">@c.totalPoint</td>
                                                 </tr>
-                                            }
+                                            } *@
+
+
+
                                         </tbody>
                                     </table>
                                 </div>

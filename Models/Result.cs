@@ -361,5 +361,31 @@ namespace Race.Models
                 throw ex;
             }
         }
+
+
+        public static List<Result> aleas5(Connexion connexion, string equipe)
+        {
+            List<Result> results = new List<Result>();
+            string query = "SELECT v.idEtape, v.idCoureur, v.coureur, sum(v.point) as point FROM v_detail_result v join coureur c on c.idCoureur = v.idCoureur join uuser u on u.idUser = c.idUser where u.name = '"+equipe+"' group by v.idEtape, v.idCoureur, v.coureur";
+            Console.WriteLine(query);
+            using (SqlCommand command = new SqlCommand(query, connexion.connection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // (string rang, string equipe, int point)
+                        Result result = new Result(
+                            reader["idEtape"].ToString(),
+                            reader["coureur"].ToString(),
+                            Convert.ToInt32(reader["point"])
+                        );
+                        results.Add(result);
+                    }
+                }
+            }
+
+            return results;
+        }
     }
 }

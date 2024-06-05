@@ -1,0 +1,1337 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Race.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Race.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\css\\demo.css",
+      "PackagePath": "staticwebassets\\assets\\css\\demo.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\avatars\\1.png",
+      "PackagePath": "staticwebassets\\assets\\img\\avatars\\1.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\avatars\\5.png",
+      "PackagePath": "staticwebassets\\assets\\img\\avatars\\5.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\avatars\\6.png",
+      "PackagePath": "staticwebassets\\assets\\img\\avatars\\6.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\avatars\\7.png",
+      "PackagePath": "staticwebassets\\assets\\img\\avatars\\7.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\backgrounds\\18.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\backgrounds\\18.jpg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\certificat.png",
+      "PackagePath": "staticwebassets\\assets\\img\\certificat.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\elements\\1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\1.jpg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\elements\\11.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\11.jpg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\elements\\12.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\12.jpg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\elements\\13.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\13.jpg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\elements\\17.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\17.jpg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\elements\\18.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\18.jpg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\elements\\19.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\19.jpg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\elements\\2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\2.jpg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\elements\\20.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\20.jpg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\elements\\3.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\3.jpg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\elements\\4.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\4.jpg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\elements\\5.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\5.jpg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\elements\\7.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\7.jpg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\favicon\\favicon.ico",
+      "PackagePath": "staticwebassets\\assets\\img\\favicon\\favicon.ico"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\brands\\asana.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\brands\\asana.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\brands\\behance.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\brands\\behance.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\brands\\dribbble.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\brands\\dribbble.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\brands\\facebook.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\brands\\facebook.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\brands\\github.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\brands\\github.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\brands\\google.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\brands\\google.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\brands\\instagram.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\brands\\instagram.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\brands\\mailchimp.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\brands\\mailchimp.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\brands\\slack.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\brands\\slack.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\brands\\twitter.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\brands\\twitter.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\unicons\\cc-primary.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\unicons\\cc-primary.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\unicons\\cc-success.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\unicons\\cc-success.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\unicons\\cc-warning.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\unicons\\cc-warning.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\unicons\\chart-success.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\unicons\\chart-success.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\unicons\\chart.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\unicons\\chart.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\unicons\\paypal.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\unicons\\paypal.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\unicons\\wallet-info.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\unicons\\wallet-info.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\icons\\unicons\\wallet.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icons\\unicons\\wallet.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\illustrations\\girl-doing-yoga-light.png",
+      "PackagePath": "staticwebassets\\assets\\img\\illustrations\\girl-doing-yoga-light.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\illustrations\\man-with-laptop-light.png",
+      "PackagePath": "staticwebassets\\assets\\img\\illustrations\\man-with-laptop-light.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\illustrations\\page-misc-error-light.png",
+      "PackagePath": "staticwebassets\\assets\\img\\illustrations\\page-misc-error-light.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\layouts\\layout-container-light.png",
+      "PackagePath": "staticwebassets\\assets\\img\\layouts\\layout-container-light.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\layouts\\layout-fluid-light.png",
+      "PackagePath": "staticwebassets\\assets\\img\\layouts\\layout-fluid-light.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\layouts\\layout-without-menu-light.png",
+      "PackagePath": "staticwebassets\\assets\\img\\layouts\\layout-without-menu-light.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\layouts\\layout-without-navbar-light.png",
+      "PackagePath": "staticwebassets\\assets\\img\\layouts\\layout-without-navbar-light.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\img\\logo.png",
+      "PackagePath": "staticwebassets\\assets\\img\\logo.png"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\TimesheetEval -Miandritiana.pdf",
+      "PackagePath": "staticwebassets\\assets\\js\\TimesheetEval -Miandritiana.pdf"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\LICENSE",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\README.md",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\README.md"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\apexcharts.amd.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\apexcharts.amd.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\apexcharts.common.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\apexcharts.common.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\apexcharts.css",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\apexcharts.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\apexcharts.esm.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\apexcharts.esm.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\apexcharts.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\apexcharts.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\apexcharts.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\apexcharts.min.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\ar.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\ar.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\ca.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\ca.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\cs.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\cs.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\de.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\de.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\el.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\el.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\en.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\en.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\es.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\es.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\et.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\et.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\fa.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\fa.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\fi.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\fi.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\fr.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\fr.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\he.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\he.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\hi.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\hi.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\hr.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\hr.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\hu.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\hu.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\hy.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\hy.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\id.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\id.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\it.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\it.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\ja.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\ja.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\ka.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\ka.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\ko.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\ko.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\lt.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\lt.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\lv.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\lv.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\nb.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\nb.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\nl.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\nl.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\pl.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\pl.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\pt-br.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\pt-br.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\pt.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\pt.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\rs.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\rs.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\ru.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\ru.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\se.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\se.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\sk.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\sk.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\sl.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\sl.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\sq.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\sq.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\th.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\th.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\tr.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\tr.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\ua.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\ua.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\zh-cn.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\zh-cn.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\dist\\locales\\zh-tw.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\dist\\locales\\zh-tw.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\package.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\package.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\apexcharts.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\apexcharts.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\apexcharts.css",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\apexcharts.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\ico-camera.svg",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\ico-camera.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\ico-home.svg",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\ico-home.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\ico-menu.svg",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\ico-menu.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\ico-minus-square.svg",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\ico-minus-square.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\ico-minus.svg",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\ico-minus.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\ico-pan-hand.svg",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\ico-pan-hand.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\ico-pan.svg",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\ico-pan.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\ico-plus-square.svg",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\ico-plus-square.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\ico-plus.svg",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\ico-plus.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\ico-refresh.svg",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\ico-refresh.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\ico-reset.svg",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\ico-reset.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\ico-select.svg",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\ico-select.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\ico-select1.svg",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\ico-select1.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\ico-zoom-in.svg",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\ico-zoom-in.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\ico-zoom-out.svg",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\ico-zoom-out.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\assets\\ico-zoom.svg",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\assets\\ico-zoom.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\charts\\Bar.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\charts\\Bar.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\charts\\BarStacked.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\charts\\BarStacked.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\charts\\BoxCandleStick.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\charts\\BoxCandleStick.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\charts\\HeatMap.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\charts\\HeatMap.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\charts\\Line.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\charts\\Line.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\charts\\Pie.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\charts\\Pie.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\charts\\Radar.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\charts\\Radar.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\charts\\Radial.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\charts\\Radial.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\charts\\RangeBar.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\charts\\RangeBar.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\charts\\Scatter.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\charts\\Scatter.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\charts\\Treemap.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\charts\\Treemap.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\charts\\common\\bar\\DataLabels.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\charts\\common\\bar\\DataLabels.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\charts\\common\\bar\\Helpers.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\charts\\common\\bar\\Helpers.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\charts\\common\\circle\\Helpers.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\charts\\common\\circle\\Helpers.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\charts\\common\\line\\Helpers.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\charts\\common\\line\\Helpers.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\charts\\common\\treemap\\Helpers.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\charts\\common\\treemap\\Helpers.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\libs\\Treemap-squared.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\libs\\Treemap-squared.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\ar.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\ar.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\ca.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\ca.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\cs.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\cs.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\de.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\de.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\el.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\el.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\en.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\en.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\es.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\es.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\et.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\et.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\fa.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\fa.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\fi.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\fi.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\fr.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\fr.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\he.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\he.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\hi.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\hi.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\hr.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\hr.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\hu.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\hu.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\hy.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\hy.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\id.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\id.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\it.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\it.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\ja.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\ja.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\ka.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\ka.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\ko.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\ko.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\lt.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\lt.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\lv.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\lv.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\nb.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\nb.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\nl.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\nl.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\pl.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\pl.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\pt-br.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\pt-br.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\pt.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\pt.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\rs.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\rs.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\ru.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\ru.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\se.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\se.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\sk.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\sk.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\sl.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\sl.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\sq.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\sq.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\th.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\th.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\tr.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\tr.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\ua.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\ua.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\zh-cn.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\zh-cn.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\locales\\zh-tw.json",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\locales\\zh-tw.json"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Animations.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Animations.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Base.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Base.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Core.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Core.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\CoreUtils.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\CoreUtils.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Crosshairs.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Crosshairs.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Data.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Data.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\DataLabels.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\DataLabels.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Events.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Events.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Exports.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Exports.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Fill.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Fill.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Filters.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Filters.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Formatters.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Formatters.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Graphics.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Graphics.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Markers.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Markers.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Range.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Range.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Responsive.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Responsive.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Scales.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Scales.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Series.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Series.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Theme.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Theme.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\TimeScale.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\TimeScale.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\TitleSubtitle.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\TitleSubtitle.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\Toolbar.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\Toolbar.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\ZoomPanSelection.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\ZoomPanSelection.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\annotations\\Annotations.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\annotations\\Annotations.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\annotations\\Helpers.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\annotations\\Helpers.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\annotations\\PointsAnnotations.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\annotations\\PointsAnnotations.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\annotations\\XAxisAnnotations.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\annotations\\XAxisAnnotations.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\annotations\\YAxisAnnotations.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\annotations\\YAxisAnnotations.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\axes\\Axes.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\axes\\Axes.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\axes\\AxesUtils.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\axes\\AxesUtils.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\axes\\Grid.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\axes\\Grid.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\axes\\XAxis.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\axes\\XAxis.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\axes\\YAxis.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\axes\\YAxis.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\dimensions\\Dimensions.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\dimensions\\Dimensions.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\dimensions\\Grid.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\dimensions\\Grid.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\dimensions\\Helpers.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\dimensions\\Helpers.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\dimensions\\XAxis.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\dimensions\\XAxis.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\dimensions\\YAxis.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\dimensions\\YAxis.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\helpers\\Destroy.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\helpers\\Destroy.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\helpers\\InitCtxVariables.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\helpers\\InitCtxVariables.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\helpers\\Localization.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\helpers\\Localization.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\helpers\\UpdateHelpers.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\helpers\\UpdateHelpers.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\legend\\Helpers.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\legend\\Helpers.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\legend\\Legend.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\legend\\Legend.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\settings\\Config.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\settings\\Config.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\settings\\Defaults.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\settings\\Defaults.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\settings\\Globals.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\settings\\Globals.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\settings\\Options.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\settings\\Options.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\tooltip\\AxesTooltip.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\tooltip\\AxesTooltip.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\tooltip\\Intersect.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\tooltip\\Intersect.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\tooltip\\Labels.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\tooltip\\Labels.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\tooltip\\Marker.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\tooltip\\Marker.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\tooltip\\Position.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\tooltip\\Position.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\tooltip\\README.md",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\tooltip\\README.md"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\tooltip\\Tooltip.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\tooltip\\Tooltip.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\modules\\tooltip\\Utils.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\modules\\tooltip\\Utils.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\svgjs\\svg.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\svgjs\\svg.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\utils\\DateTime.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\utils\\DateTime.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\utils\\Resize.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\utils\\Resize.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\src\\utils\\Utils.js",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\src\\utils\\Utils.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\apexcharts\\types\\apexcharts.d.ts",
+      "PackagePath": "staticwebassets\\assets\\js\\apexcharts\\types\\apexcharts.d.ts"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\chart.js",
+      "PackagePath": "staticwebassets\\assets\\js\\chart.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\config.js",
+      "PackagePath": "staticwebassets\\assets\\js\\config.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\dashboards-analytics.js",
+      "PackagePath": "staticwebassets\\assets\\js\\dashboards-analytics.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\extended-ui-perfect-scrollbar.js",
+      "PackagePath": "staticwebassets\\assets\\js\\extended-ui-perfect-scrollbar.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\form-basic-inputs.js",
+      "PackagePath": "staticwebassets\\assets\\js\\form-basic-inputs.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\html2pdf.bundle.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\html2pdf.bundle.min.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\main.js",
+      "PackagePath": "staticwebassets\\assets\\js\\main.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\pages-account-settings-account.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages-account-settings-account.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\ui-modals.js",
+      "PackagePath": "staticwebassets\\assets\\js\\ui-modals.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\ui-popover.js",
+      "PackagePath": "staticwebassets\\assets\\js\\ui-popover.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\ui-toasts.js",
+      "PackagePath": "staticwebassets\\assets\\js\\ui-toasts.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\js\\xlsx.full.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\xlsx.full.min.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\css\\core.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\css\\core.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\css\\pages\\page-account-settings.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\css\\pages\\page-account-settings.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\css\\pages\\page-auth.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\css\\pages\\page-auth.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\css\\pages\\page-icons.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\css\\pages\\page-icons.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\css\\pages\\page-misc.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\css\\pages\\page-misc.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\css\\theme-default.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\css\\theme-default.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\fonts\\boxicons.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\fonts\\boxicons.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\fonts\\boxicons\\boxicons.eot",
+      "PackagePath": "staticwebassets\\assets\\vendor\\fonts\\boxicons\\boxicons.eot"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\fonts\\boxicons\\boxicons.svg",
+      "PackagePath": "staticwebassets\\assets\\vendor\\fonts\\boxicons\\boxicons.svg"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\fonts\\boxicons\\boxicons.ttf",
+      "PackagePath": "staticwebassets\\assets\\vendor\\fonts\\boxicons\\boxicons.ttf"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\fonts\\boxicons\\boxicons.woff",
+      "PackagePath": "staticwebassets\\assets\\vendor\\fonts\\boxicons\\boxicons.woff"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\fonts\\boxicons\\boxicons.woff2",
+      "PackagePath": "staticwebassets\\assets\\vendor\\fonts\\boxicons\\boxicons.woff2"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\js\\helpers.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\js\\helpers.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\js\\menu.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\js\\menu.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\libs\\apex-charts\\apex-charts.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\apex-charts\\apex-charts.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\libs\\apex-charts\\apexcharts.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\apex-charts\\apexcharts.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\libs\\highlight\\highlight-github.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\highlight\\highlight-github.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\libs\\highlight\\highlight.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\highlight\\highlight.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\libs\\highlight\\highlight.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\highlight\\highlight.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\libs\\jquery\\jquery.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\jquery\\jquery.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\libs\\masonry\\masonry.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\masonry\\masonry.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\libs\\perfect-scrollbar\\perfect-scrollbar.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\perfect-scrollbar\\perfect-scrollbar.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\libs\\perfect-scrollbar\\perfect-scrollbar.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\perfect-scrollbar\\perfect-scrollbar.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\assets\\vendor\\libs\\popper\\popper.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\popper\\popper.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\L3\\S6\\Eval\\Race\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Race.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.Race.props",
+      "PackagePath": "build\\Race.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.Race.props",
+      "PackagePath": "buildMultiTargeting\\Race.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.Race.props",
+      "PackagePath": "buildTransitive\\Race.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

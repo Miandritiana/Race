@@ -141,7 +141,8 @@ namespace Race.Models
         {
             try
             {
-                string query = "INSERT INTO point (classement, points) VALUES ('"+this.classement+"', '"+this.points+"')";
+                // string query = "INSERT INTO point (classement, points) VALUES ('"+this.classement+"', '"+this.points+"')";
+                string query = "INSERT INTO point (classement, points) VALUES ('"+this.classement+"', '"+this.points+"') ON DUPLICATE KEY UPDATE points = '"+this.points+"'";
                 Console.WriteLine(query);
                 SqlCommand command = new SqlCommand(query, connexion.connection);
                 command.ExecuteNonQuery();
